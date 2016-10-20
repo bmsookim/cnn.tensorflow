@@ -6,12 +6,16 @@ import pandas as pd
 import network
 from network import *
 import batch_load as datasets
+import config as cf
+
+cf.mode = 'test'
+cf.train = False
 
 def run(clf, train):
     test_images, test_labels = datasets.load_cifar10(is_train=False)
     records = []
     save_dir = "../models/" + cf.dataset# + ("/%s" % clf.__class__.__name__)
-    
+
     clf.load(save_dir + "/" + cf.dataset + ".ckpt")
     test_accuracy, test_loss = clf.score(test_images, test_labels)
     test_accuracy *= 100
