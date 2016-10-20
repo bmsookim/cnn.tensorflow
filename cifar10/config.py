@@ -13,12 +13,14 @@ channels = 3
 # training specification configuration
 epochs = 200
 batch_size = 128
-dropout_rate = [1-0.1, 1-0.2, 1-0.3, 1-0.4, 1-0.5]
-lr_decay = 5e-4
+dropout_rate = [0.1, 0.2, 0.3, 0.4, 0.5]
+keep_prob = [1-0.1, 1-0.2, 1-0.3, 1-0.4, 1-0.5]
+lr_decay = 5e-5
 
 # model specification configuration
 model = 'vggnet'
-train = True
+train = True    # of train is set to 'False', we skip the training process.
+mode = 'train'  # if mode is set to 'test', we use the moving average.
 
 # step specification configuration
 display_iter = (batch_size*75)
