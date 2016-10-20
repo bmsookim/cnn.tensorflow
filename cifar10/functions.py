@@ -45,8 +45,11 @@ def volume(x):
 def flatten(x):
     return tf.reshape(x, [-1, volume(x)])
 
-def dropout(x, keep_prob):
+def dropout_my(x, keep_prob):
     return tf.nn.dropout(x, keep_prob)
+
+def dropout(x, keep_prob, is_train):
+    return tf.contrib.layers.dropout(x, keep_prob=keep_prob, is_training=is_train)
 
 def batch_normalization(x):
     eps = 1e-5
