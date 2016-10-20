@@ -74,7 +74,7 @@ class BasicConvNet(object):
             feed_dict = {
                     self._images : batch_images,
                     self._labels : batch_labels,
-                    self._keep_prob : cf.dropout_rate
+                    self._keep_prob : cf.keep_prob
             }
 
             _, acc, train_avg_loss, global_step = self._session.run(
@@ -245,7 +245,7 @@ class resnet(BasicConvNet):
     def __init__(self, layers, width):
         self._layers = layers
         self._k = width
-        super(resnet, self).__init__()
+        super(resnet, self).__init__(image_w=cf.w, image_h=cf.h)
 
     def _residual(self, h, channels, strides, keep_prob):
         h0 = h
@@ -266,10 +266,10 @@ class resnet(BasicConvNet):
                 h = self._residual(h, channels=16*self._k, strides=1, keep_prob=keep_prob)
         for channels in [32*self._k, 64*self._k]:
             for i in range(self._layers):
-                with tf.variable_scope(str(channels)+'_layer_%s' %i):
-                    strides = 2 if i == 0 else 1
-                    h = self._residual(h, channels, strides, keep_prob)
-        h = F.activation(self._batch_norm('bn', h))
+               with tf.variable_scope(str(channels)+'_layer_%s' %i):
+                   strides = 2 if i == 0 else 1
+                   h = self._residual(h, channels, strides, keep_prob)
+        h = F.activation(self._batch_norm('bn3', h))
         h = tf.reduce_mean(h, reduction_indices=[1,2])
         h = F.dense(h, self._num_classes)
 
@@ -283,12 +283,19 @@ class resnet(BasicConvNet):
                         )
                     )
                 )
+
+        # moving averages
+        variable_averages = tf.train.ExponentialMovingAverage(0.9999, self._global_step)
+        tmp_trn_var = tf.trainable_variables()
+        update_var = [v for v in tmp_trn_var if v.name != 'global_step:0']
+        variable_averages_op = variable_averages.apply(update_var)
+
         trainable_variables = tf.trainable_variables()
         grads = tf.gradients(avg_loss, trainable_variables)
         optimizer = tf.train.MomentumOptimizer(learning_rate=lr, momentum=0.9)
         apply_op = optimizer.apply_gradients(zip(grads, trainable_variables),
                 global_step=self._global_step, name='train_step')
-        train_ops = [apply_op]+self._extra_train_ops
+        train_ops = [apply_op]+self._extra_train_ops+[variable_averages_op]
         return tf.group(*train_ops)
 
 class resnet10x1(resnet):
