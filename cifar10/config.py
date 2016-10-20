@@ -13,9 +13,9 @@ channels = 3
 # training specification configuration
 epochs = 200
 batch_size = 128
-dropout_rate = [0.1, 0.2, 0.3, 0.4, 0.5]
-keep_prob = [1-0.1, 1-0.2, 1-0.3, 1-0.4, 1-0.5]
-lr_decay = 5e-5
+dropout_rate = 0.0
+keep_prob = 1-dropout_rate
+lr_decay = 0.0005
 
 # model specification configuration
 model = 'vggnet'
