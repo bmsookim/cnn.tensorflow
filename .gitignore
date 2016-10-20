@@ -1,4 +1,5 @@
 input/*
 output/*
 models/*
-.ipynb_checkpoints
+*.ipynb_checkpoints
+*.pyc
