@@ -44,6 +44,7 @@ def run(clf, train):
 
             duration = time.time() - start_time
             time_per = time.time() - epoch_time
+            clf.mode = 'test'
             test_accuracy, test_loss = clf.score(test_images, test_labels)
             test_accuracy *= 100
 
