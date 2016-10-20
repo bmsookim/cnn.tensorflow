@@ -231,14 +231,26 @@ class vggnet(BasicConvNet):
 
     # Overriding for function _train
     def _train(self, avg_loss):
+        lr = tf.select(
+                tf.less(self._global_step, cf.step1), 0.1, tf.select(
+                    tf.less(self._global_step, cf.step2), 0.02, tf.select(
+                        tf.less(self._global_step, cf.step3), 0.004, 0.0008
+                        )
+                    )
+                )
+
+        # moving averages
+        variable_averages = tf.train.ExponentialMovingAverage(0.9999, self._global_step)
+        tmp_trn_var = tf.trainable_variables()
+        update_var = [v for v in tmp_trn_var if v.name != 'global_step:0']
+        variable_averages_op = variable_averages.apply(update_var)
+
         trainable_variables = tf.trainable_variables()
         grads = tf.gradients(avg_loss, trainable_variables)
-        optimizer = tf.train.AdamOptimizer(1e-3)
-        #.minimize(avg_loss, aggregation_method=tf.AggregationMethod.EXPERIMENTAL_ACCUMULATE_N,
-        # global_step=self._global_step)
+        optimizer = tf.train.MomentumOptimizer(learning_rate=lr, momentum=0.9)
         apply_op = optimizer.apply_gradients(zip(grads, trainable_variables),
                 global_step=self._global_step, name='train_step')
-        train_ops = [apply_op]+self._extra_train_ops
+        train_ops = [apply_op]+self._extra_train_ops+[variable_averages_op]
         return tf.group(*train_ops)
 
 class resnet(BasicConvNet):
@@ -266,9 +278,9 @@ class resnet(BasicConvNet):
                 h = self._residual(h, channels=16*self._k, strides=1, keep_prob=keep_prob)
         for channels in [32*self._k, 64*self._k]:
             for i in range(self._layers):
-               with tf.variable_scope(str(channels)+'_layer_%s' %i):
-                   strides = 2 if i == 0 else 1
-                   h = self._residual(h, channels, strides, keep_prob)
+                with tf.variable_scope(str(channels)+'_layer_%s' %i):
+                    strides = 2 if i == 0 else 1
+                    h = self._residual(h, channels, strides, keep_prob)
         h = F.activation(self._batch_norm('bn3', h))
         h = tf.reduce_mean(h, reduction_indices=[1,2])
         h = F.dense(h, self._num_classes)
@@ -297,10 +309,6 @@ class resnet(BasicConvNet):
                 global_step=self._global_step, name='train_step')
         train_ops = [apply_op]+self._extra_train_ops+[variable_averages_op]
         return tf.group(*train_ops)
-
-class resnet10x1(resnet):
-    def __init__(self):
-        super(resnet10x1, self).__init__(layers=1, width=1)
 
 class resnet28x10(resnet):
     def __init__(self):
