@@ -11,8 +11,8 @@ class BasicConvNet(object):
         self._batch_size = cf.batch_size # define the batch size of mini-batch training.
         self._channels = cf.channels # define the number of channels. ex) RGB = 3, GrayScale = 1, FeatureMap = 50
         self._num_classes = num_classes # define the number of classes for final classfication
-        self.mode = cf.mode
-        self._extra_train_ops = []
+        self.mode = cf.mode # define whether to use moving averages
+        self._extra_train_ops = [] # extra training ops for moving averages
 
         # define the basic options for tensorflow session : restricts allocation of GPU memory.
         gpu_options = tf.GPUOptions(allow_growth = True)
@@ -25,7 +25,7 @@ class BasicConvNet(object):
         self._global_step = tf.Variable(0, tf.int64, name="global_step") # saves the global step of training.
 
         # loss calculation & update
-        self._logits = self._inference(self._images) # prediction
+        self._logits = self._inference(self._images, self._keep_prob) # prediction
         self._avg_loss = self._loss(self._labels, self._logits) # difference between prediction & actual label.
         self._train_op = self._train(self._avg_loss) # back propagate the loss.
         self._accuracy = F.accuracy_score(self._labels, self._logits) # get the accuracy of given prediction batch.
@@ -74,6 +74,7 @@ class BasicConvNet(object):
             feed_dict = {
                     self._images : batch_images,
                     self._labels : batch_labels,
+                    self._keep_prob : cf.dropout_rate
             }
 
             _, acc, train_avg_loss, global_step = self._session.run(
@@ -97,6 +98,7 @@ class BasicConvNet(object):
             feed_dict = {
                     self._images : batch_images,
                     self._labels : batch_labels,
+                    self._keep_prob : 1.0
             }
 
             acc, avg_loss = self._session.run(
@@ -117,7 +119,7 @@ class BasicConvNet(object):
         self._saver.restore(self._session, filepath)
         print("Model restored.")
 
-    def _inferenece(self, X):
+    def _inference(self, X, keep_prob):
         pass
 
     def _loss(self, labels, logits):
@@ -131,28 +133,24 @@ class BasicConvNet(object):
         trainable_variables = tf.trainable_variablies()
         grads = tf.gradients(self._loss, trainable_variables)
         optimizer = tf.train.AdamOptimizer().minimize(avg_loss, self._global_step)
-        apply_op = optimizer.apply_gradients(zip(grads,trainable_variables), global_step=self._global_step, name='train_step')
+        apply_op = optimizer.apply_gradients(zip(grads,trainable_variables),
+                global_step=self._global_step, name='train_step')
 
         train_ops = [apply_op] + self._extra_train_ops
         return tf.group(*train_ops)
 
 class vggnet(BasicConvNet):
-    def _inference(self, X):
-        if self.mode == 'train' :
-            keep_prob = [0.9, 0.8, 0.7, 0.6, 0.5]
-        else :
-            keep_prob = [1.0]*5
-
+    def _inference(self, X, keep_prob):
         # Conv_layer 1
         conv = F.conv(X, 64)
         batch_norm = self._batch_norm('bn1', conv)
         relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, keep_prob[0], cf.train)
+        dropout = F.dropout(relu, 0.9, cf.train)
 
         conv = F.conv(dropout, 64)
         batch_norm = self._batch_norm('bn2', conv)
         relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, keep_prob[0], cf.train)
+        dropout = F.dropout(relu, 0.9, cf.train)
 
         max_pool = F.max_pool(dropout) # 16 x 16
 
@@ -160,12 +158,12 @@ class vggnet(BasicConvNet):
         conv = F.conv(max_pool, 128)
         batch_norm = self._batch_norm('bn3', conv)
         relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, keep_prob[1], cf.train)
+        dropout = F.dropout(relu, 0.8, cf.train)
 
         conv = F.conv(dropout, 128)
         batch_norm = self._batch_norm('bn4', conv)
         relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, keep_prob[1], cf.train)
+        dropout = F.dropout(relu, 0.8, cf.train)
 
         max_pool = F.max_pool(dropout) # 8 x 8
 
@@ -173,16 +171,16 @@ class vggnet(BasicConvNet):
         conv = F.conv(max_pool, 256)
         batch_norm = self._batch_norm('bn5', conv)
         relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, keep_prob[2], cf.train)
+        dropout = F.dropout(relu, 0.7, cf.train)
 
         conv = F.conv(dropout, 256)
         batch_norm = self._batch_norm('bn6', conv)
         relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, keep_prob[2], cf.train)
+        dropout = F.dropout(relu, 0.7, cf.train)
 
         conv = F.conv(dropout, 256)
         batch_norm = self._batch_norm('bn7', conv)
-        dropout = F.dropout(relu, keep_prob[2], cf.train)
+        dropout = F.dropout(relu, 0.7, cf.train)
 
         max_pool = F.max_pool(dropout) # 4 x 4
 
@@ -190,25 +188,43 @@ class vggnet(BasicConvNet):
         conv = F.conv(max_pool, 512)
         batch_norm = self._batch_norm('bn8', conv)
         relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, keep_prob[3], cf.train)
+        dropout = F.dropout(relu, 0.6, cf.train)
 
         conv = F.conv(dropout, 512)
         batch_norm = self._batch_norm('bn9', conv)
         relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, keep_prob[3], cf.train)
+        dropout = F.dropout(relu, 0.6, cf.train)
 
         conv = F.conv(max_pool, 512)
         batch_norm = self._batch_norm('bn10', conv)
         relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, keep_prob[3], cf.train)
+        dropout = F.dropout(relu, 0.6, cf.train)
 
         max_pool = F.max_pool(dropout) # 2 x 2
+
+        # Conv_layer 5
+        conv = F.conv(max_pool, 512)
+        batch_norm = self._batch_norm('bn11', conv)
+        relu = F.activation(batch_norm)
+        dropout = F.dropout(relu, 0.5, cf.train)
+
+        conv = F.conv(dropout, 512)
+        batch_norm = self._batch_norm('bn12', conv)
+        relu = F.activation(batch_norm)
+        dropout = F.dropout(relu, 0.5, cf.train)
+
+        conv = F.conv(max_pool, 512)
+        batch_norm = self._batch_norm('bn13', conv)
+        relu = F.activation(batch_norm)
+        dropout = F.dropout(relu, 0.5, cf.train)
+
+        max_pool = F.max_pool(dropout) # 1 x 1
 
         # Fully Connected Layer 1
         fc = F.dense(max_pool, 512)
         batch_norm = self._batch_norm('fc', conv)
         relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, keep_prob[4], cf.train)
+        dropout = F.dropout(relu, 0.5, cf.train)
         h = F.dense(dropout, self._num_classes)
 
         return h
@@ -217,7 +233,70 @@ class vggnet(BasicConvNet):
     def _train(self, avg_loss):
         trainable_variables = tf.trainable_variables()
         grads = tf.gradients(avg_loss, trainable_variables)
-        optimizer = tf.train.AdamOptimizer(1e-3)#.minimize(avg_loss, aggregation_method=tf.AggregationMethod.EXPERIMENTAL_ACCUMULATE_N, global_step=self._global_step)
-        apply_op = optimizer.apply_gradients(zip(grads, trainable_variables), global_step=self._global_step, name='train_step')
+        optimizer = tf.train.AdamOptimizer(1e-3)
+        #.minimize(avg_loss, aggregation_method=tf.AggregationMethod.EXPERIMENTAL_ACCUMULATE_N,
+        # global_step=self._global_step)
+        apply_op = optimizer.apply_gradients(zip(grads, trainable_variables),
+                global_step=self._global_step, name='train_step')
         train_ops = [apply_op]+self._extra_train_ops
         return tf.group(*train_ops)
+
+class resnet(BasicConvNet):
+    def __init__(self, layers, width):
+        self._layers = layers
+        self._k = width
+        super(resnet, self).__init__()
+
+    def _residual(self, h, channels, strides, keep_prob):
+        h0 = h
+        h1 = F.conv(F.activation(self._batch_norm('bn1', h0)), channels, strides)
+        h1 = F.dropout(h1, keep_prob, cf.train)
+        h2 = F.conv(F.activation(self._batch_norm('bn2', h1)), channels)
+        if F.volume(h0) == F.volume(h2):
+            h = h0 + h2
+        else :
+            h4 = F.conv(h0, channels, strides)
+            h = h2 + h4
+        return h
+
+    def _inference(self, X, keep_prob):
+        h = F.conv(X, 16)
+        for i in range(self._layers):
+            with tf.variable_scope('16_layer_%s' %i):
+                h = self._residual(h, channels=16*self._k, strides=1, keep_prob=keep_prob)
+        for channels in [32*self._k, 64*self._k]:
+            for i in range(self._layers):
+                with tf.variable_scope(str(channels)+'_layer_%s' %i):
+                    strides = 2 if i == 0 else 1
+                    h = self._residual(h, channels, strides, keep_prob)
+        h = F.activation(self._batch_norm('bn', h))
+        h = tf.reduce_mean(h, reduction_indices=[1,2])
+        h = F.dense(h, self._num_classes)
+
+        return h
+
+    def _train(self, avg_loss):
+        lr = tf.select(
+                tf.less(self._global_step, cf.step1), 0.1, tf.select(
+                    tf.less(self._global_step, cf.step2), 0.02, tf.select(
+                        tf.less(self._global_step, cf.step3), 0.004, 0.0008
+                        )
+                    )
+                )
+        trainable_variables = tf.trainable_variables()
+        grads = tf.gradients(avg_loss, trainable_variables)
+        optimizer = tf.train.MomentumOptimizer(learning_rate=lr, momentum=0.9)
+        apply_op = optimizer.apply_gradients(zip(grads, trainable_variables),
+                global_step=self._global_step, name='train_step')
+        train_ops = [apply_op]+self._extra_train_ops
+        return tf.group(*train_ops)
+
+class resnet10x1(resnet):
+    def __init__(self):
+        super(resnet10x1, self).__init__(layers=1, width=1)
+
+class resnet28x10(resnet):
+    def __init__(self):
+        super(resnet28x10, self).__init__(layers=4, width=10) # layer should be (depth-4)/6
+
+
