@@ -310,6 +310,10 @@ class resnet(BasicConvNet):
         train_ops = [apply_op]+self._extra_train_ops+[variable_averages_op]
         return tf.group(*train_ops)
 
+class resnet202(resnet):
+    def __init__(self):
+        super(resnet202, self).__init__(layers=33, width=1)
+
 class resnet28x10(resnet):
     def __init__(self):
         super(resnet28x10, self).__init__(layers=4, width=10) # layer should be (depth-4)/6
