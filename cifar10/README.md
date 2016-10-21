@@ -1,4 +1,4 @@
-# CIFAR-10 Dataset
+# CIFAR-10 Dataset Implementation Details.
 Specific Description for CIFAR-10 Dataset training.
 
 CIFAR-10 is consisted with 50,000 training images and 10,000 testing images.
@@ -6,7 +6,7 @@ Each images is consisted in an RGB format with the size of 32 x 32 pixels.
 
 ## Results
 |      network      | Optimizer          | epoch | accuracy(%)     |
-|:-----------------:|--------------------|:-----:|-----------------|
+|:-----------------:|--------------------|:-----:|:---------------:|
 |       vggnet      | Momentum Optimizer |  200  | 93.04           |
 |      resnet200    | Momentum Optimizer |  200  | will be updated |
 | wide-resnet 28x10 | Momentum Optimizer |  200  | will be updated |
@@ -60,6 +60,7 @@ As you can see, the whitening process resulted in ignoring the most important va
 Moreover, whitening also conducts the scaling process of the standard deviation, which will make these
 problems worse and worse.
 
+## Approaches
 In order to overcome the disadvantages of 'whitening' process and reduce internal covariance shift,
 they approached the problem as below.
 
