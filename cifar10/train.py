@@ -18,7 +18,7 @@ def run(clf):
     # if resume mode is on, load the checkpoint file
     if(resume) :
         try :
-            clf.load(save_dir + "/model.ckpt")
+            clf.load(save_dir + "/"+ cf.model + ".ckpt")
             print "Resumed from" + str(save_dir + "/model.ckpt") + "\n"
         except ValueError :
             print "Starting a new model" + str(save_dir + "/model.ckpt") + "\n"
@@ -69,11 +69,11 @@ def run(clf):
         if df["test_accuracy"].max() - 1e-5 < test_accuracy and test_loss < 200.0 :
             if not os.path.exists(save_dir):
                 os.mkdir(save_dir)
-            print("Save to %s" % save_dir)
-            clf.save(save_dir +"/"+ cf.dataset + ".ckpt")
+            print(("Save to %s" % save_dir)+"/"+cf.model+".ckpt")
+            clf.save(save_dir +"/"+ cf.model + ".ckpt")
             save_epoch = epoch
         if test_loss > 5 :
-            clf.load(save_dir+"/"+ cf.dataset + ".ckpt")
+            clf.load(save_dir+"/"+ cf.model + ".ckpt")
             exploded = True
         print ""
 
