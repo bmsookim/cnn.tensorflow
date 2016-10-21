@@ -22,8 +22,8 @@ def run(clf):
 
     print('\nTest accuracy: %.2f%%\n' % test_accuracy)
 
-    print clf.prediction(test_images[:25])
-    print test_labels[:25]
+    # print clf.prediction(test_images[:25])
+    # print test_labels[:25]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
