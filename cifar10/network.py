@@ -65,6 +65,27 @@ class BasicConvNet(object):
             y.set_shape(x.get_shape())
             return y
 
+    def prediction(self, X):
+        res = None
+        for i in range(0, len(X), self._batch_size):
+            batch_images = X[i:i+self._batch_size]
+            feed_dict = {
+                    self._images: batch_images,
+                    self._keep_prob:1.0
+                    }
+            test_logits = self._session.run(
+                    fetches=self._logits,
+                    feed_dict=feed_dict
+                    )
+
+            if res is None:
+                res = test_logits
+            else:
+                res = np.r_[res, test_logits]
+
+        return np.argmax(res, axis=1)
+
+
     def fit(self, X, y):
         self.mode = 'train'
         for i in range(0, len(X), self._batch_size): # read whole training dataset by batch size interpolation.
