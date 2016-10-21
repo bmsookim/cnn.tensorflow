@@ -8,10 +8,10 @@ from network import *
 import batch_load as datasets
 import config as cf
 
-cf.mode = 'test'
+# cf.mode = 'test'
 cf.train = False
 
-def run(clf, train):
+def run(clf):
     test_images, test_labels = datasets.load_cifar10(is_train=False)
     records = []
     save_dir = "../models/" + cf.dataset# + ("/%s" % clf.__class__.__name__)
@@ -26,4 +26,4 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--class_name', type=str, default=cf.model, choices=dir(network))
     args = parser.parse_args()
-    run(eval("%s()" % args.class_name), train)
+    run(eval("%s()" % args.class_name))
