@@ -1,4 +1,4 @@
-# CIFAR-10 Dataset Implementation Details.
+# CIFAR-10 Dataset Implementation Details
 Specific Description for CIFAR-10 Dataset training.
 
 CIFAR-10 is consisted with 50,000 training images and 10,000 testing images.
@@ -11,7 +11,7 @@ Each images is consisted in an RGB format with the size of 32 x 32 pixels.
 |      resnet200    | Momentum Optimizer |  200  | will be updated |
 | wide-resnet 28x10 | Momentum Optimizer |  200  | will be updated |
 
-# Batch Normalization & Moving averages.
+# Batch Normalization
 2015 arXiv, ICML2015 published paper :
 Batch Normalization:Accelerating Deep Network Training by Reducing Internal Covariance Shift
 
@@ -72,3 +72,7 @@ they approached the problem as below.
 When applying batch normalization, we add the batch\_norm layer right before the hidden layer, so the
 inputs are correctly modified before entering the activation function.
 
+# Moving Averages
+In statistics, a moving average (=rolling average, running average) is a calculation to analyze data points by creating series of averages of different subsets of the full data set.
+
+Some training algorithms, such as Gradient Descent and Momentum often benefit from maintaining a moving average of variables during optimization. Using the moving averages for evaluations often improve results significantly.
