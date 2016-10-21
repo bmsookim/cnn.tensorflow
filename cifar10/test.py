@@ -16,11 +16,14 @@ def run(clf):
     records = []
     save_dir = "../models/" + cf.dataset# + ("/%s" % clf.__class__.__name__)
 
-    clf.load(save_dir + "/" + cf.dataset + ".ckpt")
+    clf.load(save_dir + "/" + cf.model + ".ckpt")
     test_accuracy, test_loss = clf.score(test_images, test_labels)
     test_accuracy *= 100
 
     print('\nTest accuracy: %.2f%%\n' % test_accuracy)
+
+    print clf.prediction(test_images[:25])
+    print test_labels[:25]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
