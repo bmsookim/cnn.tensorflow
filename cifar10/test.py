@@ -25,6 +25,8 @@ def run(clf):
     # print clf.prediction(test_images[:25])
     # print test_labels[:25]
 
+    return test_images, clf.prediction(test_images), test_labels
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--class_name', type=str, default=cf.model, choices=dir(network))
