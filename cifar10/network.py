@@ -163,12 +163,12 @@ class BasicConvNet(object):
 class vggnet(BasicConvNet):
     def _inference(self, X, keep_prob):
         # Conv_layer 1
-        conv = F.conv(X, 64)
+        conv = F.conv(X, 192)
         batch_norm = self._batch_norm('bn1', conv)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.9, cf.train)
 
-        conv = F.conv(dropout, 64)
+        conv = F.conv(dropout, 192)
         batch_norm = self._batch_norm('bn2', conv)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.9, cf.train)
@@ -176,12 +176,12 @@ class vggnet(BasicConvNet):
         max_pool = F.max_pool(dropout) # 16 x 16
 
         # Conv_layer 2
-        conv = F.conv(max_pool, 128)
+        conv = F.conv(max_pool, 192)
         batch_norm = self._batch_norm('bn3', conv)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.8, cf.train)
 
-        conv = F.conv(dropout, 128)
+        conv = F.conv(dropout, 192)
         batch_norm = self._batch_norm('bn4', conv)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.8, cf.train)
