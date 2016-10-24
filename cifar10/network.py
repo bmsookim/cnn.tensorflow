@@ -243,7 +243,7 @@ class vggnet(BasicConvNet):
 
         # Fully Connected Layer 1
         fc = F.dense(max_pool, 512)
-        batch_norm = self._batch_norm('fc', conv)
+        batch_norm = self._batch_norm('fc', fc)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.5, cf.train)
         h = F.dense(dropout, self._num_classes)
