@@ -18,7 +18,7 @@ keep_prob = 1-dropout_rate
 lr_decay = 0.0005
 
 # model specification configuration
-model = 'resnet28x10'
+model = 'vggnet'
 train = True    # of train is set to 'False', we skip the training process.
 mode = 'train'  # if mode is set to 'test', we use the moving average.
 
