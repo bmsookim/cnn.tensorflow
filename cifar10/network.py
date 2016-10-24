@@ -223,30 +223,9 @@ class vggnet(BasicConvNet):
 
         max_pool = F.max_pool(dropout) # 2 x 2
 
-        # Conv_layer 5
-        conv = F.conv(max_pool, 512)
-        batch_norm = self._batch_norm('bn11', conv)
-        relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, 0.5, cf.train)
-
-        conv = F.conv(dropout, 512)
-        batch_norm = self._batch_norm('bn12', conv)
-        relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, 0.5, cf.train)
-
-        conv = F.conv(max_pool, 512)
-        batch_norm = self._batch_norm('bn13', conv)
-        relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, 0.5, cf.train)
-
-        max_pool = F.max_pool(dropout) # 1 x 1
-
-        # Fully Connected Layer 1
-        fc = F.dense(max_pool, 512)
-        batch_norm = self._batch_norm('fc', fc)
-        relu = F.activation(batch_norm)
-        dropout = F.dropout(relu, 0.5, cf.train)
-        h = F.dense(dropout, self._num_classes)
+        # Fully Connected Layer
+        h = tf.reduce_mean(max_pool, reduction_indices=[1,2])
+        h = F.dense(h, self._num_classes)
 
         return h
 
