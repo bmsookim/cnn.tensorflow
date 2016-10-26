@@ -8,9 +8,6 @@ from network import *
 import batch_load as datasets
 import config as cf
 
-# cf.mode = 'test'
-cf.train = False
-
 def run(clf):
     test_images, test_labels = datasets.load_cifar10(is_train=False)
     records = []
@@ -21,9 +18,6 @@ def run(clf):
     test_accuracy *= 100
 
     print('\nTest accuracy: %.2f%%\n' % test_accuracy)
-
-    # print clf.prediction(test_images[:25])
-    # print test_labels[:25]
 
     return test_images, clf.prediction(test_images), test_labels
 
