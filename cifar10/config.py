@@ -19,8 +19,6 @@ lr_decay = 0.0005
 
 # model specification configuration
 model = 'resnet202'
-train = True    # of train is set to 'False', we skip the training process.
-mode = 'train'  # if mode is set to 'test', we use the moving average.
 
 # step specification configuration
 display_iter = (batch_size*75*float(128/batch_size))
