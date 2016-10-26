@@ -8,7 +8,6 @@ from network import *
 import batch_load as datasets
 
 resume = False
-train = cf.train
 
 def run(clf):
     test_images, test_labels = datasets.load_cifar10(is_train=False)
