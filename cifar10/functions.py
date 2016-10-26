@@ -1,5 +1,7 @@
 import numpy as np
 import tensorflow as tf
+from tensorflow.python.training import moving_averages
+from tensorflow.python.ops import control_flow_ops
 
 def conv2d(x, W, strides=1):
     return tf.nn.conv2d(x, W, strides=[1,strides,strides,1], padding='SAME')
@@ -45,10 +47,10 @@ def volume(x):
 def flatten(x):
     return tf.reshape(x, [-1, volume(x)])
 
-def dropout_my(x, keep_prob):
+def dropout(x, keep_prob):
     return tf.nn.dropout(x, keep_prob)
 
-def dropout(x, keep_prob, is_train):
+def dropout_my(x, keep_prob, is_train):
     return tf.contrib.layers.dropout(x, keep_prob=keep_prob, is_training=is_train)
 
 def batch_normalization(x):
@@ -57,6 +59,31 @@ def batch_normalization(x):
     gamma = tf.Variable(tf.constant(1.0, shape=[channels(x)]))
     mean, variance = tf.nn.moments(x, [0, 1, 2], keep_dims=False)
     return tf.nn.batch_normalization(x, mean, variance, beta, gamma, eps)
+
+def _batch_norm(self, name, x, is_train):
+    """Batch normalization."""
+    with tf.variable_scope(name) as scope:
+        axis = list(range(len(x.get_shape()) -1))
+        params_shape = [x.get_shape()[-1]]
+
+        beta = tf.get_variable('beta', params_shape, tf.float32,
+          initializer=tf.zeros_initializer)
+        gamma = tf.get_variable('gamma', params_shape, tf.float32,
+          initializer=tf.ones_initializer)
+
+        batch_mean, batch_var = tf.nn.moments(x, axis)
+        ema = tf.train.ExponentialMovingAverage(decay=0.0003)
+
+        def mean_var_with_update():
+            ema_apply_op = ema.apply([batch_mean, batch_var])
+            with tf.control_dependencies([ema_apply_op]):
+                return tf.identity(batch_mean), tf.identity(batch_var)
+
+        mean, variance = tf.cond(is_train, mean_var_with_update,
+                                           lambda: (ema.average(batch_mean), ema.average(batch_var)))
+        normed =  tf.nn.batch_normalization(x, mean, variance, beta, gamma, 1e-3)
+
+    return normed
 
 def accuracy_score(labels, logits):
     correct_prediction = tf.equal(labels, tf.argmax(logits, 1))
