@@ -6,8 +6,9 @@ import pandas as pd
 import network
 from network import *
 import batch_load as datasets
+import csv
 
-resume = False
+resume = True
 
 def run(clf):
     test_images, test_labels = datasets.load_cifar10(is_train=False)
@@ -26,6 +27,11 @@ def run(clf):
     start_time = time.time()
     save_epoch = 0
     exploded = False
+
+    with open("../output/"+cf.dataset+("/%s.csv" % clf.__class__.__name__.lower())) as f:
+        reader = csv.reader(f)
+        next(reader)
+        save_epoch = max(int(column[0].replace(',', '')) for column in reader) -1
 
     for epoch in range(save_epoch, cf.epochs):
         if(exploded) :
