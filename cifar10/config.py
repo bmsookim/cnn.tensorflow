@@ -18,7 +18,7 @@ keep_prob = 1-dropout_rate
 lr_decay = 0.0005
 
 # model specification configuration
-model = 'resnet202'
+model = 'resnet64'
 
 # step specification configuration
 display_iter = (batch_size*75*float(128/batch_size))
