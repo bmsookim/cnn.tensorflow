@@ -3,14 +3,8 @@ import os
 import urllib
 import cPickle
 import numpy as np
-# import matplotlib.pyplot as plt
-
-# def img_plot(img, normalize=True):
-#     if normalize:
-#         img_max, img_min = np.max(img), np.min(img)
-#         img = 255.0*(img-img-min)/(img_max-img_min)
-#     plt.imshow(img.astype('uint8'))
-#     plt.gca().axis('off')
+import config as cf
+from ZCA import *
 
 def unpickle(filename):
     with open(filename, 'rb') as fp:
@@ -21,8 +15,16 @@ def shuffle(images, labels):
     np.random.shuffle(perm)
     return np.asarray(images)[perm], np.asarray(labels)[perm]
 
-def whitening(image):
-    return (image-np.mean(image))/np.std(image)
+def whitening(image, mode='ZCA'):
+    if mode == 'simple' :
+        image -= np.mean(image, axis = 0) # zero centered
+        image /= np.std(image, aixs = 0)  # normalize
+    elif mode == 'ZCA' :
+        image = ZCA(image)
+    else :
+        print ("Wrong augmentation method, no whitening will be occurred")
+    return image
+
 
 def resize(dataset, dim):
     resized_dataset = cv2.resize(dataset, dim, interpolation=cv2.INTER_AREA)
