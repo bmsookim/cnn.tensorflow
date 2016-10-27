@@ -253,11 +253,11 @@ class resnet(BasicConvNet):
         return h
 
     def _inference(self, X, keep_prob, is_train):
-        h = F.conv(X, 64)
+        h = F.conv(X, 16)
         for i in range(self._layers):
-            with tf.variable_scope('64_layer_%s' %i):
-                h = self._residual(h, channels=64*self._k, strides=1, keep_prob=keep_prob, is_train=is_train)
-        for channels in [128*self._k, 256*self._k]:
+            with tf.variable_scope(str(16*self._k)+'_layers_%s' %i):
+                h = self._residual(h, channels=16*self._k, strides=1, keep_prob=keep_prob, is_train=is_train)
+        for channels in [32*self._k, 64*self._k]:
             for i in range(self._layers):
                 with tf.variable_scope(str(channels)+'_layers_%s' %i):
                     strides = 2 if i == 0 else 1
@@ -296,10 +296,7 @@ class resnet(BasicConvNet):
 
         return tf.group(apply_op, variable_averages_op)#, batchnorm_updates_op)
 
-class resnet64(resnet):
+class resnet28x10(resnet):
     def __init__(self):
-        super(resnet64, self).__init__(layers=10, width=1)
+        super(resnet28x10, self).__init__(layers=4, width=10)
 
-class resnet34x5(resnet):
-    def __init__(self):
-        super(resnet34x5, self).__init__(layers=5, width=1)
