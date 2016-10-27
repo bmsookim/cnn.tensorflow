@@ -47,18 +47,23 @@ def volume(x):
 def flatten(x):
     return tf.reshape(x, [-1, volume(x)])
 
-def dropout(x, keep_prob):
-    return tf.nn.dropout(x, keep_prob)
+def dropout(x, keep_prob, is_train):
+    def drop_prob():
+        return tf.nn.dropout(x, keep_prob)
+    dropout = tf.cond(is_train, drop_prob,
+            lambda : tf.nn.dropout(x, 1.0))
+    return dropout
 
-def dropout_my(x, keep_prob, is_train):
-    return tf.contrib.layers.dropout(x, keep_prob=keep_prob, is_training=is_train)
+def batch_norm(self, name, x, is_train):
+    with tf.variable_scope(name) as scope:
+        axis = list(range(len(x.get_shape()) -1))
+        params_shape = [x.get_shape()[-1]]
 
-def batch_normalization(x):
-    eps = 1e-5
-    beta = tf.Variable(tf.constant(0.0, shape=[channels(x)]))
-    gamma = tf.Variable(tf.constant(1.0, shape=[channels(x)]))
-    mean, variance = tf.nn.moments(x, [0, 1, 2], keep_dims=False)
-    return tf.nn.batch_normalization(x, mean, variance, beta, gamma, eps)
+        beta = tf.get_variable('beta', params_shape, tf.float32, initializer=tf.zeros_initializer)
+        gamma = tf.get_variable('gamma', params_shape, tf.float32, initializer=tf.ones_initializer)
+
+        mean, variance = tf.nn.moments(x, axis)
+    return tf.nn.batch_normalization(x, mean, variance, beta, gamma, 1e-3)
 
 def _batch_norm(self, name, x, is_train):
     """Batch normalization."""
@@ -72,16 +77,22 @@ def _batch_norm(self, name, x, is_train):
           initializer=tf.ones_initializer)
 
         batch_mean, batch_var = tf.nn.moments(x, axis)
-        ema = tf.train.ExponentialMovingAverage(decay=0.0003)
+        ema = tf.train.ExponentialMovingAverage(decay=0.9997)
 
         def mean_var_with_update():
             ema_apply_op = ema.apply([batch_mean, batch_var])
             with tf.control_dependencies([ema_apply_op]):
+                moving_mean = ema.average(batch_mean)
+                moving_variance = ema.average(batch_var)
+                update_moving_mean = moving_averages.assign_moving_average(moving_mean, batch_mean, 0.9997)
+                update_moving_variance = moving_averages.assign_moving_average(moving_variance, batch_var, 0.9997)
+                tf.add_to_collection(self.UPDATE_OPS_COLLECTION, update_moving_mean)
+                tf.add_to_collection(self.UPDATE_OPS_COLLECTION, update_moving_variance)
                 return tf.identity(batch_mean), tf.identity(batch_var)
 
         mean, variance = tf.cond(is_train, mean_var_with_update,
                                            lambda: (ema.average(batch_mean), ema.average(batch_var)))
-        normed =  tf.nn.batch_normalization(x, mean, variance, beta, gamma, 1e-3)
+        normed =  tf.nn.batch_norm_with_global_normalization(x, mean, variance, beta, gamma, 1e-3)
 
     return normed
 
