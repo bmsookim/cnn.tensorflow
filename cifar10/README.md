@@ -76,3 +76,10 @@ inputs are correctly modified before entering the activation function.
 In statistics, a moving average (=rolling average, running average) is a calculation to analyze data points by creating series of averages of different subsets of the full data set.
 
 Some training algorithms, such as Gradient Descent and Momentum often benefit from maintaining a moving average of variables during optimization. Using the moving averages for evaluations often improve results significantly.
+
+# ZCA whitening
+We use PCA to reduce the dimension of the data. There is a closely related preprocessing step called whitening.
+If we are training on images, the raw input is redundant, since adjacent pixel values are highly correlated.
+The goal of whitening is to make the input less redundant; more formally, our learning algorithms
+sees a training input where the features are less correlated with each other, and the features have the same var.
+[More about whitening](http://ufldl.stanford.edu/wiki/index.php/Whitening)
