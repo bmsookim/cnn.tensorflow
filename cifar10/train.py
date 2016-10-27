@@ -8,30 +8,44 @@ from network import *
 import batch_load as datasets
 import csv
 
-resume = True
-
 def run(clf):
     test_images, test_labels = datasets.load_cifar10(is_train=False)
     records = []
+    save_epoch = 0
     save_dir = "../models/" + cf.dataset# + ("/%s" % clf.__class__.__name__)
 
     # if resume mode is on, load the checkpoint file
-    if(resume) :
+    if(cf.resume) :
         try :
             clf.load(save_dir + "/"+ cf.model + ".ckpt")
             print "Resumed from" + str(save_dir + "/model.ckpt") + "\n"
+            with open("../output/"+cf.dataset+("/%s.csv" % clf.__class__.__name__.lower())) as f:
+                reader = csv.reader(f)
+                next(reader)
+                save_epoch = max(int(column[0].replace(',', '')) for column in reader)
+
+            mydict = {}
+
+            with open("../output/"+cf.dataset+("/%s.csv" % clf.__class__.__name__.lower())) as f:
+                reader = csv.reader(f)
+                head = True
+                for row in reader:
+                    if row:
+                        if head:
+                            head = False
+                            key = row
+                        else :
+                            content = list(row)
+                            for i in range(len(key)):
+                                mydict[key[i]] = content[i]
+                records.append(mydict)
+
         except ValueError :
             print "Starting a new model" + str(save_dir + "/model.ckpt") + "\n"
 
     # number of epochs and the time
     start_time = time.time()
-    save_epoch = 0
     exploded = False
-
-    with open("../output/"+cf.dataset+("/%s.csv" % clf.__class__.__name__.lower())) as f:
-        reader = csv.reader(f)
-        next(reader)
-        save_epoch = max(int(column[0].replace(',', '')) for column in reader) -1
 
     for epoch in range(save_epoch, cf.epochs):
         if(exploded) :
