@@ -38,4 +38,3 @@ def load_cifar10(is_train):
         return aug.shuffle(images, np.asarray(labels))
     else:
         return images, np.asarray(labels)
-
