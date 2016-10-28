@@ -9,7 +9,7 @@ import batch_load as datasets
 import config as cf
 
 def run(clf):
-    test_images, test_labels = datasets.load_cifar10(is_train=False)
+    test_images, test_labels = datasets.load_cifar100(is_train=False)
     records = []
     save_dir = "../models/" + cf.dataset# + ("/%s" % clf.__class__.__name__)
 
