@@ -3,11 +3,12 @@ import numpy as np
 import config as cf
 import augmentation as aug
 import os.path as path
+import matplotlib.pyplot as plt
 
 ROOT = path.dirname(path.dirname(path.abspath(__file__)))
 
 def augment(image, is_train=True):
-    image = np.reshape(image, (3,cf.w,cf.h))
+    image = np.reshape(image, (3, 32, 32))
     image = np.transpose(image, (1,2,0))
     image = image.astype(float)
 
