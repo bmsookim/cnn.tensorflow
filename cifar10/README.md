@@ -11,11 +11,11 @@ Each images is consisted in an RGB format with the size of 32 x 32 pixels.
 |      resnet200    | Momentum Optimizer |  200  |     -     | will be updated |
 | wide-resnet 28x10 | Momentum Optimizer |  200  |   6m 43s  | will be updated |
 
-# Batch Normalization
+# 1. Batch Normalization
 2015 arXiv, ICML2015 published paper :
 Batch Normalization:Accelerating Deep Network Training by Reducing Internal Covariance Shift
 
-## Motivation
+## 1-1. Motivation
 Basically, batch normalization is a technique to prevent Gradient Vanishing/Exploding.
 
 Until 2015, there were several attempts in order to tackle the Gradient Vanishing/Exploding problem,
@@ -28,7 +28,7 @@ resulting stabilized training process and accelerated training speed.
 The authors of the paper above thought that basically the Gradient Vanishing problem is occurred
 due to 'Internal Covariance Shift'.
 
-## Internal Covariance Shift
+## 1-2. Internal Covariance Shift
 Internal Covariance Shift is a phenomenon in which each network layers and activation recieves a 
 different input distribution.
 
@@ -60,7 +60,7 @@ As you can see, the whitening process resulted in ignoring the most important va
 Moreover, whitening also conducts the scaling process of the standard deviation, which will make these
 problems worse and worse.
 
-## Approaches
+## 1-3. Approaches
 In order to overcome the disadvantages of 'whitening' process and reduce internal covariance shift,
 they approached the problem as below.
 
@@ -68,18 +68,21 @@ they approached the problem as below.
 - Simply fixating the mean, variance to 0,1 will ironically nuterize the non-linearity of the activation function. For example, if the input to a sigmoid activation function is fixed to mean=0, stddev=1, the curve will appear as a linear function. Therefore, it scales by gamma, and shifts by beta the normliazed values.
 - Mini-batch approach. The normalization is proceeded with the mean and variance of the mini-batch, not the entire training data.
 
-## Application
+## 1-4. Application
 When applying batch normalization, we add the batch\_norm layer right before the hidden layer, so the
 inputs are correctly modified before entering the activation function.
 
-# Moving Averages
+# 2. Moving Averages
 In statistics, a moving average (=rolling average, running average) is a calculation to analyze data points by creating series of averages of different subsets of the full data set.
 
 Some training algorithms, such as Gradient Descent and Momentum often benefit from maintaining a moving average of variables during optimization. Using the moving averages for evaluations often improve results significantly.
 
-# ZCA whitening
+# 3. Global Contrast Normalization
+
+# 4. ZCA whitening
 We use PCA to reduce the dimension of the data. There is a closely related preprocessing step called whitening.
 If we are training on images, the raw input is redundant, since adjacent pixel values are highly correlated.
 The goal of whitening is to make the input less redundant; more formally, our learning algorithms
-sees a training input where the features are less correlated with each other, and the features have the same var.
+sees a training input where the features are less correlated with each other, and the features have the same variance.
+
 [More about whitening](http://ufldl.stanford.edu/wiki/index.php/Whitening)
