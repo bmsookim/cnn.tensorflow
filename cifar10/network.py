@@ -296,6 +296,10 @@ class resnet(BasicConvNet):
 
         return tf.group(apply_op, variable_averages_op)#, batchnorm_updates_op)
 
+class resnet40(resnet):
+    def __init__(self):
+        super(resnet40, self).__init__(layers=6, width=1)
+
 class resnet28x10(resnet):
     def __init__(self):
         super(resnet28x10, self).__init__(layers=4, width=10)
