@@ -9,7 +9,7 @@ import batch_load as datasets
 import csv
 
 def run(clf):
-    test_images, test_labels = datasets.load_cifar10(is_train=False)
+    test_images, test_labels = datasets.load_cifar100(is_train=False)
     records = []
     save_epoch = 0
     save_dir = "../models/" + cf.dataset# + ("/%s" % clf.__class__.__name__)
@@ -56,7 +56,7 @@ def run(clf):
         epoch_time = time.time()
 
         # load new sets of training images
-        train_images, train_labels = datasets.load_cifar10(is_train=True)
+        train_images, train_labels = datasets.load_cifar100(is_train=True)
 
         clf.fit(train_images, train_labels)
 
