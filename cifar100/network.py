@@ -5,7 +5,7 @@ import functions as F
 from tensorflow.python.framework import ops
 
 class BasicConvNet(object):
-    def __init__(self, image_w=cf.w, image_h=cf.h, channels=cf.channels, num_classes=10):
+    def __init__(self, image_w=cf.w, image_h=cf.h, channels=cf.channels, num_classes=100):
         self._width  = image_w # define the width of the image.
         self._height = image_h # define the height of the image.
         self._batch_size = cf.batch_size # define the batch size of mini-batch training.
