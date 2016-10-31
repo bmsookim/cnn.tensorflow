@@ -2,7 +2,7 @@
 2015 arXiv, ICML2015 published paper :
 Batch Normalization:Accelerating Deep Network Training by Reducing Internal Covariance Shift
 
-### 1-1. Motivation
+### a. Motivation
 Basically, batch normalization is a technique to prevent Gradient Vanishing/Exploding.
 
 Until 2015, there were several attempts in order to tackle the Gradient Vanishing/Exploding problem,
@@ -15,7 +15,7 @@ resulting stabilized training process and accelerated training speed.
 The authors of the paper above thought that basically the Gradient Vanishing problem is occurred
 due to 'Internal Covariance Shift'.
 
-### 1-2. Internal Covariance Shift
+### b. Internal Covariance Shift
 Internal Covariance Shift is a phenomenon in which each network layers and activation recieves a 
 different input distribution.
 
@@ -47,7 +47,7 @@ As you can see, the whitening process resulted in ignoring the most important va
 Moreover, whitening also conducts the scaling process of the standard deviation, which will make these
 problems worse and worse.
 
-### 1-3. Approaches
+### c. Approaches
 In order to overcome the disadvantages of 'whitening' process and reduce internal covariance shift,
 they approached the problem as below.
 
@@ -55,7 +55,7 @@ they approached the problem as below.
 - Simply fixating the mean, variance to 0,1 will ironically nuterize the non-linearity of the activation function. For example, if the input to a sigmoid activation function is fixed to mean=0, stddev=1, the curve will appear as a linear function. Therefore, it scales by gamma, and shifts by beta the normliazed values.
 - Mini-batch approach. The normalization is proceeded with the mean and variance of the mini-batch, not the entire training data.
 
-### 1-4. Application
+### d. Application
 When applying batch normalization, we add the batch\_norm layer right before the hidden layer, so the
 inputs are correctly modified before entering the activation function.
 
