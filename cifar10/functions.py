@@ -71,7 +71,7 @@ def _batch_norm(self, name, x, is_train):
             lambda: tf.contrib.layers.batch_norm(x, decay=0.05, center=True, scale=True, is_training=False,
                 updates_collections = None, scope=name, reuse=True))
 
-def batch_norm(self, name, x, is_train):
+def _batch_norm(self, name, x, is_train):
     with tf.variable_scope(name) as scope:
         axis = list(range(len(x.get_shape()) -1))
         params_shape = [x.get_shape()[-1]]
@@ -82,7 +82,7 @@ def batch_norm(self, name, x, is_train):
         mean, variance = tf.nn.moments(x, axis)
     return tf.nn.batch_normalization(x, mean, variance, beta, gamma, 1e-3)
 
-def __batch_norm(self, name, x, is_train):
+def batch_norm(self, name, x, is_train):
     """Batch normalization."""
     with tf.variable_scope(name) as scope:
         axis = list(range(len(x.get_shape()) -1))
@@ -94,15 +94,15 @@ def __batch_norm(self, name, x, is_train):
           initializer=tf.ones_initializer)
 
         batch_mean, batch_var = tf.nn.moments(x, axis)
-        ema = tf.train.ExponentialMovingAverage(decay=0.0003)
+        ema = tf.train.ExponentialMovingAverage(decay=0.9997)
 
         def mean_var_with_update():
             ema_apply_op = ema.apply([batch_mean, batch_var])
             with tf.control_dependencies([ema_apply_op]):
                 moving_mean = ema.average(batch_mean)
                 moving_variance = ema.average(batch_var)
-                update_moving_mean = moving_averages.assign_moving_average(moving_mean, batch_mean, 0.0003)
-                update_moving_variance = moving_averages.assign_moving_average(moving_variance, batch_var, 0.0003)
+                update_moving_mean = moving_averages.assign_moving_average(moving_mean, batch_mean, 0.9997)
+                update_moving_variance = moving_averages.assign_moving_average(moving_variance, batch_var, 0.9997)
                 tf.add_to_collection(self.UPDATE_OPS_COLLECTION, update_moving_mean)
                 tf.add_to_collection(self.UPDATE_OPS_COLLECTION, update_moving_variance)
                 return tf.identity(batch_mean), tf.identity(batch_var)
