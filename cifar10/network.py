@@ -134,12 +134,12 @@ class BasicConvNet(object):
 class vggnet(BasicConvNet):
     def _inference(self, X, keep_prob, is_train):
         # Conv_layer 1
-        conv = F.conv(X, 192)
+        conv = F.conv('conv1', X, 192)
         batch_norm = F._batch_norm(self, 'bn1', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.9, is_train)
 
-        conv = F.conv(dropout, 192)
+        conv = F.conv('conv2', dropout, 192)
         batch_norm = F._batch_norm(self, 'bn2', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.9, is_train)
@@ -147,12 +147,12 @@ class vggnet(BasicConvNet):
         max_pool = F.max_pool(dropout) # 16 x 16
 
         # Conv_layer 2
-        conv = F.conv(max_pool, 192)
+        conv = F.conv('conv3', max_pool, 192)
         batch_norm = F._batch_norm(self, 'bn3', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.8, is_train)
 
-        conv = F.conv(dropout, 192)
+        conv = F.conv('conv4', dropout, 192)
         batch_norm = F._batch_norm(self, 'bn4', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.8, is_train)
@@ -160,34 +160,34 @@ class vggnet(BasicConvNet):
         max_pool = F.max_pool(dropout) # 8 x 8
 
         # Conv_layer 3
-        conv = F.conv(max_pool, 256)
+        conv = F.conv('coonv4', max_pool, 256)
         batch_norm = F._batch_norm(self, 'bn5', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.7, is_train)
 
-        conv = F.conv(dropout, 256)
+        conv = F.conv('conv6', dropout, 256)
         batch_norm = F._batch_norm(self, 'bn6', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.7, is_train)
 
-        conv = F.conv(dropout, 256)
+        conv = F.conv('conv7', dropout, 256)
         batch_norm = F._batch_norm(self, 'bn7', conv, is_train)
         dropout = F.dropout(relu, 0.7, is_train)
 
         max_pool = F.max_pool(dropout) # 4 x 4
 
          # Conv_layer 4
-        conv = F.conv(max_pool, 512)
+        conv = F.conv('conv8', max_pool, 512)
         batch_norm = F._batch_norm(self, 'bn8', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.6, is_train)
 
-        conv = F.conv(dropout, 512)
+        conv = F.conv('conv9', dropout, 512)
         batch_norm = F._batch_norm(self, 'bn9', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.6, is_train)
 
-        conv = F.conv(max_pool, 512)
+        conv = F.conv('conv10', max_pool, 512)
         batch_norm = F._batch_norm(self, 'bn10', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.6, is_train)
@@ -197,11 +197,11 @@ class vggnet(BasicConvNet):
         # Fully Connected Layer
         h = tf.reduce_mean(max_pool, reduction_indices=[1,2])
         h = F.dropout(h, 0.5, is_train)
-        h = F.dense(h, 512)
+        h = F.dense('fc1', h, 512)
         h = F._batch_norm(self, 'bn11', h, is_train)
         h = F.activation(h)
         h = F.dropout(h, 0.5, is_train)
-        h = F.dense(h, self._num_classes)
+        h = F.dense('fc2', h, self._num_classes)
 
         return h
 
