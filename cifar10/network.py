@@ -278,7 +278,7 @@ class resnet(BasicConvNet):
                 )
 
         # moving averages
-        variable_averages = tf.train.ExponentialMovingAverage(0.95, self._global_step)
+        variable_averages = tf.train.ExponentialMovingAverage(0.9997, self._global_step)
         tmp_trn_var = tf.trainable_variables()
         update_var = [v for v in tmp_trn_var if v.name != 'global_step:0']
         variable_averages_op = variable_averages.apply(update_var)
@@ -294,7 +294,7 @@ class resnet(BasicConvNet):
         apply_op = optimizer.apply_gradients(zip(grads, trainable_variables),
                 global_step=self._global_step, name='train_step')
 
-        return tf.group(apply_op, variable_averages_op)#, batchnorm_updates_op)
+        return tf.group(apply_op, variable_averages_op, batchnorm_updates_op)
 
 class resnet40(resnet):
     def __init__(self):
