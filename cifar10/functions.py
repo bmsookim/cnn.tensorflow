@@ -25,7 +25,7 @@ def bias_variable(shape):
     b = tf.Variable(tf.constant(0.0, shape=shape))
     return b
 
-def conv(name, x, n, strides=1, bias_term=False):
+def conv(name, x, n, strides=1, bias_term=True):
     with tf.variable_scope(name) as scope :
         W = weight_variable('weights', [3,3,channels(x),n])
         res = conv2d(x, W, strides)
@@ -33,8 +33,9 @@ def conv(name, x, n, strides=1, bias_term=False):
             res += bias_variable([n])
     return res
 
-def dense(x, n):
-    W, b = weight_variable('dense', [volume(x), n]), bias_variable([n])
+def dense(name, x, n):
+    with tf.variable_scope(name) as scope:
+        W, b = weight_variable('dense', [volume(x), n]), bias_variable([n])
     return tf.matmul(flatten(x), W) + b
 
 def activation(x):
