@@ -18,7 +18,7 @@ keep_prob = 1-dropout_rate
 lr_decay = 0.0005
 
 # model specification configuration
-model = 'wide_resnet_28x10'
+model = 'vggnet'
 resume = False
 
 # step specification configuration
