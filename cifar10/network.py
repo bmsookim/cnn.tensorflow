@@ -242,18 +242,18 @@ class resnet(BasicConvNet):
 
     def _residual(self, h, channels, strides, keep_prob, is_train):
         h0 = h
-        h1 = F.conv(F.activation(F.batch_norm(self, 'bn1', h0, is_train)), channels, strides)
+        h1 = F.conv('conv1', F.activation(F.batch_norm(self, 'bn1', h0, is_train)), channels, strides)
         h1 = F.dropout(h1, keep_prob, is_train)
-        h2 = F.conv(F.activation(F.batch_norm(self, 'bn2', h1, is_train)), channels)
+        h2 = F.conv('conv2', F.activation(F.batch_norm(self, 'bn2', h1, is_train)), channels)
         if F.volume(h0) == F.volume(h2):
             h = h0 + h2
         else :
-            h4 = F.conv(h0, channels, strides)
+            h4 = F.conv('conv', h0, channels, strides)
             h = h2 + h4
         return h
 
     def _inference(self, X, keep_prob, is_train):
-        h = F.conv(X, 16)
+        h = F.conv('conv_start', X, 16)
         for i in range(self._layers):
             with tf.variable_scope(str(16*self._k)+'_layers_%s' %i):
                 h = self._residual(h, channels=16*self._k, strides=1, keep_prob=keep_prob, is_train=is_train)
@@ -278,7 +278,7 @@ class resnet(BasicConvNet):
                 )
 
         # moving averages
-        variable_averages = tf.train.ExponentialMovingAverage(0.9997, self._global_step)
+        variable_averages = tf.train.ExponentialMovingAverage(0.95, self._global_step)
         tmp_trn_var = tf.trainable_variables()
         update_var = [v for v in tmp_trn_var if v.name != 'global_step:0']
         variable_averages_op = variable_averages.apply(update_var)
@@ -290,7 +290,7 @@ class resnet(BasicConvNet):
         # gradients
         trainable_variables = tf.trainable_variables()
         grads = tf.gradients(avg_loss, trainable_variables)
-        optimizer = tf.train.MomentumOptimizer(learning_rate=lr, momentum=0.9)
+        optimizer = tf.train.MomentumOptimizer(learning_rate=lr, momentum=0.95)
         apply_op = optimizer.apply_gradients(zip(grads, trainable_variables),
                 global_step=self._global_step, name='train_step')
 
@@ -299,6 +299,10 @@ class resnet(BasicConvNet):
 class resnet40(resnet):
     def __init__(self):
         super(resnet40, self).__init__(layers=6, width=1)
+
+class wide_resnet_28x10(resnet):
+    def __init__(self):
+        super(wide_resnet_28x10, self).__init__(layers=4, width=10)
 
 class resnet28x10(resnet):
     def __init__(self):
