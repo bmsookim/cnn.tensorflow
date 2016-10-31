@@ -14,4 +14,4 @@ Each images is consisted in an RGB format with the size of 32 x 32 pixels.
 ![alt text](../result/cifar10_result.png "CIFAR-10 Test Results")
 
 ## Implementation Details
-You can see implementation details [here](../notebook/Implementation.md)
+You can see implementation details [here](../notebook/README.md)

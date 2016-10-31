@@ -14,4 +14,4 @@ Each images is consisted in an RGB format with the size of 32 x 32 pixels.
 ## Implementation Details
 The detailed implementation are identical to those of CIFAR-10 implementations.
 
-See [here](../notebook/Implementation.md)
+See [here](../notebook/README.md)
