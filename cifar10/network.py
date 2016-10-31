@@ -264,7 +264,7 @@ class resnet(BasicConvNet):
                     h = self._residual(h, channels, strides, keep_prob, is_train)
         h = F.activation(F.batch_norm(self, 'bn', h, is_train))
         h = tf.reduce_mean(h, reduction_indices=[1,2])
-        h = F.dense(h, self._num_classes)
+        h = F.dense('softmax', h, self._num_classes)
 
         return h
 
@@ -290,7 +290,7 @@ class resnet(BasicConvNet):
         # gradients
         trainable_variables = tf.trainable_variables()
         grads = tf.gradients(avg_loss, trainable_variables)
-        optimizer = tf.train.MomentumOptimizer(learning_rate=lr, momentum=0.95)
+        optimizer = tf.train.MomentumOptimizer(learning_rate=lr, momentum=0.9)
         apply_op = optimizer.apply_gradients(zip(grads, trainable_variables),
                 global_step=self._global_step, name='train_step')
 
