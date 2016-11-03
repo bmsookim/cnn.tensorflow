@@ -3,6 +3,7 @@ import numpy as np
 import config as cf
 import functions as F
 from tensorflow.python.framework import ops
+from functions import *
 
 class BasicConvNet(object):
     def __init__(self, image_w=cf.w, image_h=cf.h, channels=cf.channels, num_classes=10):
@@ -22,7 +23,6 @@ class BasicConvNet(object):
         self._keep_prob = tf.placeholder(tf.float32)
         self._is_train = tf.placeholder(tf.bool)
         self._global_step = tf.Variable(0, tf.int64, name="global_step") # saves the global step of training.
-        self.UPDATE_OPS_COLLECTION = ops.GraphKeys.UPDATE_OPS
 
         # loss calculation & update
         self._logits = self._inference(self._images, self._keep_prob, self._is_train) # prediction
@@ -117,9 +117,13 @@ class BasicConvNet(object):
     def _loss(self, labels, logits):
         cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits, labels) # No need for one-hot enc.
         cross_entropy_mean = tf.reduce_mean(cross_entropy)
-        tf.add_to_collection('losses', cross_entropy_mean)
-        tf.add_to_collection('losses', tf.constant(cf.lr_decay))
-        return tf.add_n(tf.get_collection('losses'))
+        # tf.add_to_collection('losses', cross_entropy_mean)
+        # tf.add_to_collection('losses', tf.constant(cf.lr_decay))
+        # return tf.add_n(tf.get_collection('losses'))
+        regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
+
+        loss_ = tf.add_n([cross_entropy_mean]+regularization_losses)
+        return loss_
 
     def _train(self, avg_loss):
         trainable_variables = tf.trainable_variablies()
@@ -135,12 +139,12 @@ class vggnet(BasicConvNet):
     def _inference(self, X, keep_prob, is_train):
         # Conv_layer 1
         conv = F.conv('conv1', X, 192)
-        batch_norm = F._batch_norm(self, 'bn1', conv, is_train)
+        batch_norm = F.batch_norm(self, 'bn1', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.9, is_train)
 
         conv = F.conv('conv2', dropout, 192)
-        batch_norm = F._batch_norm(self, 'bn2', conv, is_train)
+        batch_norm = F.batch_norm(self, 'bn2', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.9, is_train)
 
@@ -148,47 +152,47 @@ class vggnet(BasicConvNet):
 
         # Conv_layer 2
         conv = F.conv('conv3', max_pool, 192)
-        batch_norm = F._batch_norm(self, 'bn3', conv, is_train)
+        batch_norm = F.batch_norm(self, 'bn3', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.8, is_train)
 
         conv = F.conv('conv4', dropout, 192)
-        batch_norm = F._batch_norm(self, 'bn4', conv, is_train)
+        batch_norm = F.batch_norm(self, 'bn4', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.8, is_train)
 
         max_pool = F.max_pool(dropout) # 8 x 8
 
         # Conv_layer 3
-        conv = F.conv('coonv4', max_pool, 256)
-        batch_norm = F._batch_norm(self, 'bn5', conv, is_train)
+        conv = F.conv('conv5', max_pool, 256)
+        batch_norm = F.batch_norm(self, 'bn5', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.7, is_train)
 
         conv = F.conv('conv6', dropout, 256)
-        batch_norm = F._batch_norm(self, 'bn6', conv, is_train)
+        batch_norm = F.batch_norm(self, 'bn6', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.7, is_train)
 
         conv = F.conv('conv7', dropout, 256)
-        batch_norm = F._batch_norm(self, 'bn7', conv, is_train)
+        batch_norm = F.batch_norm(self, 'bn7', conv, is_train)
         dropout = F.dropout(relu, 0.7, is_train)
 
         max_pool = F.max_pool(dropout) # 4 x 4
 
          # Conv_layer 4
         conv = F.conv('conv8', max_pool, 512)
-        batch_norm = F._batch_norm(self, 'bn8', conv, is_train)
+        batch_norm = F.batch_norm(self, 'bn8', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.6, is_train)
 
         conv = F.conv('conv9', dropout, 512)
-        batch_norm = F._batch_norm(self, 'bn9', conv, is_train)
+        batch_norm = F.batch_norm(self, 'bn9', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.6, is_train)
 
         conv = F.conv('conv10', max_pool, 512)
-        batch_norm = F._batch_norm(self, 'bn10', conv, is_train)
+        batch_norm = F.batch_norm(self, 'bn10', conv, is_train)
         relu = F.activation(batch_norm)
         dropout = F.dropout(relu, 0.6, is_train)
 
@@ -198,7 +202,7 @@ class vggnet(BasicConvNet):
         h = tf.reduce_mean(max_pool, reduction_indices=[1,2])
         h = F.dropout(h, 0.5, is_train)
         h = F.dense('fc1', h, 512)
-        h = F._batch_norm(self, 'bn11', h, is_train)
+        h = F.batch_norm(self, 'bn11', h, is_train)
         h = F.activation(h)
         h = F.dropout(h, 0.5, is_train)
         h = F.dense('fc2', h, self._num_classes)
@@ -215,24 +219,20 @@ class vggnet(BasicConvNet):
                     )
                 )
 
-        # moving averages
-        variable_averages = tf.train.ExponentialMovingAverage(0.9997, self._global_step)
-        tmp_trn_var = tf.trainable_variables()
-        update_var = [v for v in tmp_trn_var if v.name != 'global_step:0']
-        variable_averages_op = variable_averages.apply(update_var)
+        # loss average
+        ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, self._global_step)
+        tf.add_to_collection(UPDATE_OPS_COLLECTION, ema.apply([avg_loss]))
 
         # batch normalizations
-        batchnorm_updates = tf.get_collection(self.UPDATE_OPS_COLLECTION)
+        batchnorm_updates = tf.get_collection(UPDATE_OPS_COLLECTION)
         batchnorm_updates_op = tf.group(*batchnorm_updates)
 
         # gradients
-        trainable_variables = tf.trainable_variables()
-        grads = tf.gradients(avg_loss, trainable_variables)
         optimizer = tf.train.MomentumOptimizer(learning_rate=lr, momentum=0.9)
-        apply_op = optimizer.apply_gradients(zip(grads, trainable_variables),
-                global_step=self._global_step, name='train_step')
+        grads = optimizer.compute_gradients(avg_loss)
+        apply_op = optimizer.apply_gradients(grads, global_step=self._global_step)
 
-        return tf.group(apply_op, variable_averages_op, batchnorm_updates_op)
+        return tf.group(apply_op, batchnorm_updates_op)
 
 class resnet(BasicConvNet):
     def __init__(self, layers, width):
@@ -277,28 +277,24 @@ class resnet(BasicConvNet):
                     )
                 )
 
-        # moving averages
-        variable_averages = tf.train.ExponentialMovingAverage(0.9997, self._global_step)
-        tmp_trn_var = tf.trainable_variables()
-        update_var = [v for v in tmp_trn_var if v.name != 'global_step:0']
-        variable_averages_op = variable_averages.apply(update_var)
+        # loss average
+        ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, self._global_step)
+        tf.add_to_collection(UPDATE_OPS_COLLECTION, ema.apply([avg_loss]))
 
         # batch normalizations
-        batchnorm_updates = tf.get_collection(self.UPDATE_OPS_COLLECTION)
+        batchnorm_updates = tf.get_collection(UPDATE_OPS_COLLECTION)
         batchnorm_updates_op = tf.group(*batchnorm_updates)
 
         # gradients
-        trainable_variables = tf.trainable_variables()
-        grads = tf.gradients(avg_loss, trainable_variables)
         optimizer = tf.train.MomentumOptimizer(learning_rate=lr, momentum=0.9)
-        apply_op = optimizer.apply_gradients(zip(grads, trainable_variables),
-                global_step=self._global_step, name='train_step')
+        grads = optimizer.compute_gradients(avg_loss)
+        apply_op = optimizer.apply_gradients(grads, global_step=self._global_step)
 
-        return tf.group(apply_op, variable_averages_op, batchnorm_updates_op)
+        return tf.group(apply_op, batchnorm_updates_op)
 
-class resnet40(resnet):
+class resnet10(resnet):
     def __init__(self):
-        super(resnet40, self).__init__(layers=6, width=1)
+        super(resnet10, self).__init__(layers=1, width=1)
 
 class wide_resnet_28x10(resnet):
     def __init__(self):
