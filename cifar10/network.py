@@ -184,9 +184,9 @@ class resnet(BasicConvNet):
 
     def _residual(self, h, channels, strides, keep_prob, is_train):
         h0 = h
-        h1 = F.conv('conv1', F.activation(F.batch_norm(self, 'bn1', h0, is_train)), channels, strides)
+        h1 = F.conv('conv1', F.activation(F.batch_norm('bn1', h0, is_train)), channels, strides)
         h1 = F.dropout(h1, keep_prob, is_train)
-        h2 = F.conv('conv2', F.activation(F.batch_norm(self, 'bn2', h1, is_train)), channels)
+        h2 = F.conv('conv2', F.activation(F.batch_norm('bn2', h1, is_train)), channels)
         if F.volume(h0) == F.volume(h2):
             h = h0 + h2
         else :
@@ -204,7 +204,7 @@ class resnet(BasicConvNet):
                 with tf.variable_scope(str(channels)+'layers_%s' %i):
                     strides = 2 if i == 0 else 1
                     h = self._residual(h, channels, strides, keep_prob, is_train)
-        h = F.activation(F.batch_norm(self, 'bn', h, is_train))
+        h = F.activation(F.batch_norm('bn', h, is_train))
         h = tf.reduce_mean(h, reduction_indices=[1,2])
         h = F.dense('softmax', h, self._num_classes)
 
