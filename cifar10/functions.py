@@ -2,13 +2,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.python.training import moving_averages
 from tensorflow.python.ops import control_flow_ops
-
-MOVING_AVERAGE_DECAY = 0.95
-BN_DECAY = MOVING_AVERAGE_DECAY
-BN_EPSILON = 1e-3
-CONV_WEIGHT_DECAY = 4e-5
-RESNET_VARIABLES = 'resnet_variables'
-UPDATE_OPS_COLLECTION = 'resnet_update_ops'
+from config import *
 
 def conv2d(x, W, strides=1):
     return tf.nn.conv2d(x, W, strides=[1,strides,strides,1], padding='SAME')
@@ -27,7 +21,7 @@ def _get_variable(name, shape, initializer, weight_decay=0.0, dtype=tf.float32, 
             collections=collections,
             trainable=trainable)
 
-def weight_variable(name, shape, wd=0.00005):
+def weight_variable(name, shape, wd=0.0005):
     k, c = 3, shape[-2]
     # var = tf.Variable(tf.truncated_normal(shape, stddev=np.sqrt(2.0 / (k*k*c))))
     var = tf.get_variable(name,
@@ -97,13 +91,13 @@ def __batch_norm(self, name, x, is_train):
         axis = list(range(len(x.get_shape()) -1))
         params_shape = [x.get_shape()[-1]]
 
-        beta = tf.get_variable('beta', params_shape, tf.float32, initializer=tf.zeros_initializer)
-        gamma = tf.get_variable('gamma', params_shape, tf.float32, initializer=tf.ones_initializer)
+        beta = tf.get_variable('beta', params_shape, tf.float64, initializer=tf.zeros_initializer)
+        gamma = tf.get_variable('gamma', params_shape, tf.float64, initializer=tf.ones_initializer)
 
         mean, variance = tf.nn.moments(x, axis)
     return tf.nn.batch_normalization(x, mean, variance, beta, gamma, 1e-3)
 
-def batch_norm(self, name, x, is_train):
+def batch_norm(name, x, is_train):
     """Batch normalization."""
     with tf.variable_scope(name) as scope:
         axis = list(range(len(x.get_shape()) -1))
@@ -132,4 +126,3 @@ def accuracy_score(labels, logits):
     correct_prediction = tf.equal(labels, tf.argmax(logits, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
     return accuracy
-
