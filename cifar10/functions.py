@@ -78,15 +78,7 @@ def dropout(x, keep_prob, is_train):
             lambda : tf.nn.dropout(x, 1.0))
     return dropout
 
-def __batch_norm(self, name, x, is_train):
-    def train_mode():
-        return tf.contrib.layers.batch_norm(x, decay=0.9997, center=True, scale=True, is_training=True,
-                updates_collections = None, scope=name)
-    return tf.cond(is_train, train_mode,
-            lambda: tf.contrib.layers.batch_norm(x, decay=0.9997, center=True, scale=True, is_training=False,
-                updates_collections = None, scope=name, reuse=True))
-
-def __batch_norm(self, name, x, is_train):
+def _batch_norm(name, x, is_train):
     with tf.variable_scope(name) as scope:
         axis = list(range(len(x.get_shape()) -1))
         params_shape = [x.get_shape()[-1]]
