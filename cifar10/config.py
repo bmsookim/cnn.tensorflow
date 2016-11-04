@@ -15,11 +15,19 @@ epochs = 200
 batch_size = 128
 dropout_rate = 0.0
 keep_prob = 1-dropout_rate
-lr_decay = 0.0005
+weight_decay = 0.0005
 
 # model specification configuration
 model = 'vggnet'
 resume = False
+
+# collection specification configuration
+MOVING_AVERAGE_DECAY = 0.9
+BN_DECAY = 0.9
+BN_EPSILON = 1e-3
+CONV_WEIGHT_DECAY = 5e-4
+RESNET_VARIABLES = 'resnet_variables'
+UPDATE_OPS_COLLECTION = 'resnet_update_ops'
 
 # step specification configuration
 display_iter = (batch_size*75*float(128/batch_size))
