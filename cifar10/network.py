@@ -141,7 +141,7 @@ class BasicConvNet(object):
                 )
 
         # batch normalizations
-        batchnorm_updates = tf.get_collection(tf.GraphKeys.MOVING_AVERAGE_VARIABLES)
+        batchnorm_updates = tf.get_collection(BN_COL)
         batchnorm_updates_op = tf.group(*batchnorm_updates)
 
         # gradients
