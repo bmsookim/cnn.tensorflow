@@ -90,17 +90,19 @@ def batch_norm(x, is_train):
     beta = _get_variable('beta', params_shape, initializer=tf.zeros_initializer)
     gamma = _get_variable('gamma', params_shape, initializer=tf.ones_initializer)
 
-    batch_mean, batch_var = tf.nn.moments(x, axis, name='moments')
-    ema = moving_averages.ExponentialMovingAverage(decay = 0.5)
+    mean, variance = tf.nn.moments(x, axis, name='moments')
+    moving_mean = _get_variable('moving_mean', params_shape, initializer=tf.zeros_initializer)
+    moving_variance = _get_variable('moving_variance', params_shape, initializer=tf.ones_initializer)
 
-    def mean_var_with_update() :
-        ema_apply_op = ema.apply([batch_mean, batch_var])
-        with tf.control_dependencies([ema_apply_op]):
-            return tf.identity(batch_mean), tf.identity(batch_var)
+    moving_mean = tf.add(tf.mul(0.9, mean), tf.mul(0.1, moving_mean))
+    moving_variance = tf.add(tf.mul(0.9, variance), tf.mul(0.1, moving_variance))
+
+    tf.add_to_collection(BN_COL, moving_mean)
+    tf.add_to_collection(BN_COL, moving_variance)
 
     mean, variance = control_flow_ops.cond(is_train,
-            mean_var_with_update,
-            lambda : (ema.average(batch_mean), ema.average(batch_var)))
+            lambda : (mean, variance),
+            lambda : (moving_mean, moving_variance))
 
     return tf.nn.batch_normalization(x, mean, variance, beta, gamma, BN_EPSILON)
 
