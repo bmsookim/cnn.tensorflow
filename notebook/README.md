@@ -1,6 +1,7 @@
 # 1. Batch Normalization
 2015 arXiv, ICML2015 published paper :
-Batch Normalization:Accelerating Deep Network Training by Reducing Internal Covariance Shift
+Batch Normalization:Accelerating Deep Network Training by Reducing Internal Covariance Shift.
+See the paper [here](http://jmlr.org/proceedings/papers/v37/ioffe15.pdf)
 
 ### a. Motivation
 Basically, batch normalization is a technique to prevent Gradient Vanishing/Exploding.
