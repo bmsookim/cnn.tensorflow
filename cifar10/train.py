@@ -91,7 +91,7 @@ def run(clf):
             print(("Save to %s" % save_dir)+"/"+cf.model+".ckpt")
             clf.save(save_dir +"/"+ cf.model + ".ckpt")
             save_epoch = epoch
-        if test_loss > 5 or test_accuracy <= 10:
+        if test_loss > 15 or test_accuracy <= 10:
             # clf.load(save_dir+"/"+ cf.model + ".ckpt")
             exploded = True
         print ""
