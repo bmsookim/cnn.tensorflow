@@ -36,6 +36,7 @@ class BasicConvNet(object):
         self._session.run(tf.initialize_all_variables())
 
     def prediction(self, X):
+        # predicting the label of each image.
         res = None
         for i in range(0, len(X), self._batch_size):
             batch_images = X[i:i+self._batch_size]
@@ -69,6 +70,7 @@ class BasicConvNet(object):
                     self._keep_prob : cf.keep_prob
             }
 
+            # fetching the outputs for session
             _, acc, train_avg_loss, global_step = self._session.run(
                     fetches = [
                         self._train_op,
@@ -76,6 +78,8 @@ class BasicConvNet(object):
                         self._avg_loss,
                         self._global_step],
                     feed_dict = feed_dict)
+
+            # displaying current accuracy & loss
             if (i % cf.display_iter == 0 and i != 0):
                 print('Minibatch loss at batch %d: %.5f' %((i/cf.batch_size), train_avg_loss))
                 print('Minibatch accuracy: %.2f%%' %(acc*100))
@@ -119,7 +123,7 @@ class BasicConvNet(object):
         cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits, labels) # No need for one-hot enc.
         cross_entropy_mean = tf.reduce_mean(cross_entropy)
         tf.add_to_collection('losses', cross_entropy_mean)
-        tf.add_to_collection('losses', tf.constant(cf.weight_decay))
+        # tf.add_to_collection('losses', tf.constant(cf.weight_decay))
 
         entropy_losses = tf.get_collection('losses')
         regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
@@ -136,12 +140,8 @@ class BasicConvNet(object):
                     )
                 )
 
-        # loss average
-        ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, self._global_step)
-        tf.add_to_collection(UPDATE_OPS_COLLECTION, ema.apply([avg_loss]))
-
         # batch normalizations
-        batchnorm_updates = tf.get_collection(UPDATE_OPS_COLLECTION)
+        batchnorm_updates = tf.get_collection(tf.GraphKeys.MOVING_AVERAGE_VARIABLES)
         batchnorm_updates_op = tf.group(*batchnorm_updates)
 
         # gradients
@@ -154,25 +154,30 @@ class BasicConvNet(object):
 class vggnet(BasicConvNet):
     def _inference(self, X, keep_prob, is_train):
         dropout_rate = [0.9, 0.8, 0.7, 0.6, 0.5]
-        layers = [128, 192, 256, 512, 512]
+        layers = [192, 256, 256, 512, 512]
         iters = [2, 2, 3, 3]
-
         h = X
+
+        # VGG Network Layer
         for i in range(4):
-            with tf.variable_scope('layer%s' %i) as scope:
-                for j in range(iters[i]):
-                    h = F.conv('conv%s' %j, h, layers[i])
-                    h = F.batch_norm('bn%s' %j, h, is_train)
+            for j in range(iters[i]):
+                with tf.variable_scope('layers%s_%s' %(i, j)) as scope:
+                    h = F.conv(h, layers[i])
+                    h = F.batch_norm(h, is_train)
                     h = F.activation(h)
                     h = F.dropout(h, dropout_rate[i], is_train)
-                    h = F.max_pool(h)
+            h = F.max_pool(h)
 
         # Fully Connected Layer
-        h = F.dense('fc', h, layers[i+1])
-        h = F.batch_norm('bn', h, is_train)
-        h = F.activation(h)
-        h = F.dropout(h, dropout_rate[i+1], is_train)
-        h = F.dense('softmax', h, self._num_classes)
+        with tf.variable_scope('fully_connected_layer') as scope:
+            h = F.dense(h, layers[i+1])
+            h = F.batch_norm(h, is_train)
+            h = F.activation(h)
+            h = F.dropout(h, dropout_rate[i+1], is_train)
+
+        # Softmax Layer
+        with tf.variable_scope('softmax_layer') as scope:
+            h = F.dense(h, self._num_classes)
 
         return h
 
@@ -184,13 +189,15 @@ class resnet(BasicConvNet):
 
     def _residual(self, h, channels, strides, keep_prob, is_train):
         h0 = h
-        h1 = F.conv('conv1', F.activation(F.batch_norm('bn1', h0, is_train)), channels, strides)
-        h1 = F.dropout(h1, keep_prob, is_train)
-        h2 = F.conv('conv2', F.activation(F.batch_norm('bn2', h1, is_train)), channels)
+        with tf.variable_scope('residual_first'):
+            h1 = F.conv(F.activation(F.batch_norm(h0, is_train)), channels, strides)
+            h1 = F.dropout(h1, keep_prob, is_train)
+        with tf.variable_scope('residual_second'):
+            h2 = F.conv(F.activation(F.batch_norm(h1, is_train)), channels)
         if F.volume(h0) == F.volume(h2):
             h = h0 + h2
         else :
-            h4 = F.conv('conv3', h0, channels, strides)
+            h4 = F.conv(h0, channels, strides)
             h = h2 + h4
         return h
 
@@ -204,9 +211,9 @@ class resnet(BasicConvNet):
                 with tf.variable_scope(str(channels)+'layers_%s' %i):
                     strides = 2 if i == 0 else 1
                     h = self._residual(h, channels, strides, keep_prob, is_train)
-        h = F.activation(F.batch_norm('bn', h, is_train))
+        h = F.activation(F.batch_norm(h, is_train))
         h = tf.reduce_mean(h, reduction_indices=[1,2])
-        h = F.dense('softmax', h, self._num_classes)
+        h = F.dense(h, self._num_classes)
 
         return h
 
