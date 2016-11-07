@@ -27,7 +27,6 @@ BN_DECAY = 0.9
 BN_EPSILON = 1e-3
 CONV_WEIGHT_DECAY = 5e-4
 RESNET_VARIABLES = 'resnet_variables'
-UPDATE_OPS_COLLECTION = 'resnet_update_ops'
 
 # step specification configuration
 display_iter = (batch_size*75*float(128/batch_size))
