@@ -3,6 +3,7 @@ import tensorflow as tf
 from tensorflow.python.training import moving_averages
 from tensorflow.python.ops import control_flow_ops
 from config import *
+from tensorflow.python.framework import ops
 
 def conv2d(x, W, strides=1):
     return tf.nn.conv2d(x, W, strides=[1,strides,strides,1], padding='SAME')
@@ -21,12 +22,12 @@ def _get_variable(name, shape, initializer, weight_decay=0.0, dtype=tf.float32, 
             collections=collections,
             trainable=trainable)
 
-def weight_variable(name, shape, wd=0.0005):
+def weight_variable(name, shape, wd=CONV_WEIGHT_DECAY):
     k, c = 3, shape[-2]
-    # var = tf.Variable(tf.truncated_normal(shape, stddev=np.sqrt(2.0 / (k*k*c))))
     var = tf.get_variable(name,
             shape = shape,
-            initializer = tf.truncated_normal_initializer(stddev=np.sqrt(2.0 / (k*k*c))),
+            initializer = tf.contrib.layers.xavier_initializer_conv2d(),
+            #tf.truncated_normal_initializer(stddev=np.sqrt(2.0 / (k*k*c))),
             dtype = tf.float32,
             regularizer = tf.contrib.layers.l2_regularizer(wd),
             collections = [tf.GraphKeys.VARIABLES, RESNET_VARIABLES],
@@ -40,21 +41,24 @@ def bias_variable(shape):
     b = _get_variable('bias', shape=shape, initializer=tf.zeros_initializer)
     return b
 
-def conv(name, x, n, strides=1, bias_term=True):
-    with tf.variable_scope(name) as scope :
-        W = weight_variable('weights', [3,3,channels(x),n])
-        res = conv2d(x, W, strides)
-        if bias_term:
-            res += bias_variable([n])
+def conv(x, n, strides=1, bias_term=True):
+    W = weight_variable('weights', [3,3,channels(x),n])
+    res = conv2d(x, W, strides)
+    if bias_term:
+        res += bias_variable([n])
+
     return res
 
-def dense(name, x, n):
-    with tf.variable_scope(name) as scope:
-        W, b = weight_variable('dense', [volume(x), n]), bias_variable([n])
+def dense(x, n):
+    W = _get_variable('dense', shape=[volume(x), n], initializer=tf.contrib.layers.xavier_initializer())
+    b = bias_variable([n])
     return tf.matmul(flatten(x), W) + b
 
 def activation(x):
-    return tf.nn.relu(x)
+    alphas = tf.get_variable('alpha', x.get_shape()[-1], initializer = tf.zeros_initializer, dtype=tf.float32)
+    pos = tf.nn.relu(x)
+    neg = alphas * (x - abs(x)) * 0.5
+    return pos + neg
 
 def max_pool(x, ksize=2, strides=2):
     return tf.nn.max_pool(x, ksize=[1,ksize,ksize,1], strides=[1,strides,strides,1], padding='SAME')
@@ -78,39 +82,25 @@ def dropout(x, keep_prob, is_train):
             lambda : tf.nn.dropout(x, 1.0))
     return dropout
 
-def _batch_norm(name, x, is_train):
-    with tf.variable_scope(name) as scope:
-        axis = list(range(len(x.get_shape()) -1))
-        params_shape = [x.get_shape()[-1]]
-
-        beta = tf.get_variable('beta', params_shape, tf.float64, initializer=tf.zeros_initializer)
-        gamma = tf.get_variable('gamma', params_shape, tf.float64, initializer=tf.ones_initializer)
-
-        mean, variance = tf.nn.moments(x, axis)
-    return tf.nn.batch_normalization(x, mean, variance, beta, gamma, 1e-3)
-
-def batch_norm(name, x, is_train):
+def batch_norm(x, is_train):
     """Batch normalization."""
-    with tf.variable_scope(name) as scope:
-        axis = list(range(len(x.get_shape()) -1))
-        params_shape = [x.get_shape()[-1]]
+    axis = list(range(len(x.get_shape()) -1))
+    params_shape = [x.get_shape()[-1]]
 
-        beta = _get_variable('beta', params_shape, initializer=tf.zeros_initializer)
-        gamma = _get_variable('gamma', params_shape, initializer=tf.ones_initializer)
+    beta = _get_variable('beta', params_shape, initializer=tf.zeros_initializer)
+    gamma = _get_variable('gamma', params_shape, initializer=tf.ones_initializer)
 
-        moving_mean = _get_variable('moving_mean', params_shape, tf.zeros_initializer, trainable=False)
-        moving_variance = _get_variable('moving_variance', params_shape, tf.ones_initializer, trainable=False)
+    batch_mean, batch_var = tf.nn.moments(x, axis, name='moments')
+    ema = moving_averages.ExponentialMovingAverage(decay = 0.5)
 
-        mean, variance = tf.nn.moments(x, axis)
-        update_moving_mean = moving_averages.assign_moving_average(moving_mean, mean, BN_DECAY)
-        update_moving_variance = moving_averages.assign_moving_average(moving_variance, variance, BN_DECAY)
+    def mean_var_with_update() :
+        ema_apply_op = ema.apply([batch_mean, batch_var])
+        with tf.control_dependencies([ema_apply_op]):
+            return tf.identity(batch_mean), tf.identity(batch_var)
 
-        tf.add_to_collection(UPDATE_OPS_COLLECTION, update_moving_mean)
-        tf.add_to_collection(UPDATE_OPS_COLLECTION, update_moving_variance)
-
-        mean, variance = control_flow_ops.cond(is_train,
-                lambda : (mean, variance),
-                lambda : (moving_mean, moving_variance))
+    mean, variance = control_flow_ops.cond(is_train,
+            mean_var_with_update,
+            lambda : (ema.average(batch_mean), ema.average(batch_var)))
 
     return tf.nn.batch_normalization(x, mean, variance, beta, gamma, BN_EPSILON)
 
