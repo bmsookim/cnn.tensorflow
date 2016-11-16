@@ -91,6 +91,16 @@ def batch_norm(x, is_train):
     gamma = _get_variable('gamma', params_shape, initializer=tf.ones_initializer)
 
     mean, variance = tf.nn.moments(x, axis, name='moments')
+    ema = tf.train.ExponentialMovingAverage(decay = BN_DECAY)
+
+    def mean_var_with_update():
+        ema_apply_op = ema.apply([mean, variance])
+        with tf.control_dependencies([ema_apply_op]):
+            return tf.identity(mean), tf.identity(variance)
+
+    mean, variance = tf.cond(is_train,
+            mean_var_with_update,
+            lambda : (ema.average(mean), ema.average(variance)))
 
     return tf.nn.batch_normalization(x, mean, variance, beta, gamma, BN_EPSILON)
 
