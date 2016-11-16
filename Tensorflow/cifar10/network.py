@@ -123,7 +123,7 @@ class BasicConvNet(object):
         cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits, labels) # No need for one-hot enc.
         cross_entropy_mean = tf.reduce_mean(cross_entropy)
         tf.add_to_collection('losses', cross_entropy_mean)
-        # tf.add_to_collection('losses', tf.constant(cf.weight_decay))
+        tf.add_to_collection('losses', tf.constant(cf.weight_decay))
 
         entropy_losses = tf.get_collection('losses')
         regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
@@ -149,12 +149,12 @@ class BasicConvNet(object):
         grads = optimizer.compute_gradients(avg_loss)
         apply_op = optimizer.apply_gradients(grads, global_step=self._global_step)
 
-        return tf.group(apply_op)#, batchnorm_updates_op)
+        return tf.group(apply_op, batchnorm_updates_op)
 
 class vggnet(BasicConvNet):
     def _inference(self, X, keep_prob, is_train):
         dropout_rate = [0.9, 0.8, 0.7, 0.6, 0.5]
-        layers = [192, 256, 256, 512, 512]
+        layers = [64, 128, 256, 512, 512]
         iters = [2, 2, 3, 3]
         h = X
 
@@ -224,8 +224,4 @@ class resnet200(resnet):
 class wide_resnet_28x10(resnet):
     def __init__(self):
         super(wide_resnet_28x10, self).__init__(layers=4, width=10)
-
-class resnet28x10(resnet):
-    def __init__(self):
-        super(resnet28x10, self).__init__(layers=4, width=10)
 
