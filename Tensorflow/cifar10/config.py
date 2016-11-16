@@ -12,14 +12,14 @@ channels = 3
 
 # training specification configuration
 epochs = 200
-batch_size = 32
+batch_size = 128
 dropout_rate = 0.0
 keep_prob = 1-dropout_rate
 weight_decay = 0.0005
 
 # model specification configuration
-model = 'resnet28x10'
-resume = True
+model = 'vggnet'
+resume = False
 
 # collection specification configuration
 MOVING_AVERAGE_DECAY = 0.9
