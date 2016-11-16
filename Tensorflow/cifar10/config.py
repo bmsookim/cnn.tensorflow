@@ -12,14 +12,14 @@ channels = 3
 
 # training specification configuration
 epochs = 200
-batch_size = 128
+batch_size = 32
 dropout_rate = 0.0
 keep_prob = 1-dropout_rate
 weight_decay = 0.0005
 
 # model specification configuration
-model = 'vggnet'
-resume = False
+model = 'resnet28x10'
+resume = True
 
 # collection specification configuration
 MOVING_AVERAGE_DECAY = 0.9
@@ -27,7 +27,6 @@ BN_DECAY = 0.9
 BN_EPSILON = 1e-3
 CONV_WEIGHT_DECAY = 5e-4
 RESNET_VARIABLES = 'resnet_variables'
-BN_COL = 'batchnorm_collections'
 
 # step specification configuration
 display_iter = (batch_size*75*float(128/batch_size))

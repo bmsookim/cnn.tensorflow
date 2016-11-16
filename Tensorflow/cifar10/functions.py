@@ -91,18 +91,6 @@ def batch_norm(x, is_train):
     gamma = _get_variable('gamma', params_shape, initializer=tf.ones_initializer)
 
     mean, variance = tf.nn.moments(x, axis, name='moments')
-    moving_mean = _get_variable('moving_mean', params_shape, initializer=tf.zeros_initializer)
-    moving_variance = _get_variable('moving_variance', params_shape, initializer=tf.ones_initializer)
-
-    moving_mean = tf.add(tf.mul(0.9, mean), tf.mul(0.1, moving_mean))
-    moving_variance = tf.add(tf.mul(0.9, variance), tf.mul(0.1, moving_variance))
-
-    tf.add_to_collection(BN_COL, moving_mean)
-    tf.add_to_collection(BN_COL, moving_variance)
-
-    mean, variance = control_flow_ops.cond(is_train,
-            lambda : (mean, variance),
-            lambda : (moving_mean, moving_variance))
 
     return tf.nn.batch_normalization(x, mean, variance, beta, gamma, BN_EPSILON)
 

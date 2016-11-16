@@ -37,7 +37,10 @@ def run(clf):
                         else :
                             content = list(row)
                             for i in range(len(key)):
-                                mydict[key[i]] = content[i]
+                                if (i == 1):
+                                    mydict[key[i]] = content[i]
+                                else :
+                                    mydict[key[i]] = float(content[i])
                 records.append(mydict)
 
         except ValueError :

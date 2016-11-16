@@ -133,23 +133,23 @@ class BasicConvNet(object):
 
     def _train(self, avg_loss):
         lr = tf.select(
-                tf.less(self._global_step, cf.step1), 0.1, tf.select(
-                    tf.less(self._global_step, cf.step2), 0.02, tf.select(
-                        tf.less(self._global_step, cf.step3), 0.004, 0.0008
+                tf.less(self._global_step, cf.step1), 0.001, tf.select(
+                    tf.less(self._global_step, cf.step2), 0.0005, tf.select(
+                        tf.less(self._global_step, cf.step3), 0.0001, 0.00005
                         )
                     )
                 )
 
         # batch normalizations
-        batchnorm_updates = tf.get_collection(BN_COL)
+        batchnorm_updates = tf.get_collection(tf.GraphKeys.MOVING_AVERAGE_VARIABLES)
         batchnorm_updates_op = tf.group(*batchnorm_updates)
 
         # gradients
-        optimizer = tf.train.MomentumOptimizer(learning_rate=lr, momentum=0.9)
+        optimizer = tf.train.AdamOptimizer(learning_rate=lr)
         grads = optimizer.compute_gradients(avg_loss)
         apply_op = optimizer.apply_gradients(grads, global_step=self._global_step)
 
-        return tf.group(apply_op, batchnorm_updates_op)
+        return tf.group(apply_op)#, batchnorm_updates_op)
 
 class vggnet(BasicConvNet):
     def _inference(self, X, keep_prob, is_train):
@@ -202,7 +202,7 @@ class resnet(BasicConvNet):
         return h
 
     def _inference(self, X, keep_prob, is_train):
-        h = F.conv('init', X, 16)
+        h = F.conv(X, 16)
         for i in range(self._layers):
             with tf.variable_scope(str(16*self._k)+'layers_%s' %i):
                 h = self._residual(h, channels=16*self._k, strides=1, keep_prob=keep_prob, is_train=is_train)
@@ -213,8 +213,8 @@ class resnet(BasicConvNet):
                     h = self._residual(h, channels, strides, keep_prob, is_train)
         h = F.activation(F.batch_norm(h, is_train))
         h = tf.reduce_mean(h, reduction_indices=[1,2])
-        h = F.dense(h, self._num_classes)
-
+        with tf.variable_scope("softmax"):
+            h = F.dense(h, self._num_classes)
         return h
 
 class resnet200(resnet):
