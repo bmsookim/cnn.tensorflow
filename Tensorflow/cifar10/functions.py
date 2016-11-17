@@ -55,10 +55,14 @@ def dense(x, n):
     return tf.matmul(flatten(x), W) + b
 
 def activation(x):
-    alphas = tf.get_variable('alpha', x.get_shape()[-1], initializer = tf.zeros_initializer, dtype=tf.float32)
-    pos = tf.nn.relu(x)
-    neg = alphas * (x - abs(x)) * 0.5
-    return pos + neg
+    if(activate == 'p-relu'):
+        alphas = tf.get_variable('alpha', x.get_shape()[-1], initializer = tf.zeros_initializer, dtype=tf.float32)
+        pos = tf.nn.relu(x)
+        neg = alphas * (x - abs(x)) * 0.5
+        result = pos + neg
+    else:
+        result = tf.nn.relu(x)
+    return result
 
 def max_pool(x, ksize=2, strides=2):
     return tf.nn.max_pool(x, ksize=[1,ksize,ksize,1], strides=[1,strides,strides,1], padding='SAME')
