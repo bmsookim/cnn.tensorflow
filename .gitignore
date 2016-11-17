@@ -1,6 +1,6 @@
 */input/*
 */output/*
-*/models/*
+*.ckpt
 *.ipynb_checkpoints
 *.pyc
 *.t7
