@@ -66,11 +66,11 @@ for epoch = startEpoch, opt.nEpochs do
                 sys.COLORS.magenta .. '%' ..
                 sys.COLORS.magenta .. ' (Top5): ',
                 sys.COLORS.magenta .. string.format('%5.2f', testTop5)..
-                sys.COLORS.magenta .. '%\n')
+                sys.COLORS.magenta .. '%\n' .. sys.COLORS.none)
       else
           print(sys.COLORS.red .. ' * Best model (Top1): ',
                 sys.COLORS.magenta .. string.format('%5.2f', testTop1)..
-                sys.COLORS.magenta .. '%\n')
+                sys.COLORS.magenta .. '%\n' .. sys.COLORS.none)
       end
    end
 
