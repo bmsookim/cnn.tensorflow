@@ -19,6 +19,7 @@ weight_decay = 0.0005
 
 # model specification configuration
 model = 'vggnet'
+activate = 'relu'
 resume = False
 
 # collection specification configuration
