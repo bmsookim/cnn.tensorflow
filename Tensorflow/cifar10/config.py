@@ -12,7 +12,7 @@ channels = 3
 
 # training specification configuration
 epochs = 200
-batch_size = 128
+batch_size = 32
 dropout_rate = 0.0
 keep_prob = 1-dropout_rate
 weight_decay = 0.0005
