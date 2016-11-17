@@ -16,7 +16,7 @@ class BasicConvNet(object):
 
         # define the basic options for tensorflow session : restricts allocation of GPU memory.
         gpu_options = tf.GPUOptions(allow_growth = True)
-        self._session = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
+        self._session = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, allow_soft_placement=True))
 
         # placeholders : None will become the batch size of each batch. The last batch of an epoch may be volatile.
         self._images = tf.placeholder(tf.float32, shape=[None, self._width, self._height, self._channels])
@@ -32,7 +32,7 @@ class BasicConvNet(object):
         self._accuracy = F.accuracy_score(self._labels, self._logits) # get the accuracy of given prediction batch.
 
         # basic tensorflow run operations
-        self._saver = tf.train.Saver(tf.all_variables())
+        self._saver = tf.train.Saver(tf.all_variables(), write_version=tf.train.SaverDef.V2)
         self._session.run(tf.initialize_all_variables())
 
     def prediction(self, X):
@@ -130,22 +130,57 @@ class BasicConvNet(object):
 
         loss_ = tf.add_n(entropy_losses + regularization_losses)
         return loss_
+    
+    def _average_gradients(tower_grads):
+        """Calculate the average gradient for each shared variable across all towers.
+        Note that this function provides a synchronization point across all towers.
+        Args:
+        tower_grads: List of lists of (gradient, variable) tuples. The outer list
+          is over individual gradients. The inner list is over the gradient
+          calculation for each tower.
+        Returns:
+         List of pairs of (gradient, variable) where the gradient has been averaged
+         across all towers.
+        """
+        average_grads = []
+        for grad_and_vars in zip(*tower_grads):
+            # Note that each grad_and_vars looks like the following:
+            #   ((grad0_gpu0, var0_gpu0), ... , (grad0_gpuN, var0_gpuN))
+            grads = []
+            for g, _ in grad_and_vars:
+                # Add 0 dimension to the gradients to represent the tower.
+                expanded_g = tf.expand_dims(g, 0)
+
+                # Append on a 'tower' dimension which we will average over below.
+                grads.append(expanded_g)
+
+            # Average over the 'tower' dimension.
+            grad = tf.concat(0, grads)
+            grad = tf.reduce_mean(grad, 0)
+
+            # Keep in mind that the Variables are redundant because they are shared
+            # across towers. So .. we will just return the first tower's pointer to
+            # the Variable.
+            v = grad_and_vars[0][1]
+            grad_and_var = (grad, v)
+            average_grads.append(grad_and_var)
+        return average_grads
 
     def _train(self, avg_loss):
         lr = tf.select(
-                tf.less(self._global_step, cf.step1), 0.001, tf.select(
-                    tf.less(self._global_step, cf.step2), 0.0005, tf.select(
-                        tf.less(self._global_step, cf.step3), 0.0001, 0.00005
-                        )
+            tf.less(self._global_step, cf.step1), 0.1, tf.select(
+                tf.less(self._global_step, cf.step2), 0.02, tf.select(
+                    tf.less(self._global_step, cf.step3), 0.004, 0.0008
                     )
                 )
+            )
 
         # batch normalizations
         batchnorm_updates = tf.get_collection(tf.GraphKeys.MOVING_AVERAGE_VARIABLES)
         batchnorm_updates_op = tf.group(*batchnorm_updates)
 
         # gradients
-        optimizer = tf.train.AdamOptimizer(learning_rate=lr)
+        optimizer = tf.train.MomentumOptimizer(learning_rate=lr, momentum=0.9)
         grads = optimizer.compute_gradients(avg_loss)
         apply_op = optimizer.apply_gradients(grads, global_step=self._global_step)
 
