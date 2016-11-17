@@ -3,6 +3,7 @@
 */models/*
 *.ipynb_checkpoints
 *.pyc
+*.t7
 
 # Created by https://www.gitignore.io/api/python
 
