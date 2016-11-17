@@ -1,0 +1,50 @@
+=> Creating model from file: models/wide-resnet.lua	
+warning: could not load nccl, falling back to default communication	
+=> Training epoch # 1	
+ | [#  1][ 75/391]    Time 0.035  Loss 1.8843  Top1  26.562%	
+ | [#  1][150/391]    Time 0.044  Loss 1.6286  Top1  44.531%	
+ | [#  1][225/391]    Time 0.024  Loss 1.5344  Top1  45.312%	
+ | [#  1][300/391]    Time 0.034  Loss 1.3324  Top1  46.875%	
+ | [#  1][375/391]    Time 0.025  Loss 1.1070  Top1  60.156%	
+ * Finished epoch # 1     top1:  49.600%	
+ * Elpased time: 0 hours 0 minutes 13 seconds
+	
+[0;31m * Best model (Top1): 	[0;35m49.60[0;35m%
+[0m	
+=> Training epoch # 2	
+ | [#  2][ 75/391]    Time 0.032  Loss 1.1460  Top1  60.938%	
+ | [#  2][150/391]    Time 0.029  Loss 0.9873  Top1  62.500%	
+ | [#  2][225/391]    Time 0.035  Loss 0.9813  Top1  64.062%	
+ | [#  2][300/391]    Time 0.025  Loss 0.9807  Top1  68.750%	
+ | [#  2][375/391]    Time 0.037  Loss 0.8622  Top1  70.312%	
+ * Finished epoch # 2     top1:  60.410%	
+ * Elpased time: 0 hours 0 minutes 26 seconds
+	
+[0;31m * Best model (Top1): 	[0;35m60.41[0;35m%
+[0m	
+=> Training epoch # 3	
+ | [#  3][ 75/391]    Time 0.033  Loss 0.6949  Top1  78.906%	
+ | [#  3][150/391]    Time 0.034  Loss 0.8235  Top1  73.438%	
+ | [#  3][225/391]    Time 0.034  Loss 1.0415  Top1  62.500%	
+ | [#  3][300/391]    Time 0.045  Loss 0.7216  Top1  74.219%	
+ | [#  3][375/391]    Time 0.031  Loss 1.0209  Top1  63.281%	
+ * Finished epoch # 3     top1:  64.810%	
+ * Elpased time: 0 hours 0 minutes 38 seconds
+	
+[0;31m * Best model (Top1): 	[0;35m64.81[0;35m%
+[0m	
+=> Training epoch # 4	
+ | [#  4][ 75/391]    Time 0.033  Loss 1.1319  Top1  61.719%	
+ | [#  4][150/391]    Time 0.030  Loss 0.7781  Top1  69.531%	
+ | [#  4][225/391]    Time 0.029  Loss 0.7881  Top1  71.875%	
+ | [#  4][300/391]    Time 0.027  Loss 0.7497  Top1  75.781%	
+ | [#  4][375/391]    Time 0.034  Loss 0.8301  Top1  75.000%	
+ * Finished epoch # 4     top1:  66.000%	
+ * Elpased time: 0 hours 0 minutes 51 seconds
+	
+[0;31m * Best model (Top1): 	[0;35m66.00[0;35m%
+[0m	
+=> Training epoch # 5	
+ | [#  5][ 75/391]    Time 0.034  Loss 0.6630  Top1  74.219%	
+ | [#  5][150/391]    Time 0.030  Loss 0.6927  Top1  75.000%	
+ | [#  5][225/391]    Time 0.035  Loss 0.5518  Top1  82.031%	
