@@ -4,7 +4,7 @@ import argparse
 import numpy as np
 import pandas as pd
 import network
-from multi_network import *
+from network import *
 import batch_load as datasets
 import csv
 
