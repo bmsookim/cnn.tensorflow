@@ -9,6 +9,10 @@ See the [installation instruction](installation.md) for a step-by-step guide.
 - Install [Torch](http://torch.ch/docs/getting-started.html)
 - Install [cuda-8.0](https://developer.nvidia.com/cuda-downloads)
 - Install [cudnn v5](https://developer.nvidia.com/cudnn)
+- Install 'optnet'
+```bash
+luarocks install optnet
+```
 
 ## Environments
 | GPUs       | numbers | nvidia-version | dev    |
