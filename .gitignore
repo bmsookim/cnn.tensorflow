@@ -4,6 +4,7 @@
 *.ipynb_checkpoints
 *.pyc
 *.t7
+*/gen/*
 
 # Created by https://www.gitignore.io/api/python
 
