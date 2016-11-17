@@ -110,9 +110,14 @@ class BasicConvNet(object):
         tf.get_variable_scope().reuse_variables()
         for i in range(0, len(X), self._batch_size):
             split_idx = i+(self._batch_size/2)
-            batch_images1 = X[i : split_idx]
-            batch_images2 = X[split_idx : i+self._batch_size]
+            batch_images1 = X[i:split_idx]
+            batch_images2 = X[split_idx:i+self._batch_size]
             batch_labels =  y[i : i+self._batch_size]
+
+            if(len(batch_images2) == 0):
+                slice_len = len(batch_images1)/2
+                batch_images2 = batch_images1[slice_len:]
+                batch_images1 = batch_images1[:slice_len]
 
             feed_dict = {
                     self._images1 : batch_images1,
