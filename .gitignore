@@ -4,7 +4,6 @@
 *.ipynb_checkpoints
 *.pyc
 *.t7
-*.bin
 
 # Created by https://www.gitignore.io/api/python
 
