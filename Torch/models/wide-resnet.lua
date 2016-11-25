@@ -14,7 +14,8 @@ require 'cunn'
 
 local Convolution = cudnn.SpatialConvolution
 local Avg = cudnn.SpatialAveragePooling
-local ReLU = nn.PReLU --cudnn.ReLU
+--local ReLU = nn.PReLU --cudnn.ReLU
+local ReLU = cudnn.ReLU
 local Max = nn.SpatialMaxPooling
 local SBatchNorm = nn.SpatialBatchNormalization
 
