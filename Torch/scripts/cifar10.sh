@@ -6,7 +6,7 @@ mkdir -p $save
 th main.lua \
 -dataset ${dataset} \
 -netType ${netType} \
--nGPU 1 \
+-nGPU 2 \
 -batchSize 128 \
 -top5_display false \
 -depth 28 \
