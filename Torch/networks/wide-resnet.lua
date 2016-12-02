@@ -102,6 +102,7 @@ local function createModel(opt)
       assert((depth-4) % 6 == 0, 'depth should be 6n+4')
       local n = (depth-4) / 6
       local k = opt.widen_factor
+      print(' | Wide-ResNet-' .. depth .. 'x' .. k .. ' CIFAR-10')
       local nStages = torch.Tensor{16, 16*k, 32*k, 64*k}
 
       -- The wide-resnet CIFAR-10 model
@@ -119,6 +120,7 @@ local function createModel(opt)
       assert((depth-4) % 6 == 0, 'depth should be 6n+4')
       local n = (depth-4) / 6
       local k = opt.widen_factor
+      print(' | Wide-ResNet-' .. depth .. 'x' .. k .. ' CIFAR-100')
       local nStages = torch.Tensor{16, 16*k, 32*k, 64*k}
 
       -- The wide-resnet CIFAR-100 model
