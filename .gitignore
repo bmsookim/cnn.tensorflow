@@ -5,7 +5,7 @@
 *.pyc
 *.t7
 */gen/*
-*/preprocessedData/*
+*/catdog/*
 
 # Created by https://www.gitignore.io/api/python
 
