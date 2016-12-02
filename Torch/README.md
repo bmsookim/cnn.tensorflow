@@ -39,8 +39,8 @@ Only conducted mean/std preprocessing.
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | accuracy(%)     |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:---------------:|
-| wide-resnet 28x10 |    0    | Momentum | 5.08G  | 200   | 2 min 27 sec | will be updated |
-| wide-resnet 28x10 |   0.3   | Momentum | 5.08G  | 200   | 2 min 27 sec | will be updated |
+| wide-resnet 28x10 |    0    | Momentum |   -    | 200   | 2 min 27 sec | will be updated |
+| wide-resnet 28x10 |   0.3   | Momentum |   -    | 200   | 2 min 27 sec | will be updated |
 | wide-resnet 40x10 |   0.3   | Momentum | 5.90G  | 200   | 3 min 42 sec | will be updated |
 
 CIFAR-10 was updated with the following implementation details.
@@ -57,9 +57,9 @@ Below is the result of the test set accuracy for CIFAR-100 dataset training
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
-| wide-resnet 28x10 |    0    | Momentum | 5.08G  | 200   | - min -- sec |      -     |     -       |
-| wide-resnet 28x10 |   0.3   | Momentum | 5.08G  | 200   | - min -- sec |      -     |     -       |
-| wide-resnet 28x10 |   0.3   | Momentum | 5.08G  | 200   | - min -- sec |      -     |     -       |
+| wide-resnet 28x10 |    0    | Momentum |   -    | 200   | - min -- sec |      -     |     -       |
+| wide-resnet 28x10 |   0.3   | Momentum |   -    | 200   | - min -- sec |      -     |     -       |
+| wide-resnet 28x10 |   0.3   | Momentum |   -    | 200   | - min -- sec |      -     |     -       |
 
 
 CIFAR-100 was updated with the following implementation details.
@@ -73,12 +73,10 @@ CIFAR-100 was updated with the following implementation details.
 
 ## Cat vs Dog Results
 Below is the result of the validation set accuracy for Kaggle Cat vs Dog dataset training
+Unlike CIFAR implements above, we use a bottle-neck layer.
 
-
-| network           | initial LR | Optimizer| Memory  | epoch | per epoch    | Top1 acc(%)|
-|:-----------------:|:----------:|----------|:-------:|:-----:|:------------:|:----------:|
-| resnet 50         |    1e-1    | Momentum | 10.58G  | 90    | 8 min 41 sec |   96.545   |
-| resnet 50         |    1e-2    | Momentum | 10.58G  | 90    | 8 min 41 sec |   97.875   |
-| resnet 50         |  pretrain  | Momentum | 10.58G  | 90    | 2 min 15 sec |   99.512   |
-| wide-resnet 28x10 |    1e-1    | Momentum | 6.57G   | 90    | 6 min 06 sec |   96.20    |
+| network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
+|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
+| wide-resnet 50x2  |    0    | Momentum |   -    | 200   | - min -- sec |      -     |     -       |
+| wide-resnet 50x2  |   0.3   | Momentum |   -    | 200   | - min -- sec |      -     |     -       |
 
