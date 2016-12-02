@@ -24,7 +24,7 @@ torch.manualSeed(opt.manualSeed)
 cutorch.manualSeedAll(opt.manualSeed)
 
 -- Load previous checkpoint, if it exists
-local checkpoint, optimState = checkpoints.latest(opt)
+local checkpoint, optimState = checkpoints.best(opt)
 
 -- Create model
 local model, criterion = models.setup(opt, checkpoint)
