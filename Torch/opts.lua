@@ -29,12 +29,13 @@ function M.parse(arg)
    cmd:option('-nEpochs',         0,       'Number of total epochs to run')
    cmd:option('-epochNumber',     1,       'Manual epoch number (useful on restarts)')
    cmd:option('-batchSize',       128,     'mini-batch size (1 = pure stochastic)')
+   cmd:option('-featureMap',      0,       'final feature map size')
    cmd:option('-display_iter',    75,      'display of training iteration')
    cmd:option('-top5_display',    'false', 'display top5 accuracy')
    cmd:option('-testOnly',        'false', 'Run on validation set only')
    cmd:option('-tenCrop',         'false', 'Ten-crop testing')
    ------------- Checkpointing options ---------------
-   cmd:option('-save',            'checkpoints', 'Directory in which to save checkpoints')
+   cmd:option('-save',            'modelState', 'Directory in which to save checkpoints')
    cmd:option('-resume',          '', 'Resume from the latest checkpoint in this directory')
    ---------- Optimization options ----------------------
    cmd:option('-LR',              0.1,   'initial learning rate')
@@ -63,9 +64,9 @@ function M.parse(arg)
    opt.optnet = opt.optnet ~= 'false'
    opt.resetClassifier = opt.resetClassifier ~= 'false'
    opt.top5_display = opt.top5_display ~= 'false'
-   opt.save = opt.save..'/'..opt.dataset..'/'..opt.netType..'/'
+   opt.save = opt.save..'/'..opt.dataset..'/'..opt.netType..'-'..opt.depth..'x'..opt.widen_factor..'/'
    if opt.resume ~= '' then 
-       opt.resume = opt.resume..'/'..opt.dataset..'/'..opt.netType..'/'
+       opt.resume = opt.resume..'/'..opt.dataset..'/'..opt.netType..'-'..opt.depth..'x'..opt.widen_factor..'/'
    end
 
    if not paths.dirp(opt.save) and not paths.mkdir(opt.save) then
@@ -83,14 +84,17 @@ function M.parse(arg)
       -- Default shortcutType=B and nEpochs=90
       opt.shortcutType = opt.shortcutType == '' and 'B' or opt.shortcutType
       opt.nEpochs = opt.nEpochs == 0 and 90 or opt.nEpochs
+      opt.featureMap = 7
    elseif opt.dataset == 'cifar10' then
       -- Default shortcutType=A and nEpochs=164
       opt.shortcutType = opt.shortcutType == '' and 'A' or opt.shortcutType
       opt.nEpochs = opt.nEpochs == 0 and 200 or opt.nEpochs
+      opt.featureMap = 8
    elseif opt.dataset == 'cifar100' then
-       -- Default shortcutType=A and nEpochs=164
-       opt.shortcutType = opt.shortcutType == '' and 'A' or opt.shortcutType
-       opt.nEpochs = opt.nEpochs == 0 and 200 or opt.nEpochs
+      -- Default shortcutType=A and nEpochs=164
+      opt.shortcutType = opt.shortcutType == '' and 'A' or opt.shortcutType
+      opt.nEpochs = opt.nEpochs == 0 and 200 or opt.nEpochs
+      opt.featureMap = 8
    else
       cmd:error('unknown dataset: ' .. opt.dataset)
    end
