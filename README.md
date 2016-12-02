@@ -1,13 +1,13 @@
 # ImageRecognition
 Repository for Image Recognition Challenges
 
-This implements training & test results of the most popular image classifying challenges, including cifar-10, cifar-100, imagenet(ISLVCR-2012).
+This implements training & test results of the most popular image classifying challenges, including cifar-10, cifar-100, imagenet(ILSVRC-2012).
 
 ## Environments
-| GPUs       | numbers | nvidia-version | dev    |
-|:----------:|:-------:|:--------------:|:------:|
-| GTX 980 Ti | 1       | 367.57         | local  |
-| GTX 1080   | 2       | 372.20         | server |
+| GPUs         | numbers | nvidia-version | dev    | memory |
+|:------------:|:-------:|:--------------:|:------:|:------:|
+| GTX 980 Ti   | 1       | 367.57         | local  |   6G   |
+| GTX TitanX   | 2       | 372.20         | server |  12G   |
 
 There are two versions of implementations in this repository.
 - [Tensorflow version](Tensorflow/)
@@ -30,6 +30,7 @@ There are 100 corresponding labels to each image.
 The labels are ..
 
 ### 3. ISLVCR-2012
+ILSVRC(Imagenet Large Scale Visual Recognition Challenge)
 
 ### 4. Cat vs Dog, Kaggle Challenge
 Cat vs Dog Challenge dataset is consisted with 25,000 training images of cats and dogs with various pixels.
