@@ -15,10 +15,10 @@ luarocks install optnet
 ```
 
 ## Environments
-| GPUs       | numbers | nvidia-version | dev    |
-|:----------:|:-------:|:--------------:|:------:|
-| GTX 980 Ti | 1       | 367.57         | local  |
-| GTX 1080   | 2       | 372.20         | server |
+| GPUs         | numbers | nvidia-version | dev    | memory |
+|:------------:|:-------:|:--------------:|:------:|:------:|
+| GTX 980 Ti   | 1       | 367.57         | local  |   6G   |
+| GTX TitanX   | 2       | 372.20         | server |   12G  |
 
 ## Directories and datasets
 - checkpoints : The optimal stages and models will be saved in this directory.
@@ -35,12 +35,13 @@ You can run each dataset which could be either cifar10, cifar100, imagenet, catd
 
 ## CIFAR-10 Results
 Below is the result of the test set accuracy for CIFAR-10 dataset training.
+Only conducted mean/std preprocessing.
 
-| network           | preprocess | Optimizer| Memory | epoch | per epoch    | accuracy(%)     |
-|:-----------------:|:----------:|----------|:------:|:-----:|:------------:|:---------------:|
-| wide-resnet 28x10 |    None    | Momentum | 5.08G  | 200   | 2 min 59 sec | 95.16           |
-| wide-resnet 28x10 |    PCA     | Momentum | 5.08G  | 200   | 2 min 59 sec | will be updated |
-| wide-resnet 28x10 |    ZCA     | Momentum | 5.08G  | 200   | 2 min 59 sec | will be updated |
+| network           | dropout | Optimizer| Memory | epoch | per epoch    | accuracy(%)     |
+|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:---------------:|
+| wide-resnet 28x10 |    0    | Momentum | 5.08G  | 200   | 2 min 27 sec | will be updated |
+| wide-resnet 28x10 |   0.3   | Momentum | 5.08G  | 200   | 2 min 27 sec | will be updated |
+| wide-resnet 40x10 |   0.3   | Momentum | 5.90G  | 200   | 3 min 42 sec | will be updated |
 
 CIFAR-10 was updated with the following implementation details.
 
@@ -54,11 +55,11 @@ CIFAR-10 was updated with the following implementation details.
 ## CIFAR-100 Results
 Below is the result of the test set accuracy for CIFAR-100 dataset training
 
-| network           | preprocess | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
-|:-----------------:|:----------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
-| wide-resnet 28x10 |    None    | Momentum | 5.08G  | 200   | 2 min 59 sec |      -     |             |
-| wide-resnet 28x10 |    PCA     | Momentum | 5.08G  | 200   | 2 min 59 sec |      -     |             |
-| wide-resnet 28x10 |    ZCA     | Momentum | 5.08G  | 200   | 2 min 59 sec |      -     |             |
+| network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
+|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
+| wide-resnet 28x10 |    0    | Momentum | 5.08G  | 200   | - min -- sec |      -     |     -       |
+| wide-resnet 28x10 |   0.3   | Momentum | 5.08G  | 200   | - min -- sec |      -     |     -       |
+| wide-resnet 28x10 |   0.3   | Momentum | 5.08G  | 200   | - min -- sec |      -     |     -       |
 
 
 CIFAR-100 was updated with the following implementation details.
@@ -70,4 +71,14 @@ CIFAR-100 was updated with the following implementation details.
 | 121 ~ 160 |     0.004     |     0.0005    |
 | 161 ~ 200 |     0.0008    |     0.0005    |
 
-## Cat vs Dog
+## Cat vs Dog Results
+Below is the result of the validation set accuracy for Kaggle Cat vs Dog dataset training
+
+
+| network           | initial LR | Optimizer| Memory  | epoch | per epoch    | Top1 acc(%)|
+|:-----------------:|:----------:|----------|:-------:|:-----:|:------------:|:----------:|
+| resnet 50         |    1e-1    | Momentum | 10.58G  | 90    | 8 min 41 sec |   96.545   |
+| resnet 50         |    1e-2    | Momentum | 10.58G  | 90    | 8 min 41 sec |   97.875   |
+| resnet 50         |  pretrain  | Momentum | 10.58G  | 90    | 2 min 15 sec |   99.512   |
+| wide-resnet 28x10 |    1e-1    | Momentum | 6.57G   | 90    | 6 min 06 sec |   96.20    |
+
