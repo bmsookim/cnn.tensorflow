@@ -29,7 +29,7 @@ Each image is consisted in an RGB format with the size of 32 x 32 pixels.
 There are 100 corresponding labels to each image.
 The labels are ..
 
-### 3. ISLVCR-2012
+### 3. ILSVRC-2012
 ILSVRC(Imagenet Large Scale Visual Recognition Challenge)
 
 ### 4. Cat vs Dog, Kaggle Challenge
