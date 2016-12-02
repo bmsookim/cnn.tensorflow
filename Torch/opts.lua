@@ -36,11 +36,12 @@ function M.parse(arg)
    cmd:option('-tenCrop',         'false', 'Ten-crop testing')
    ------------- Checkpointing options ---------------
    cmd:option('-save',            'modelState', 'Directory in which to save checkpoints')
-   cmd:option('-resume',          '', 'Resume from the latest checkpoint in this directory')
+   cmd:option('-resume',          'modelState', 'Resume from the latest checkpoint in this directory')
+   cmd:option('-saveLatest',      'false',   'Test out Best model')
    ---------- Optimization options ----------------------
    cmd:option('-LR',              0.1,   'initial learning rate')
    cmd:option('-momentum',        0.9,   'momentum')
-   cmd:option('-weightDecay',     1e-4,  'weight decay')
+   cmd:option('-weightDecay',     5e-4,  'weight decay')
    ---------- Model options ----------------------------------
    cmd:option('-netType',      'wide-resnet', 'Options: resnet | wide-resnet')
    cmd:option('-depth',        28,       'ResNet depth: 6n+4', 'number')
@@ -59,6 +60,7 @@ function M.parse(arg)
    local opt = cmd:parse(arg or {})
 
    opt.testOnly = opt.testOnly ~= 'false'
+   opt.saveLatest = opt.saveLatest ~= 'false'
    opt.tenCrop = opt.tenCrop ~= 'false'
    opt.shareGradInput = opt.shareGradInput ~= 'false'
    opt.optnet = opt.optnet ~= 'false'
