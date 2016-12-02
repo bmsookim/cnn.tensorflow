@@ -27,6 +27,11 @@ function M.setup(opt, checkpoint)
       assert(paths.filep(opt.retrain), 'File not found: ' .. opt.retrain)
       print('Loading model from file: ' .. opt.retrain)
       model = torch.load(opt.retrain):cuda()
+   elseif opt.testBest then
+      local modelPath = paths.conca(opt.save, 'model_best.t7')
+      assert(paths.filep(modelPath), 'Saved model not found : ' .. modelPath)
+      print('=> Resuming best model from ' .. modelPath)
+      model = torch.load(modelPath):cuda()
    else
       print('=> Creating model from file: models/' .. opt.netType .. '.lua')
       model = require('networks/' .. opt.netType)(opt)
