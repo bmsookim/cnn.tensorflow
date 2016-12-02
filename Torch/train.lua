@@ -13,8 +13,6 @@ local optim = require 'optim'
 
 local M = {}
 local Trainer = torch.class('resnet.Trainer', M)
-local opts = require 'opts'
-local _opt = opts.parse(arg)
 local elapsed_time = 0
 
 function Trainer:__init(model, criterion, opt, optimState)
@@ -73,8 +71,8 @@ function Trainer:train(epoch, dataloader)
       N = N + batchSize
       elapsed_time = elapsed_time + timer:time().real + dataTime
 
-      if(n % _opt.display_iter == 0) then
-          if _opt.top5_display then
+      if(n % self.opt.display_iter == 0) then
+          if self.opt.top5_display then
               print((' | [#%3d][%3d/%d]    Time %.3f  Loss %1.4f  Top1 %7.3f%s  Top5 %7.3f%s')
               :format(epoch, n, trainSize, timer:time().real + dataTime, loss, top1, '%', top5, '%'))
           else
@@ -129,7 +127,7 @@ function Trainer:test(epoch, dataloader)
    end
    self.model:training()
 
-   if _opt.top5_display then
+   if self.opt.top5_display then
       print((' * Finished epoch # %d     top1: %7.3f  top5: %6.2f%s'):format(epoch, top1Sum / N, top5Sum / N, '%'))
       print(' * Elpased time: '..math.floor(elapsed_time/3600)..' hours '..
                                  math.floor((elapsed_time%3600)/60)..' minutes '..
