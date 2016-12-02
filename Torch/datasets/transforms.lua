@@ -30,7 +30,6 @@ function M.ColorNormalize2(meanstd)
         img[i]:add(-meanstd.mean[i])
         img[i]:div(meanstd.std[i])
       end
-      -- img = zca_whiten(img)
 
       return img
    end
