@@ -1,0 +1,7 @@
+=> Creating model from file: models/wide-resnet.lua	
+ | Wide-ResNet-40x10 CIFAR-100	
+warning: could not load nccl, falling back to default communication	
+=> Training epoch # 1	
+ | [#  1][ 75/391]    Time 0.536  Loss 3.9573  Top1   9.375%  Top5  31.250%	
+ | [#  1][150/391]    Time 0.548  Loss 3.8216  Top1   9.375%  Top5  35.156%	
+ | [#  1][225/391]    Time 0.546  Loss 3.7400  Top1  13.281%  Top5  34.375%	

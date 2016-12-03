@@ -1,0 +1,7 @@
+=> Loading checkpoint /home/bumsoo/Github/ImageRecognition/Torch/modelState/cifar10/wide-resnet-40x10/best.t7	
+=> Resuming model from /home/bumsoo/Github/ImageRecognition/Torch/modelState/cifar10/wide-resnet-40x10/model_196.t7	
+warning: could not load nccl, falling back to default communication	
+ * Finished epoch # 0     top1:  96.190%	
+ * Elpased time: 0 hours 0 minutes 0 seconds
+	
+ * Results Top1:  96.19%	
