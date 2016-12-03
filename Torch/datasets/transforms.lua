@@ -23,7 +23,7 @@ function M.Compose(transforms)
    end
 end
 
-function M.ColorNormalize2(meanstd)
+function M.ColorNormalize(meanstd)
    return function(img)
       img = img:clone()
       for i=1,3 do
@@ -33,15 +33,6 @@ function M.ColorNormalize2(meanstd)
 
       return img
    end
-end
-
-function M.ColorNormalize(meanstd)
-    return function(img)
-        img = img:clone()
-        img:add(-img:mean())
-        img:div(img:std())
-        return img
-    end
 end
 
 -- Scales the smaller edge to size
