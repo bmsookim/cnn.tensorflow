@@ -18,15 +18,15 @@ local ReLU = cudnn.ReLU
 local Max = nn.SpatialMaxPooling
 local SBatchNorm = nn.SpatialBatchNormalization
 
-local function Dropout()
-   return nn.Dropout(opt and opt.dropout or 0,nil,true)
-end
-
 local function createModel(opt)
    local depth = opt.depth
    local shortcutType = opt.shortcutType or 'B'
    local iChannels
    local blocks = {}
+
+   local function Dropout()
+      return nn.Dropout(opt and opt.dropout or 0,nil,true)
+   end
 
    local function wide_basic(nInputPlane, nOutputPlane, stride)
       local conv_params = {
