@@ -127,7 +127,11 @@ function Trainer:test(epoch, dataloader)
    end
    self.model:training()
 
-   if self.opt.top5_display == true and testOnly == false then
+   if self.opt.testOnly then
+      return top1Sum / N, top5Sum / N
+   end
+
+   if self.opt.top5_display then
       print((' * Finished epoch # %d     top1: %7.3f  top5: %6.2f%s'):format(epoch, top1Sum / N, top5Sum / N, '%'))
       print(' * Elpased time: '..math.floor(elapsed_time/3600)..' hours '..
                                  math.floor((elapsed_time%3600)/60)..' minutes '..
