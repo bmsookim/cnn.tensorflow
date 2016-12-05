@@ -1,13 +1,12 @@
---
---  Copyright (c) 2016, Facebook, Inc.
---  All rights reserved.
---
---  This source code is licensed under the BSD-style license found in the
---  LICENSE file in the root directory of this source tree. An additional grant
---  of patent rights can be found in the PATENTS file in the same directory.
---
---  The ResNet model definition
---
+ --
+ --  (Author) Bumsoo Kim, 2016
+ --  Github : https://github.com/meliketoy/ImageRecognition
+ --
+ --  Korea University, Data-Mining Lab
+ --  Image Recognition Torch Implementation - networks
+ --
+ --  The wide-ResNet model definition.
+ --
 
 local nn = require 'nn'
 require 'cunn'
