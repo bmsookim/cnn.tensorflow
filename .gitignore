@@ -6,6 +6,7 @@
 *.t7
 */gen/*
 */catdog/*
+*.txt
 *.png
 *.jpg
 
