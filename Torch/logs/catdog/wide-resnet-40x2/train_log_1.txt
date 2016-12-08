@@ -427,3 +427,90 @@ DataParallelTable: 2 x nn.Sequential {
  | [#  6][525/719]    Time 0.237  Loss 0.5509  Top1  71.875%	
  | [#  6][600/719]    Time 0.041  Loss 0.5694  Top1  71.875%	
  | [#  6][675/719]    Time 0.045  Loss 0.7399  Top1  59.375%	
+ * Finished epoch # 6     top1:  70.600%	
+ * Elapsed time: 0 hours 9 minutes 4 seconds
+	
+ * Best model (Top1): 	70.60%
+	
+=> Training epoch # 7	
+ | [#  7][ 75/719]    Time 0.041  Loss 0.6917  Top1  59.375%	
+ | [#  7][150/719]    Time 0.335  Loss 0.5525  Top1  71.875%	
+ | [#  7][225/719]    Time 0.043  Loss 0.6430  Top1  59.375%	
+ | [#  7][300/719]    Time 0.043  Loss 0.5873  Top1  71.875%	
+ | [#  7][375/719]    Time 0.252  Loss 0.5640  Top1  68.750%	
+ | [#  7][450/719]    Time 0.153  Loss 0.6430  Top1  59.375%	
+ | [#  7][525/719]    Time 0.064  Loss 0.5999  Top1  68.750%	
+ | [#  7][600/719]    Time 0.042  Loss 0.6483  Top1  62.500%	
+ | [#  7][675/719]    Time 0.092  Loss 0.6774  Top1  65.625%	
+ * Finished epoch # 7     top1:  74.400%	
+ * Elapsed time: 0 hours 10 minutes 34 seconds
+	
+ * Best model (Top1): 	74.40%
+	
+=> Training epoch # 8	
+ | [#  8][ 75/719]    Time 0.184  Loss 0.6150  Top1  68.750%	
+ | [#  8][150/719]    Time 0.047  Loss 0.5511  Top1  75.000%	
+ | [#  8][225/719]    Time 0.335  Loss 0.5672  Top1  71.875%	
+ | [#  8][300/719]    Time 0.061  Loss 0.6542  Top1  65.625%	
+ | [#  8][375/719]    Time 0.042  Loss 0.6343  Top1  68.750%	
+ | [#  8][450/719]    Time 0.150  Loss 0.5219  Top1  71.875%	
+ | [#  8][525/719]    Time 0.192  Loss 0.5990  Top1  71.875%	
+ | [#  8][600/719]    Time 0.188  Loss 0.5371  Top1  68.750%	
+ | [#  8][675/719]    Time 0.177  Loss 0.5890  Top1  78.125%	
+ * Finished epoch # 8     top1:  74.300%	
+ * Elapsed time: 0 hours 12 minutes 7 seconds
+	
+=> Training epoch # 9	
+ | [#  9][ 75/719]    Time 0.049  Loss 0.7481  Top1  56.250%	
+ | [#  9][150/719]    Time 0.043  Loss 0.5394  Top1  78.125%	
+ | [#  9][225/719]    Time 0.373  Loss 0.4606  Top1  75.000%	
+ | [#  9][300/719]    Time 0.288  Loss 0.6493  Top1  59.375%	
+ | [#  9][375/719]    Time 0.045  Loss 0.5860  Top1  68.750%	
+ | [#  9][450/719]    Time 0.043  Loss 0.5750  Top1  71.875%	
+ | [#  9][525/719]    Time 0.133  Loss 0.4984  Top1  84.375%	
+ | [#  9][600/719]    Time 0.202  Loss 0.5014  Top1  78.125%	
+ | [#  9][675/719]    Time 0.089  Loss 0.5616  Top1  65.625%	
+ * Finished epoch # 9     top1:  76.250%	
+ * Elapsed time: 0 hours 13 minutes 39 seconds
+	
+ * Best model (Top1): 	76.25%
+	
+=> Training epoch # 10	
+ | [# 10][ 75/719]    Time 0.056  Loss 0.6720  Top1  50.000%	
+ | [# 10][150/719]    Time 0.415  Loss 0.5807  Top1  62.500%	
+ | [# 10][225/719]    Time 0.045  Loss 0.6021  Top1  65.625%	
+ | [# 10][300/719]    Time 0.409  Loss 0.4729  Top1  75.000%	
+ | [# 10][375/719]    Time 0.040  Loss 0.4836  Top1  81.250%	
+ | [# 10][450/719]    Time 0.274  Loss 0.7399  Top1  56.250%	
+ | [# 10][525/719]    Time 0.042  Loss 0.3580  Top1  87.500%	
+ | [# 10][600/719]    Time 0.092  Loss 0.4116  Top1  84.375%	
+ | [# 10][675/719]    Time 0.123  Loss 0.4652  Top1  84.375%	
+ * Finished epoch # 10     top1:  77.550%	
+ * Elapsed time: 0 hours 15 minutes 12 seconds
+	
+ * Best model (Top1): 	77.55%
+	
+=> Training epoch # 11	
+ | [# 11][ 75/719]    Time 0.284  Loss 0.4588  Top1  81.250%	
+ | [# 11][150/719]    Time 0.046  Loss 0.4432  Top1  75.000%	
+ | [# 11][225/719]    Time 0.042  Loss 0.4877  Top1  75.000%	
+ | [# 11][300/719]    Time 0.061  Loss 0.4761  Top1  71.875%	
+ | [# 11][375/719]    Time 0.065  Loss 0.4303  Top1  84.375%	
+ | [# 11][450/719]    Time 0.046  Loss 0.5221  Top1  75.000%	
+ | [# 11][525/719]    Time 0.244  Loss 0.4033  Top1  81.250%	
+ | [# 11][600/719]    Time 0.208  Loss 0.5211  Top1  71.875%	
+ | [# 11][675/719]    Time 0.045  Loss 0.4245  Top1  81.250%	
+ * Finished epoch # 11     top1:  78.150%	
+ * Elapsed time: 0 hours 16 minutes 44 seconds
+	
+ * Best model (Top1): 	78.15%
+	
+=> Training epoch # 12	
+ | [# 12][ 75/719]    Time 0.040  Loss 0.6101  Top1  65.625%	
+ | [# 12][150/719]    Time 0.041  Loss 0.4412  Top1  78.125%	
+ | [# 12][225/719]    Time 0.225  Loss 0.4687  Top1  78.125%	
+ | [# 12][300/719]    Time 0.037  Loss 0.5264  Top1  71.875%	
+ | [# 12][375/719]    Time 0.096  Loss 0.5239  Top1  78.125%	
+ | [# 12][450/719]    Time 0.189  Loss 0.3192  Top1  84.375%	
+ | [# 12][525/719]    Time 0.171  Loss 0.6078  Top1  62.500%	
+ | [# 12][600/719]    Time 0.134  Loss 0.5357  Top1  65.625%	
