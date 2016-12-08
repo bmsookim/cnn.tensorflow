@@ -20,7 +20,7 @@ CIFAR-10 dataset is consisted with 50,000 training images and 10,000 testing ima
 Each image is consisted in an RGB format with the size of 32 x 32 pixels.
 
 There are 10 corresponding labels to each image.
-The labels are ..
+The labels are descripted below.
 
 ![alt tag](GitImage/CIFAR10.png)
 
@@ -29,10 +29,15 @@ CIFAR-100 dataset is consisted with 50,000 training images and 10,000 testing im
 Each image is consisted in an RGB format with the size of 32 x 32 pixels.
 
 There are 100 corresponding labels to each image.
-The labels are ..
+The labels are descripted below.
+
+![alt tag](GitImage/cifar100.png)
+![alt tag](GitImage/cifar100_image.png)
 
 ### 3. ILSVRC-2012
 ILSVRC(Imagenet Large Scale Visual Recognition Challenge)
+
+![alt tag](GitImage/imagenet.jpg)
 
 ### 4. Cat vs Dog, Kaggle Challenge
 Cat vs Dog Challenge dataset is consisted with 25,000 training images of cats and dogs with various pixels.
@@ -43,3 +48,5 @@ whilst the skewness of the training data set.
 
 We will consist the training data with 1,000 cats and 10,000 dogs, while consisting the test set with
 2,500 cats and 2,500 dogs.
+
+![alt tag](GitImage/catdog.png)
