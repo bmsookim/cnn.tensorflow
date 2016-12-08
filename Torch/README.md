@@ -33,7 +33,7 @@ You can train each dataset which could be either cifar10, cifar100, imagenet, ca
 ./scripts/[cifar10/cifar100/imagenet/catdog]_train.sh
 ```
 
-## CIFAR-10 Results
+**## CIFAR-10 Results**
 
 ![alt tag](../GitImage/cifar10_image.png)
 
@@ -57,7 +57,7 @@ CIFAR-10 was updated with the following implementation details.
 
 
 
-## CIFAR-100 Results
+**## CIFAR-100 Results**
 
 ![alt tag](../GitImage/cifar100_image.png)
 
@@ -82,7 +82,7 @@ CIFAR-100 was updated with the following implementation details.
 
 
 
-## Cat vs Dog Results
+## **Cat vs Dog Results**
 
 ![alt tag](../GitImage/catdog.png)
 
