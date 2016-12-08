@@ -18,7 +18,7 @@ function M.parse(arg)
    local cmd = torch.CmdLine()
    cmd:text()
    cmd:text('Torch-7 ResNet Training script')
-   cmd:text('See https://github.com/facebook/fb.resnet.torch/blob/master/TRAINING.md for examples')
+   cmd:text('See https://github.com/meliketoy/ImageRecognition')
    cmd:text()
    cmd:text('Options:')
     ------------ General options --------------------
