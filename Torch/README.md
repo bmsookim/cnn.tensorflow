@@ -37,6 +37,8 @@ You can train each dataset which could be either cifar10, cifar100, imagenet, ca
 Below is the result of the test set accuracy for CIFAR-10 dataset training.
 Only conducted mean/std preprocessing.
 
+![alt tag](../GitImage/cifar10_image.png)
+
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | accuracy(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:-----------:|
 | wide-resnet 28x10 |    0    | Momentum |  4.2G  | 200   | 2 min 27 sec |    95.84    |
@@ -55,6 +57,8 @@ CIFAR-10 was updated with the following implementation details.
 ## CIFAR-100 Results
 Below is the result of the test set accuracy for CIFAR-100 dataset training
 Only conducted mean/std preprocessing.
+
+![alt tag](../GitImage/cifar100_image.png)
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
@@ -75,6 +79,8 @@ CIFAR-100 was updated with the following implementation details.
 ## Cat vs Dog Results
 Below is the result of the validation set accuracy for Kaggle Cat vs Dog dataset training
 Unlike CIFAR implements above, we use a bottle-neck layer.
+
+![alt tag](../GitImage/catdog.png)
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
