@@ -14,12 +14,12 @@ There are two versions of implementations in this repository.
 - [Torch version](Torch/)
 
 ## Best Results
-|   Dataset   | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)|
-|:-----------:|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|
-| CIFAR-10    | wide-resnet 28x10 |   0.3   | Momentum |  5.8G  | 200   | 3 min 42 sec |    96.31   |
-| CIFAR-100   | wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 3 min 40 sec |    81.23   |
-| ILSVRC-2012 | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
-| Cat vs Dog  | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
+|   Dataset   | network           | dropout | Top1 acc(%)|
+|:-----------:|:-----------------:|:-------:|:----------:|
+| CIFAR-10    | wide-resnet 28x10 |   0.3   |    96.31   |
+| CIFAR-100   | wide-resnet 40x10 |   0.3   |    81.23   |
+| ILSVRC-2012 | wide-resnet 50x2  |    0    |     -      |
+| Cat vs Dog  | wide-resnet 50x2  |    0    |     -      |
 
 ## Datasets
 

@@ -33,7 +33,15 @@ You can train each dataset which could be either cifar10, cifar100, imagenet, ca
 ./scripts/[cifar10/cifar100/imagenet/catdog]_train.sh
 ```
 
-# CIFAR-10 Results
+## Best Results
+|   Dataset   | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)|
+|:-----------:|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|
+| CIFAR-10    | wide-resnet 28x10 |   0.3   | Momentum |  5.8G  | 200   | 3 min 42 sec |    96.31   |
+| CIFAR-100   | wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 3 min 40 sec |    81.23   |
+| ILSVRC-2012 | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
+| Cat vs Dog  | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
+
+## CIFAR-10 Results
 
 ![alt tag](../GitImage/cifar10_image.png)
 
@@ -57,7 +65,7 @@ CIFAR-10 was updated with the following implementation details.
 
 
 
-# CIFAR-100 Results
+## CIFAR-100 Results
 
 ![alt tag](../GitImage/cifar100_image.png)
 
@@ -82,7 +90,7 @@ CIFAR-100 was updated with the following implementation details.
 
 
 
-# Cat vs Dog Results
+## Cat vs Dog Results
 
 ![alt tag](../GitImage/catdog.png)
 
