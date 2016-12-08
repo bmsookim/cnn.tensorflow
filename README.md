@@ -30,7 +30,7 @@ Each image is consisted in an RGB format with the size of 32 x 32 pixels.
 There are 10 corresponding labels to each image.
 The labels are descripted below.
 
-![alt tag](GitImage/CIFAR10.png)
+![alt tag](GitImage/cifar10.png)
 
 ### 2. CIFAR-100
 CIFAR-100 dataset is consisted with 50,000 training images and 10,000 testing images.
