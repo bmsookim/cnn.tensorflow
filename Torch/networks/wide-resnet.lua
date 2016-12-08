@@ -75,21 +75,19 @@ local function createModel(opt)
 
    local model = nn.Sequential()
    if opt.dataset == 'imagenet' then
-      -- Configurations for ResNet:
-      --  num. residual blocks, num features, residual block function
       assert((depth-4) % 6 == 0, 'depth should be 6n+4')
       local n = (depth-4)/6
       local k = opt.widen_factor
       print(' | Wide-ResNet-' .. depth .. 'x' .. k .. ' ImageNet')
       local nStages = torch.Tensor{16, 32, 32*k, 64*k, 128*k}
 
-      -- The ResNet ImageNet model
+      -- The wide-resnet ImageNet model
       model:add(Convolution(3,nStages[1],7,7,2,2,3,3))                -- 112 x 112
       model:add(SBatchNorm(nStages[1]))
       model:add(ReLU(true))
       model:add(Max(3,3,2,2,1,1))                                     -- 56 x 56
       model:add(Convolution(nStages[1],nStages[2],3,3,2,2,1,1))       -- 28 x 28
-      model:add(wide_layer(wide_basic, nStages[2], nStages[3], n, 1))    -- 28 x 28
+      model:add(wide_layer(wide_basic, nStages[2], nStages[3], n, 1)) -- 28 x 28
       model:add(wide_layer(wide_basic, nStages[3], nStages[4], n, 2)) -- 14 x 14
       model:add(wide_layer(wide_basic, nStages[4], nStages[5], n, 2)) -- 7 x 7
       model:add(SBatchNorm(nStages[5]))
@@ -97,6 +95,27 @@ local function createModel(opt)
       model:add(Avg(7, 7, 1, 1))
       model:add(nn.View(nStages[5]):setNumInputDims(3))
       model:add(nn.Linear(nStages[5], 1000))
+   elseif opt.dataset == 'catdog' then
+      assert((depth-4) % 6 == 0, 'depth should be 6n+4')
+      local n = (depth-4)/6
+      local k = opt.widen_factor
+      print(' | Wide-ResNet-' .. depth .. 'x' .. k .. ' Cat vs Dog')
+      local nStages = torch.Tensor{16, 32, 32*k, 64*k, 128*k}
+
+      -- The wide-resnet Challenge model
+      model:add(Convolution(3,nStages[1],7,7,2,2,3,3))                -- 112 x 112
+      model:add(SBatchNorm(nStages[1]))
+      model:add(ReLU(true))
+      model:add(Max(3,3,2,2,1,1))                                     -- 56 x 56
+      model:add(Convolution(nStages[1],nStages[2],3,3,2,2,1,1))       -- 28 x 28
+      model:add(wide_layer(wide_basic, nStages[2], nStages[3], n, 1)) -- 28 x 28
+      model:add(wide_layer(wide_basic, nStages[3], nStages[4], n, 2)) -- 14 x 14
+      model:add(wide_layer(wide_basic, nStages[4], nStages[5], n, 2)) -- 7 x 7
+      model:add(SBatchNorm(nStages[5]))
+      model:add(ReLU(true))
+      model:add(Avg(7, 7, 1, 1))
+      model:add(nn.View(nStages[5]):setNumInputDims(3))
+      model:add(nn.Linear(nStages[5], 2))
    elseif opt.dataset == 'cifar10' then
       -- Model type specifies number of layers for CIFAR-10 model
       assert((depth-4) % 6 == 0, 'depth should be 6n+4')
