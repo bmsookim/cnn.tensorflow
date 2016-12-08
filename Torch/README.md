@@ -28,9 +28,9 @@ luarocks install optnet
 - scripts : directory where scripts for each datasets are contained.
 
 ## How to run
-You can run each dataset which could be either cifar10, cifar100, imagenet, catdog by running the script below.
+You can train each dataset which could be either cifar10, cifar100, imagenet, catdog by running the script below.
 ```bash
-./scripts/[cifar10/cifar100/imagenet/catdog].sh
+./scripts/[cifar10/cifar100/imagenet/catdog]_train.sh
 ```
 
 ## CIFAR-10 Results
@@ -39,8 +39,8 @@ Only conducted mean/std preprocessing.
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | accuracy(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:-----------:|
-| wide-resnet 28x10 |    0    | Momentum |  4.2G  | 200   | 2 min 27 sec |      -      |
-| wide-resnet 28x10 |   0.3   | Momentum |   -    | 200   | 2 min 27 sec |    95.99    |
+| wide-resnet 28x10 |    0    | Momentum |  4.2G  | 200   | 2 min 27 sec |    95.84    |
+| wide-resnet 28x10 |   0.3   | Momentum |  4.2G  | 200   | 2 min 27 sec |    95.99    |
 | wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 3 min 42 sec |    96.31    |
 
 CIFAR-10 was updated with the following implementation details.
