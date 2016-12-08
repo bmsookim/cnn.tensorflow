@@ -23,7 +23,7 @@ function M.parse(arg)
    cmd:text('Options:')
     ------------ General options --------------------
    cmd:option('-data',       '',         'Path to dataset')
-   cmd:option('-dataset',    '',         'Options: imagenet | cifar10 | cifar100')
+   cmd:option('-dataset',    '',         'Options: imagenet | cifar10 | cifar100 | catdog')
    cmd:option('-manualSeed', 0,          'Manually set RNG seed')
    cmd:option('-nGPU',       2,          'Number of GPUs to use by default')
    cmd:option('-backend',    'cudnn',    'Options: cudnn | cunn')
@@ -88,6 +88,18 @@ function M.parse(arg)
          cmd:error('error: missing ImageNet data directory')
       elseif not paths.dirp(trainDir) then
          cmd:error('error: ImageNet missing `train` directory: ' .. trainDir)
+      end
+      -- Default shortcutType=B and nEpochs=90
+      opt.shortcutType = opt.shortcutType == '' and 'B' or opt.shortcutType
+      opt.nEpochs = opt.nEpochs == 0 and 90 or opt.nEpochs
+      opt.featureMap = 7
+   elseif opt.dataset == 'catdog' then
+      -- Handle the most common case of missing -data flag
+      local trainDir = paths.concat(opt.data, 'train')
+      if not paths.dirp(opt.data) then
+         cmd:error('error: missing CatDog data directory')
+      elseif not paths.dirp(trainDir) then
+         cmd:error('error: CatDog missing `train` directory: ' .. trainDir)
       end
       -- Default shortcutType=B and nEpochs=90
       opt.shortcutType = opt.shortcutType == '' and 'B' or opt.shortcutType
