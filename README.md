@@ -13,6 +13,14 @@ There are two versions of implementations in this repository.
 - [Tensorflow version](Tensorflow/)
 - [Torch version](Torch/)
 
+## Best Results
+|   Dataset   | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)|
+|:-----------:|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|
+| CIFAR-10    | wide-resnet 28x10 |   0.3   | Momentum |  5.8G  | 200   | 3 min 42 sec |    96.31   |
+| CIFAR-100   | wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 3 min 40 sec |    81.23   |
+| ILSVRC-2012 | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
+| Cat vs Dog  | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
+
 ## Datasets
 
 ### 1. CIFAR-10
@@ -24,11 +32,6 @@ The labels are descripted below.
 
 ![alt tag](GitImage/CIFAR10.png)
 
-
-| Best result network | dropout | Optimizer| Memory | epoch | per epoch    | accuracy(%) |
-|:-------------------:|:-------:|----------|:------:|:-----:|:------------:|:-----------:|
-| wide-resnet 40x10   |   0.3   | Momentum |  5.8G  | 200   | 3 min 42 sec |    96.31    |
-
 ### 2. CIFAR-100
 CIFAR-100 dataset is consisted with 50,000 training images and 10,000 testing images.
 Each image is consisted in an RGB format with the size of 32 x 32 pixels.
@@ -37,12 +40,6 @@ There are 100 corresponding labels to each image.
 The labels are descripted below.
 
 ![alt tag](GitImage/cifar100.png)
-![alt tag](GitImage/cifar100_image.png)
-
-
-| Best result network | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
-|:-------------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
-| wide-resnet 40x10   |   0.3   | Momentum |  6.9G  | 200   | 3 min 40 sec |    81.23   |    95.47    |
 
 ### 3. ILSVRC-2012
 ILSVRC(Imagenet Large Scale Visual Recognition Challenge)
