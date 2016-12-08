@@ -48,7 +48,7 @@ function M.setup(opt, checkpoint)
    -- optnet is an general library for reducing memory usage in neural networks
    if opt.optnet then
       local optnet = require 'optnet'
-      local imsize = opt.dataset == 'imagenet' and 224 or 32
+      local imsize = (opt.dataset == 'imagenet' or opt.dataset == 'catdog') and 224 or 32
       local sampleInput = torch.zeros(4,3,imsize,imsize):cuda()
       optnet.optimizeMemory(model, sampleInput, {inplace = false, mode = 'training'})
    end
