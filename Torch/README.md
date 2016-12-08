@@ -99,6 +99,6 @@ Unlike CIFAR implements above, we use a bottle-neck layer.
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
-| wide-resnet 50x2  |    0    | Momentum |   -    | 200   | - min -- sec |      -     |     -       |
-| wide-resnet 50x2  |   0.3   | Momentum |   -    | 200   | - min -- sec |      -     |     -       |
+| wide-resnet 40x2  |    0    | Momentum |   -    | 200   | 1 min 34 sec |      -     |     -       |
+| wide-resnet 40x2  |   0.3   | Momentum |   -    | 200   | - min -- sec |      -     |     -       |
 
