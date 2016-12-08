@@ -139,13 +139,13 @@ function Trainer:test(epoch, dataloader)
 
    if self.opt.top5_display then
       print((' * Finished epoch # %d     top1: %7.3f  top5: %6.2f%s'):format(epoch, top1Sum / N, top5Sum / N, '%'))
-      print(' * Elpased time: '..math.floor(elapsed_time/3600)..' hours '..
+      print(' * Elapsed time: '..math.floor(elapsed_time/3600)..' hours '..
                                  math.floor((elapsed_time%3600)/60)..' minutes '..
                                  math.floor((elapsed_time%3600)%60)..' seconds\n')
  
    else
       print((' * Finished epoch # %d     top1: %7.3f%s'):format(epoch, top1Sum / N, '%'))
-      print(' * Elpased time: '..math.floor(elapsed_time/3600)..' hours '..
+      print(' * Elapsed time: '..math.floor(elapsed_time/3600)..' hours '..
                                  math.floor((elapsed_time%3600)/60)..' minutes '..
                                  math.floor((elapsed_time%3600)%60)..' seconds\n')
    end

@@ -41,7 +41,7 @@ Only conducted mean/std preprocessing.
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:-----------:|
 | wide-resnet 28x10 |    0    | Momentum |  4.2G  | 200   | 2 min 27 sec |      -      |
 | wide-resnet 28x10 |   0.3   | Momentum |   -    | 200   | 2 min 27 sec |    95.99    |
-| wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 3 min 42 sec |    96.27    |
+| wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 3 min 42 sec |    96.31    |
 
 CIFAR-10 was updated with the following implementation details.
 
@@ -54,12 +54,13 @@ CIFAR-10 was updated with the following implementation details.
 
 ## CIFAR-100 Results
 Below is the result of the test set accuracy for CIFAR-100 dataset training
+Only conducted mean/std preprocessing.
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
 | wide-resnet 28x10 |    0    | Momentum |  5.1G  | 200   | - min -- sec |      -     |     -       |
 | wide-resnet 28x10 |   0.3   | Momentum |  5.1G  | 200   | - min -- sec |      -     |     -       |
-| wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 3 min 40 sec |    80.59   |    95.17    |
+| wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 3 min 40 sec |    81.23   |    95.47    |
 
 
 CIFAR-100 was updated with the following implementation details.

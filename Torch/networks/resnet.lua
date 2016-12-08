@@ -20,10 +20,9 @@ local SBatchNorm = nn.SpatialBatchNormalization
 
 local function createModel(opt)
    local depth = opt.depth
-   local k = opt.k
    local shortcutType = opt.shortcutType or 'B'
    local iChannels
-   print (k)
+
    -- The shortcut layer is either identity or 1x1 convolution
    local function shortcut(nInputPlane, nOutputPlane, stride)
       local useConv = shortcutType == 'C' or
@@ -126,7 +125,7 @@ local function createModel(opt)
       model:add(layer(block, 512, def[4], 2))
       model:add(Avg(7, 7, 1, 1))
       model:add(nn.View(nFeatures):setNumInputDims(3))
-      model:add(nn.Linear(nFeatures, 2))
+      model:add(nn.Linear(nFeatures, 1000))
    elseif opt.dataset == 'cifar10' then
       -- Model type specifies number of layers for CIFAR-10 model
       assert((depth - 2) % 6 == 0, 'depth should be one of 20, 32, 44, 56, 110, 1202')

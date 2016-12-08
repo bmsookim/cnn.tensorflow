@@ -58,9 +58,9 @@ function checkpoint.best(opt)
 
    print('=> Loading checkpoint ' .. bestPath)
    local best = torch.load(bestPath)
-   local optimState = torch.load(paths.concat(opt.save, best.optimFile))
+   -- local optimState = torch.load(paths.concat(opt.save, best.optimFile))
 
-   return best, optimState
+   return best--, optimState
 end
 
 function checkpoint.save(epoch, model, optimState, isBestModel, opt)

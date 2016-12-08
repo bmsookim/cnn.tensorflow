@@ -84,11 +84,12 @@ local function createModel(opt)
       local nStages = torch.Tensor{16, 32, 32*k, 64*k, 128*k}
 
       -- The ResNet ImageNet model
-      model:add(Convolution(3,nStages[1],7,7,2,2,3,3)) -- 112 x 112
+      model:add(Convolution(3,nStages[1],7,7,2,2,3,3))                -- 112 x 112
       model:add(SBatchNorm(nStages[1]))
       model:add(ReLU(true))
-      model:add(Convolution(nStages[1],nStages[2],7,7,2,2,3,3)) -- 56 x 56
-      model:add(wide_layer(wide_basic, nStages[2], nStages[3], n, 2)) -- 28 x 28
+      model:add(Max(3,3,2,2,1,1))                                     -- 56 x 56
+      model:add(Convolution(nStages[1],nStages[2],3,3,2,2,1,1))       -- 28 x 28
+      model:add(wide_layer(wide_basic, nStages[2], nStages[3], n, 1))    -- 28 x 28
       model:add(wide_layer(wide_basic, nStages[3], nStages[4], n, 2)) -- 14 x 14
       model:add(wide_layer(wide_basic, nStages[4], nStages[5], n, 2)) -- 7 x 7
       model:add(SBatchNorm(nStages[5]))

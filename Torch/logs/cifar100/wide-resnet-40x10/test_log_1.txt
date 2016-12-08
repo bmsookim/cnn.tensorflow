@@ -1,5 +1,5 @@
-=> Loading checkpoint /home/bumsoo/Github/ImageRecognition/Torch/modelState/cifar10/wide-resnet-40x10/best.t7	
-=> Resuming model from /home/bumsoo/Github/ImageRecognition/Torch/modelState/cifar10/wide-resnet-40x10/model_179.t7	
+=> Loading checkpoint /home/bumsoo/Github/ImageRecognition/Torch/modelState/cifar100/wide-resnet-40x10/best.t7	
+=> Resuming model from /home/bumsoo/Github/ImageRecognition/Torch/modelState/cifar100/wide-resnet-40x10/model_196.t7	
 Skipping memory optimization. Network is already optimized for training mode.	
 warning: could not load nccl, falling back to default communication	
 DataParallelTable: 2 x nn.Sequential {
@@ -360,6 +360,6 @@ DataParallelTable: 2 x nn.Sequential {
   (6): cudnn.ReLU
   (7): cudnn.SpatialAveragePooling(8x8, 1,1)
   (8): nn.View(640)
-  (9): nn.Linear(640 -> 10)
+  (9): nn.Linear(640 -> 100)
 }
- * Results Top1:  96.31%	
+ * Results Top1: 81.060  Top5:  95.41%	
