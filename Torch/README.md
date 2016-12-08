@@ -97,11 +97,11 @@ CIFAR-100 was updated with the following implementation details.
 Below is the result of the validation set accuracy for **Kaggle Cat vs Dog dataset** training
 Unlike CIFAR implements above, we use a bottle-neck layer.
 
-| network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
-|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
-| wide-resnet 40x2  |    0    | Momentum |  1.3G  |  90   | 1 min 34 sec |      -     |     -       |
-| wide-resnet 40x2  |   0.3   | Momentum |  1.3G  |  90   | - min -- sec |      -     |     -       |
-| wide-resnet 40x10 |    0    | Momentum |    -   |  90   | - min -- sec |      -     |     -       |
-| wide-resnet 40x10 |   0.3   | Momentum |    -   |  90   | - min -- sec |      -     |     -       |
-| wide-botnet 50x2  |   0.3   | Momentum |   -    |  90   | - min -- sec |      -     |     -       |
+| network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)|
+|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|
+| wide-resnet 40x2  |    0    | Momentum |  1.3G  |  90   | 1 min 34 sec |    97.55   |
+| wide-resnet 40x2  |   0.3   | Momentum |  1.3G  |  90   | - min -- sec |      -     |
+| wide-resnet 40x10 |    0    | Momentum |  9.0G  |  90   | - min -- sec |      -     |
+| wide-resnet 40x10 |   0.3   | Momentum |  9.0G  |  90   | 7 min 51 sec |      -     |
+| wide-botnet 50x2  |   0.3   | Momentum |   -    |  90   | - min -- sec |      -     |
 
