@@ -16,8 +16,8 @@ There are two versions of implementations in this repository.
 ## Best Results
 |   Dataset   | network           | dropout | Top1 acc(%)|
 |:-----------:|:-----------------:|:-------:|:----------:|
-| CIFAR-10    | wide-resnet 40x10 |   0.3   |  **96.31** |
-| CIFAR-100   | wide-resnet 40x10 |   0.3   |  **81.23** |
+| CIFAR-10    | wide-resnet 28x10 |   0.3   |  **96.40** |
+| CIFAR-100   | wide-resnet 28x10 |   0.3   |  **81.55** |
 | ILSVRC-2012 | will be updated   |    -    |     -      |
 | Cat vs Dog  | will be updated   |    -    |     -      |
 
