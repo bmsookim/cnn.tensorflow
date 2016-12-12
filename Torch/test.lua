@@ -17,6 +17,7 @@ require 'image'
 local models = require 'networks/init'
 local opts = require 'opts'
 local checkpoints = require 'checkpoints'
+local elapsed_time = 0
 
 torch.setdefaulttensortype('torch.FloatTensor')
 torch.setnumthreads(1)
@@ -68,6 +69,7 @@ testImagePath, nImages = findImages('gen/catdog/test/')
 count = 0
 
 for i=1, nImages do
+   local timer = torch.Timer()
    test_path = testImagePath[i]
    test_image = image.load(test_path)
    interpolation = 'bicubic'
@@ -110,6 +112,9 @@ for i=1, nImages do
                                  sys.COLORS.none .. ' by ' .. maxs:sum()
                                  .. ' confidence')
    end
+   elapsed_time = elapsed_time + timer:time().real
+   timer:reset()
 end
 
 print(count)
+print(elapsed_time)
