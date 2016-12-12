@@ -36,8 +36,8 @@ You can train each dataset which could be either cifar10, cifar100, imagenet, ca
 ## Best Results
 |   Dataset   | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)|
 |:-----------:|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|
-| CIFAR-10    | wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 3 min 42 sec |    96.31   |
-| CIFAR-100   | wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 3 min 40 sec |    81.44   |
+| CIFAR-10    | wide-resnet 28x10 |   0.3   | Momentum |  5.8G  | 200   | 3 min 42 sec |    96.40   |
+| CIFAR-100   | wide-resnet 28x10 |   0.3   | Momentum |  6.9G  | 200   | 3 min 40 sec |    81.53   |
 | ILSVRC-2012 | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
 | Cat vs Dog  | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
 
@@ -51,8 +51,9 @@ Only conducted mean/std preprocessing.
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | accuracy(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:-----------:|
 | wide-resnet 28x10 |    0    | Momentum |  4.2G  | 200   | 2 min 27 sec |    96.15    |
-| wide-resnet 28x10 |   0.3   | Momentum |  4.2G  | 200   | 2 min 27 sec |    95.99    |
-| wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 3 min 42 sec | **96.31**   |
+| wide-resnet 28x10 |   0.3   | Momentum |  4.2G  | 200   | 2 min 27 sec |  **96.40**  |
+| wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 3 min 42 sec |    96.31    |
+| wide-resnet 40x10 |   0.5   | Moemntum |  5.8G  | 200   | 4 min 00 sec |    96.25    |
 
 CIFAR-10 was updated with the following implementation details.
 
@@ -74,8 +75,8 @@ Only conducted mean/std preprocessing.
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
-| wide-resnet 28x10 |    0    | Momentum |  5.1G  | 200   | 2 min 27 sec |      -     |     -       |
-| wide-resnet 28x10 |   0.3   | Momentum |  5.1G  | 200   | 2 min 27 sec | **81.53**  |  **95.44**  |
+| wide-resnet 28x10 |    0    | Momentum |  5.1G  | 200   | 2 min 27 sec |     -      |      -      |
+| wide-resnet 28x10 |   0.3   | Momentum |  5.1G  | 200   | 2 min 27 sec | **81.55**  |  **95.44**  |
 | wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 3 min 40 sec |   81.06    |    95.41    |
 
 
