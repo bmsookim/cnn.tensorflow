@@ -43,7 +43,7 @@ function M.parse(arg)
    ------------- Checkpointing options ---------------
    cmd:option('-save',            'modelState', 'Directory in which to save checkpoints')
    cmd:option('-resume',          'modelState', 'Resume from the latest checkpoint in this directory')
-   cmd:option('-saveLatest',      'false',      'Save the latest file')
+   cmd:option('-saveLatest',      'true',      'Save the latest file')
    ---------- Optimization options ----------------------
    cmd:option('-LR',              0.1,     'initial learning rate')
    cmd:option('-momentum',        0.9,     'momentum')
