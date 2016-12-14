@@ -5,10 +5,10 @@ Torch implementation.
 This implements training & test results of the most popular image classifying challenges, including cifar-10, cifar-100, imagenet, and kaggle cat vs dog challenge.
 
 ## Requirements
-See the [installation instruction](installation.md) for a step-by-step guide.
+See the [installation instruction](../INSTALL.md) for a step-by-step guide.
 - Install [Torch](http://torch.ch/docs/getting-started.html)
 - Install [cuda-8.0](https://developer.nvidia.com/cuda-downloads)
-- Install [cudnn v5](https://developer.nvidia.com/cudnn)
+- Install [cudnn v5.1](https://developer.nvidia.com/cudnn)
 - Install 'optnet'
 ```bash
 luarocks install optnet
