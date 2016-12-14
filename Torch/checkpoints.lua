@@ -58,9 +58,9 @@ function checkpoint.best(opt)
 
    print('=> Loading checkpoint ' .. bestPath)
    local best = torch.load(bestPath)
-   -- local optimState = torch.load(paths.concat(opt.save, best.optimFile))
+   local optimState = torch.load(paths.concat(opt.save, best.optimFile))
 
-   return best--, optimState
+   return best, optimState
 end
 
 function checkpoint.save(epoch, model, optimState, isBestModel, opt)
@@ -70,7 +70,9 @@ function checkpoint.save(epoch, model, optimState, isBestModel, opt)
    end
 
    -- create a clean copy on the CPU without modifying the original network
-   model = deepCopy(model):float():clearState()
+   -- local model = deepCopy(model):float():clearState()
+   local copy = model
+   model = copy:clearState()
 
    local modelFile = 'model_' .. epoch .. '.t7'
    local optimFile = 'optimState_' .. epoch .. '.t7'
@@ -102,7 +104,6 @@ function checkpoint.save(epoch, model, optimState, isBestModel, opt)
          modelFile = modelFile,
          optimFile = optimFile,
       })
-      -- torch.save(paths.concat(opt.save, 'model_best.t7'), model)
       if(epoch ~= 1) then 
          for i=1, (epoch-1) do
             bef_model = 'model_' .. (i) .. '.t7'
