@@ -76,7 +76,7 @@ $ nvidia-smi
 $ sudo reboot
 ```
 
-## INSTALL CUDA toolkit
+## Install CUDA toolkit
 
 You can skip the step above and automatically install the driver within CUDA installation.
 
@@ -130,7 +130,7 @@ Built on Sun_Sep__4_22:14:01_CDT_2016
 Cuda compilation tools, release 8.0, V8.0.44
 ```
 
-## INSTALL cuDNN library kit
+## Install cuDNN library kit
 
 cuDNN download page : [click here](https://developer.nvidia.com/rdp/cudnn-download)
 
@@ -147,7 +147,7 @@ $ sudo chmod a+r /usr/local/cuda/include/cudnn.h
 $ sudo chmod a+r /usr/local/cuda/lib64/libcudnn*
 ```
 
-## INSTALL Tensorflow
+## Install Tensorflow
 
 Tensorflow install page : [click here](https://www.tensorflow.org/get_started/os_setup)
 
@@ -157,7 +157,7 @@ $ pip install --upgrade pip
 $ pip install tensorflow-gpu
 ```
 
-## INSTALL Torch
+## Install Torch
 
 Torch install page : [click here](http://torch.ch/docs/getting-started.html)
 
