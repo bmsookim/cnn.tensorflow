@@ -83,7 +83,7 @@ for epoch = startEpoch, opt.nEpochs do
          print(' * Best model (Top1): ', string.format('%5.2f', testTop1)..'%\n')
       end
    end
-
+   
    checkpoints.save(epoch, model, trainer.optimState, bestModel, opt)
 end
 
