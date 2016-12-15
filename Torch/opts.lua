@@ -30,7 +30,7 @@ function M.parse(arg)
    cmd:option('-cudnn',      'fastest',  'Options: fastest | default | deterministic')
    cmd:option('-gen',        'gen',      'Path to save generated files')
    ------------- Data options ------------------------
-   cmd:option('-nThreads',        4, 'number of data loading threads')
+   cmd:option('-nThreads',        16, 'number of data loading threads')
    ------------- Training options --------------------
    cmd:option('-nEpochs',         0,       'Number of total epochs to run')
    cmd:option('-epochNumber',     1,       'Manual epoch number (useful on restarts)')
@@ -43,7 +43,7 @@ function M.parse(arg)
    ------------- Checkpointing options ---------------
    cmd:option('-save',            'modelState', 'Directory in which to save checkpoints')
    cmd:option('-resume',          'modelState', 'Resume from the latest checkpoint in this directory')
-   cmd:option('-saveLatest',      'true',      'Save the latest file')
+   cmd:option('-saveLatest',      'false',      'Save the latest file')
    ---------- Optimization options ----------------------
    cmd:option('-LR',              0.1,     'initial learning rate')
    cmd:option('-momentum',        0.9,     'momentum')
