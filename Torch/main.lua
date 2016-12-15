@@ -68,19 +68,17 @@ for epoch = startEpoch, opt.nEpochs do
       bestTop1 = testTop1
       bestTop5 = testTop5
       if opt.top5_display then
-          --print(sys.COLORS.red .. ' * Best model (Top1): ',
-          --      sys.COLORS.magenta .. string.format('%5.2f',testTop1)..
-          --      sys.COLORS.magenta .. '%' ..
-          --      sys.COLORS.red .. ' (Top5): ',
-          --      sys.COLORS.magenta .. string.format('%5.2f', testTop5)..
-          --      sys.COLORS.magenta .. '%\n' .. sys.COLORS.none)
+          print('==================================================================')
           print(' * Best model (Top1): ', string.format('%5.2f', testTop1)..'%\n'..
                 '              (Top5): ', string.format('%5.2f', testTop5)..'%\n')
+          print('=> Saving the best model in '..opt.save)
+          print('==================================================================\n')
       else
-          --print(sys.COLORS.red .. ' * Best model (Top1): ',
-          --      sys.COLORS.magenta .. string.format('%5.2f', testTop1)..
-          --      sys.COLORS.magenta .. '%\n' .. sys.COLORS.none)
-         print(' * Best model (Top1): ', string.format('%5.2f', testTop1)..'%\n')
+          print('==================================================================')
+          print(' * Best model (Top1): ', string.format('%5.2f', testTop1)..'%\n')
+          print('=> Saving the best model in '..opt.save)
+          print('==================================================================\n')
+
       end
    end
    
