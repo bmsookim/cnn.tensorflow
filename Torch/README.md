@@ -75,7 +75,7 @@ Only conducted mean/std preprocessing.
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
-| wide-resnet 28x10 |    0    | Momentum |  5.1G  | 200   | 1 min 18 sec |     -      |      -      |
+| wide-resnet 28x10 |    0    | Momentum |  5.1G  | 200   | 1 min 18 sec |   81.01    |    95.44    |
 | wide-resnet 28x10 |   0.3   | Momentum |  5.1G  | 200   | 1 min 18 sec | **81.55**  |  **95.44**  |
 | wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 1 min 40 sec |   81.06    |    95.41    |
 
