@@ -70,9 +70,7 @@ function checkpoint.save(epoch, model, optimState, isBestModel, opt)
    end
 
    -- create a clean copy on the CPU without modifying the original network
-   -- local model = deepCopy(model):float():clearState()
-   local copy = model
-   model = copy:clearState()
+   -- model = deepCopy(model):float():clearState()
 
    local modelFile = 'model_' .. epoch .. '.t7'
    local optimFile = 'optimState_' .. epoch .. '.t7'
@@ -87,13 +85,13 @@ function checkpoint.save(epoch, model, optimState, isBestModel, opt)
          modelFile = modelFile,
          optimFile = optimFile,
        })
-   end
 
-   if before_was_best == false then
-      bef_model = 'model_' .. (epoch-1)..'.t7'
-      bef_optim = 'optimState_' .. (epoch-1)..'.t7'
-      os.remove(paths.concat(opt.save, bef_model))
-      os.remove(paths.concat(opt.save, bef_optim))
+      if before_was_best == false then
+         bef_model = 'model_' .. (epoch-1)..'.t7'
+         bef_optim = 'optimState_' .. (epoch-1)..'.t7'
+         os.remove(paths.concat(opt.save, bef_model))
+         os.remove(paths.concat(opt.save, bef_optim))
+      end
    end
 
    if isBestModel then
