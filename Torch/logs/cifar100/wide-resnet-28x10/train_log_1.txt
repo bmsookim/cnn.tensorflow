@@ -1,0 +1,2175 @@
+=> Creating model from file: models/wide-resnet.lua	
+ | Wide-ResNet-28x10 CIFAR-100	
+warning: could not load nccl, falling back to default communication	
+DataParallelTable: 2 x nn.Sequential {
+  [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+  (1): cudnn.SpatialConvolution(3 -> 16, 3x3, 1,1, 1,1) without bias
+  (2): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> (3) -> (4) -> output]
+      (1): nn.SpatialBatchNormalization
+      (2): cudnn.ReLU
+      (3): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.SpatialBatchNormalization
+          |      (3): cudnn.ReLU
+          |      (4): nn.Dropout(0.300000)
+          |      (5): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): cudnn.SpatialConvolution(16 -> 160, 1x1) without bias
+           ... -> output
+      }
+      (4): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (3): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> (3) -> (4) -> output]
+      (1): nn.SpatialBatchNormalization
+      (2): cudnn.ReLU
+      (3): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> output]
+          |      (1): cudnn.SpatialConvolution(160 -> 320, 3x3, 2,2, 1,1) without bias
+          |      (2): nn.SpatialBatchNormalization
+          |      (3): cudnn.ReLU
+          |      (4): nn.Dropout(0.300000)
+          |      (5): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): cudnn.SpatialConvolution(160 -> 320, 1x1, 2,2) without bias
+           ... -> output
+      }
+      (4): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (4): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> (3) -> (4) -> output]
+      (1): nn.SpatialBatchNormalization
+      (2): cudnn.ReLU
+      (3): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> output]
+          |      (1): cudnn.SpatialConvolution(320 -> 640, 3x3, 2,2, 1,1) without bias
+          |      (2): nn.SpatialBatchNormalization
+          |      (3): cudnn.ReLU
+          |      (4): nn.Dropout(0.300000)
+          |      (5): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): cudnn.SpatialConvolution(320 -> 640, 1x1, 2,2) without bias
+           ... -> output
+      }
+      (4): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+          |`-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (5): nn.SpatialBatchNormalization
+  (6): cudnn.ReLU
+  (7): cudnn.SpatialAveragePooling(8x8, 1,1)
+  (8): nn.View(640)
+  (9): nn.Linear(640 -> 100)
+}
+=> Training epoch # 1	
+ | [#  1][ 75/391]    Time 0.808  Loss 4.2347  Top1   5.469%  Top5  15.625%	
+ | [#  1][150/391]    Time 0.823  Loss 3.9640  Top1   7.031%  Top5  27.344%	
+ | [#  1][225/391]    Time 0.746  Loss 3.9401  Top1  10.938%  Top5  32.812%	
+ | [#  1][300/391]    Time 0.826  Loss 3.7470  Top1  12.500%  Top5  35.938%	
+ | [#  1][375/391]    Time 0.797  Loss 3.4745  Top1  19.531%  Top5  40.625%	
+ * Finished epoch # 1     top1:  13.060  top5:  38.23%	
+ * Elapsed time: 0 hours 5 minutes 24 seconds
+	
+ * Best model (Top1): 	13.06%
+              (Top5): 	38.23%
+	
+=> Training epoch # 2	
+ | [#  2][ 75/391]    Time 0.825  Loss 3.6170  Top1  10.156%  Top5  35.938%	
+ | [#  2][150/391]    Time 0.816  Loss 3.1328  Top1  25.781%  Top5  52.344%	
+ | [#  2][225/391]    Time 0.832  Loss 2.9146  Top1  27.344%  Top5  57.031%	
+ | [#  2][300/391]    Time 0.813  Loss 3.0126  Top1  25.000%  Top5  50.781%	
+ | [#  2][375/391]    Time 0.823  Loss 2.8003  Top1  28.906%  Top5  58.594%	
+ * Finished epoch # 2     top1:  27.430  top5:  59.29%	
+ * Elapsed time: 0 hours 10 minutes 45 seconds
+	
+ * Best model (Top1): 	27.43%
+              (Top5): 	59.29%
+	
+=> Training epoch # 3	
+ | [#  3][ 75/391]    Time 0.834  Loss 2.6663  Top1  29.688%  Top5  62.500%	
+ | [#  3][150/391]    Time 0.825  Loss 2.7026  Top1  27.344%  Top5  59.375%	
+ | [#  3][225/391]    Time 0.833  Loss 2.5107  Top1  28.906%  Top5  71.094%	
+ | [#  3][300/391]    Time 0.816  Loss 2.3015  Top1  38.281%  Top5  71.094%	
+ | [#  3][375/391]    Time 0.801  Loss 2.2130  Top1  36.719%  Top5  78.125%	
+ * Finished epoch # 3     top1:  30.440  top5:  63.30%	
+ * Elapsed time: 0 hours 16 minutes 6 seconds
+	
+ * Best model (Top1): 	30.44%
+              (Top5): 	63.30%
+	
+=> Training epoch # 4	
+ | [#  4][ 75/391]    Time 0.820  Loss 2.2123  Top1  38.281%  Top5  72.656%	
+ | [#  4][150/391]    Time 0.820  Loss 1.9875  Top1  42.188%  Top5  77.344%	
+ | [#  4][225/391]    Time 0.825  Loss 2.0966  Top1  45.312%  Top5  78.125%	
+ | [#  4][300/391]    Time 0.828  Loss 2.4161  Top1  40.625%  Top5  72.656%	
+ | [#  4][375/391]    Time 0.837  Loss 1.9879  Top1  47.656%  Top5  74.219%	
+ * Finished epoch # 4     top1:  41.690  top5:  74.99%	
+ * Elapsed time: 0 hours 21 minutes 26 seconds
+	
+ * Best model (Top1): 	41.69%
+              (Top5): 	74.99%
+	
+=> Training epoch # 5	
+ | [#  5][ 75/391]    Time 0.776  Loss 1.9735  Top1  45.312%  Top5  80.469%	
+ | [#  5][150/391]    Time 0.816  Loss 2.1596  Top1  35.938%  Top5  81.250%	
+ | [#  5][225/391]    Time 0.810  Loss 2.0192  Top1  37.500%  Top5  78.906%	
+ | [#  5][300/391]    Time 0.823  Loss 1.7323  Top1  50.781%  Top5  83.594%	
+ | [#  5][375/391]    Time 0.819  Loss 1.9589  Top1  43.750%  Top5  81.250%	
+ * Finished epoch # 5     top1:  46.720  top5:  79.44%	
+ * Elapsed time: 0 hours 26 minutes 48 seconds
+	
+ * Best model (Top1): 	46.72%
+              (Top5): 	79.44%
+	
+=> Training epoch # 6	
+ | [#  6][ 75/391]    Time 0.837  Loss 1.7195  Top1  47.656%  Top5  85.156%	
+ | [#  6][150/391]    Time 0.821  Loss 1.8042  Top1  47.656%  Top5  82.812%	
+ | [#  6][225/391]    Time 0.835  Loss 1.6620  Top1  53.906%  Top5  85.938%	
+ | [#  6][300/391]    Time 0.830  Loss 1.8947  Top1  49.219%  Top5  81.250%	
+ | [#  6][375/391]    Time 0.818  Loss 1.5677  Top1  53.906%  Top5  83.594%	
+ * Finished epoch # 6     top1:  46.820  top5:  76.92%	
+ * Elapsed time: 0 hours 32 minutes 9 seconds
+	
+ * Best model (Top1): 	46.82%
+              (Top5): 	76.92%
+	
+=> Training epoch # 7	
+ | [#  7][ 75/391]    Time 0.813  Loss 1.5700  Top1  57.031%  Top5  85.156%	
+ | [#  7][150/391]    Time 0.821  Loss 1.3921  Top1  54.688%  Top5  87.500%	
+ | [#  7][225/391]    Time 0.850  Loss 1.5314  Top1  59.375%  Top5  85.938%	
+ | [#  7][300/391]    Time 0.817  Loss 1.5423  Top1  59.375%  Top5  85.156%	
+ | [#  7][375/391]    Time 0.815  Loss 1.5181  Top1  58.594%  Top5  87.500%	
+ * Finished epoch # 7     top1:  46.510  top5:  77.68%	
+ * Elapsed time: 0 hours 37 minutes 29 seconds
+	
+=> Training epoch # 8	
+ | [#  8][ 75/391]    Time 0.819  Loss 1.6936  Top1  50.781%  Top5  82.812%	
+ | [#  8][150/391]    Time 0.817  Loss 1.3467  Top1  62.500%  Top5  89.062%	
+ | [#  8][225/391]    Time 0.817  Loss 1.3983  Top1  58.594%  Top5  89.062%	
+ | [#  8][300/391]    Time 0.820  Loss 1.4131  Top1  63.281%  Top5  85.938%	
+ | [#  8][375/391]    Time 0.896  Loss 1.6667  Top1  52.344%  Top5  84.375%	
+ * Finished epoch # 8     top1:  46.900  top5:  79.10%	
+ * Elapsed time: 0 hours 42 minutes 50 seconds
+	
+ * Best model (Top1): 	46.90%
+              (Top5): 	79.10%
+	
+=> Training epoch # 9	
+ | [#  9][ 75/391]    Time 0.854  Loss 1.5073  Top1  54.688%  Top5  89.062%	
+ | [#  9][150/391]    Time 0.805  Loss 1.7445  Top1  50.781%  Top5  81.250%	
+ | [#  9][225/391]    Time 0.545  Loss 1.6065  Top1  53.906%  Top5  88.281%	
+ | [#  9][300/391]    Time 0.818  Loss 1.3080  Top1  64.844%  Top5  90.625%	
+ | [#  9][375/391]    Time 0.849  Loss 1.5777  Top1  53.906%  Top5  85.156%	
+ * Finished epoch # 9     top1:  54.400  top5:  83.10%	
+ * Elapsed time: 0 hours 48 minutes 10 seconds
+	
+ * Best model (Top1): 	54.40%
+              (Top5): 	83.10%
+	
+=> Training epoch # 10	
+ | [# 10][ 75/391]    Time 0.819  Loss 1.3191  Top1  61.719%  Top5  91.406%	
+ | [# 10][150/391]    Time 0.816  Loss 1.4973  Top1  62.500%  Top5  88.281%	
+ | [# 10][225/391]    Time 0.836  Loss 1.1698  Top1  64.844%  Top5  92.969%	
+ | [# 10][300/391]    Time 0.841  Loss 1.4289  Top1  57.031%  Top5  88.281%	
+ | [# 10][375/391]    Time 0.805  Loss 1.8151  Top1  50.000%  Top5  75.781%	
+ * Finished epoch # 10     top1:  50.420  top5:  80.44%	
+ * Elapsed time: 0 hours 53 minutes 30 seconds
+	
+=> Training epoch # 11	
+ | [# 11][ 75/391]    Time 0.825  Loss 1.2349  Top1  67.969%  Top5  92.969%	
+ | [# 11][150/391]    Time 0.796  Loss 1.3837  Top1  64.844%  Top5  89.844%	
+ | [# 11][225/391]    Time 0.825  Loss 1.2668  Top1  58.594%  Top5  93.750%	
+ | [# 11][300/391]    Time 0.829  Loss 1.3833  Top1  60.938%  Top5  90.625%	
+ | [# 11][375/391]    Time 0.791  Loss 1.3793  Top1  60.156%  Top5  88.281%	
+ * Finished epoch # 11     top1:  55.680  top5:  84.33%	
+ * Elapsed time: 0 hours 58 minutes 50 seconds
+	
+ * Best model (Top1): 	55.68%
+              (Top5): 	84.33%
+	
+=> Training epoch # 12	
+ | [# 12][ 75/391]    Time 0.808  Loss 1.3674  Top1  57.031%  Top5  87.500%	
+ | [# 12][150/391]    Time 0.817  Loss 1.3455  Top1  60.156%  Top5  85.156%	
+ | [# 12][225/391]    Time 0.819  Loss 1.2987  Top1  59.375%  Top5  90.625%	
+ | [# 12][300/391]    Time 0.817  Loss 1.1611  Top1  66.406%  Top5  88.281%	
+ | [# 12][375/391]    Time 0.820  Loss 1.4164  Top1  58.594%  Top5  86.719%	
+ * Finished epoch # 12     top1:  56.520  top5:  84.49%	
+ * Elapsed time: 1 hours 4 minutes 11 seconds
+	
+ * Best model (Top1): 	56.52%
+              (Top5): 	84.49%
+	
+=> Training epoch # 13	
+ | [# 13][ 75/391]    Time 0.812  Loss 1.3990  Top1  58.594%  Top5  88.281%	
+ | [# 13][150/391]    Time 0.819  Loss 1.1883  Top1  66.406%  Top5  88.281%	
+ | [# 13][225/391]    Time 0.851  Loss 1.2888  Top1  66.406%  Top5  89.844%	
+ | [# 13][300/391]    Time 0.864  Loss 1.3219  Top1  57.031%  Top5  90.625%	
+ | [# 13][375/391]    Time 0.818  Loss 1.3277  Top1  64.062%  Top5  86.719%	
+ * Finished epoch # 13     top1:  56.750  top5:  86.10%	
+ * Elapsed time: 1 hours 9 minutes 31 seconds
+	
+ * Best model (Top1): 	56.75%
+              (Top5): 	86.10%
+	
+=> Training epoch # 14	
+ | [# 14][ 75/391]    Time 0.850  Loss 1.2736  Top1  64.844%  Top5  89.062%	
+ | [# 14][150/391]    Time 0.754  Loss 1.2744  Top1  62.500%  Top5  89.844%	
+ | [# 14][225/391]    Time 0.809  Loss 1.1210  Top1  62.500%  Top5  95.312%	
+ | [# 14][300/391]    Time 0.822  Loss 1.2076  Top1  57.812%  Top5  92.188%	
+ | [# 14][375/391]    Time 0.823  Loss 1.5784  Top1  56.250%  Top5  86.719%	
+ * Finished epoch # 14     top1:  54.760  top5:  83.65%	
+ * Elapsed time: 1 hours 14 minutes 52 seconds
+	
+=> Training epoch # 15	
+ | [# 15][ 75/391]    Time 0.818  Loss 1.1905  Top1  60.156%  Top5  89.062%	
+ | [# 15][150/391]    Time 0.852  Loss 1.5260  Top1  60.938%  Top5  85.938%	
+ | [# 15][225/391]    Time 0.818  Loss 1.2973  Top1  64.062%  Top5  88.281%	
+ | [# 15][300/391]    Time 0.818  Loss 1.1445  Top1  66.406%  Top5  92.969%	
+ | [# 15][375/391]    Time 0.818  Loss 1.1203  Top1  67.969%  Top5  92.188%	
+ * Finished epoch # 15     top1:  57.730  top5:  85.85%	
+ * Elapsed time: 1 hours 20 minutes 12 seconds
+	
+ * Best model (Top1): 	57.73%
+              (Top5): 	85.85%
+	
+=> Training epoch # 16	
+ | [# 16][ 75/391]    Time 0.816  Loss 1.3078  Top1  63.281%  Top5  87.500%	
+ | [# 16][150/391]    Time 0.822  Loss 1.3989  Top1  60.938%  Top5  88.281%	
+ | [# 16][225/391]    Time 0.822  Loss 1.1592  Top1  69.531%  Top5  92.188%	
+ | [# 16][300/391]    Time 0.810  Loss 1.2650  Top1  58.594%  Top5  90.625%	
+ | [# 16][375/391]    Time 0.839  Loss 1.0420  Top1  69.531%  Top5  91.406%	
+ * Finished epoch # 16     top1:  58.260  top5:  85.82%	
+ * Elapsed time: 1 hours 25 minutes 32 seconds
+	
+ * Best model (Top1): 	58.26%
+              (Top5): 	85.82%
+	
+=> Training epoch # 17	
+ | [# 17][ 75/391]    Time 0.816  Loss 1.0826  Top1  67.969%  Top5  91.406%	
+ | [# 17][150/391]    Time 0.816  Loss 1.3339  Top1  59.375%  Top5  90.625%	
+ | [# 17][225/391]    Time 0.818  Loss 1.1037  Top1  67.188%  Top5  93.750%	
+ | [# 17][300/391]    Time 0.821  Loss 1.2787  Top1  63.281%  Top5  89.062%	
+ | [# 17][375/391]    Time 0.816  Loss 1.1352  Top1  62.500%  Top5  91.406%	
+ * Finished epoch # 17     top1:  57.310  top5:  84.52%	
+ * Elapsed time: 1 hours 30 minutes 53 seconds
+	
+=> Training epoch # 18	
+ | [# 18][ 75/391]    Time 0.825  Loss 1.0578  Top1  69.531%  Top5  95.312%	
+ | [# 18][150/391]    Time 0.804  Loss 1.1166  Top1  66.406%  Top5  92.188%	
+ | [# 18][225/391]    Time 0.813  Loss 1.2130  Top1  64.062%  Top5  92.969%	
+ | [# 18][300/391]    Time 0.817  Loss 1.2322  Top1  68.750%  Top5  89.844%	
+ | [# 18][375/391]    Time 0.828  Loss 1.2056  Top1  67.188%  Top5  85.938%	
+ * Finished epoch # 18     top1:  57.650  top5:  84.74%	
+ * Elapsed time: 1 hours 36 minutes 14 seconds
+	
+=> Training epoch # 19	
+ | [# 19][ 75/391]    Time 0.824  Loss 1.1982  Top1  67.188%  Top5  87.500%	
+ | [# 19][150/391]    Time 0.778  Loss 1.0700  Top1  71.094%  Top5  90.625%	
+ | [# 19][225/391]    Time 0.783  Loss 0.9945  Top1  70.312%  Top5  94.531%	
+ | [# 19][300/391]    Time 0.816  Loss 1.3598  Top1  60.938%  Top5  88.281%	
+ | [# 19][375/391]    Time 0.832  Loss 1.1077  Top1  69.531%  Top5  92.188%	
+ * Finished epoch # 19     top1:  57.360  top5:  85.31%	
+ * Elapsed time: 1 hours 41 minutes 34 seconds
+	
+=> Training epoch # 20	
+ | [# 20][ 75/391]    Time 0.818  Loss 1.2788  Top1  64.844%  Top5  92.188%	
+ | [# 20][150/391]    Time 0.856  Loss 1.0577  Top1  69.531%  Top5  94.531%	
+ | [# 20][225/391]    Time 0.793  Loss 1.0198  Top1  67.969%  Top5  92.969%	
+ | [# 20][300/391]    Time 0.820  Loss 0.9872  Top1  71.875%  Top5  92.969%	
+ | [# 20][375/391]    Time 0.826  Loss 1.2954  Top1  64.844%  Top5  91.406%	
+ * Finished epoch # 20     top1:  57.880  top5:  85.16%	
+ * Elapsed time: 1 hours 46 minutes 55 seconds
+	
+=> Training epoch # 21	
+ | [# 21][ 75/391]    Time 0.821  Loss 1.0604  Top1  64.844%  Top5  93.750%	
+ | [# 21][150/391]    Time 0.831  Loss 0.9680  Top1  68.750%  Top5  92.969%	
+ | [# 21][225/391]    Time 0.831  Loss 1.3328  Top1  64.062%  Top5  89.062%	
+ | [# 21][300/391]    Time 0.839  Loss 1.0602  Top1  69.531%  Top5  93.750%	
+ | [# 21][375/391]    Time 0.852  Loss 1.0145  Top1  73.438%  Top5  92.188%	
+ * Finished epoch # 21     top1:  53.890  top5:  82.62%	
+ * Elapsed time: 1 hours 52 minutes 15 seconds
+	
+=> Training epoch # 22	
+ | [# 22][ 75/391]    Time 0.820  Loss 1.0439  Top1  69.531%  Top5  92.969%	
+ | [# 22][150/391]    Time 0.842  Loss 0.9565  Top1  71.875%  Top5  96.094%	
+ | [# 22][225/391]    Time 0.820  Loss 1.1418  Top1  61.719%  Top5  93.750%	
+ | [# 22][300/391]    Time 0.826  Loss 1.0974  Top1  68.750%  Top5  94.531%	
+ | [# 22][375/391]    Time 0.838  Loss 1.1299  Top1  67.188%  Top5  92.188%	
+ * Finished epoch # 22     top1:  60.180  top5:  86.96%	
+ * Elapsed time: 1 hours 57 minutes 36 seconds
+	
+ * Best model (Top1): 	60.18%
+              (Top5): 	86.96%
+	
+=> Training epoch # 23	
+ | [# 23][ 75/391]    Time 0.821  Loss 1.1166  Top1  63.281%  Top5  93.750%	
+ | [# 23][150/391]    Time 0.828  Loss 0.9086  Top1  72.656%  Top5  94.531%	
+ | [# 23][225/391]    Time 0.772  Loss 1.0210  Top1  71.094%  Top5  95.312%	
+ | [# 23][300/391]    Time 0.808  Loss 0.9031  Top1  72.656%  Top5  95.312%	
+ | [# 23][375/391]    Time 0.824  Loss 1.2177  Top1  69.531%  Top5  91.406%	
+ * Finished epoch # 23     top1:  59.870  top5:  86.88%	
+ * Elapsed time: 2 hours 2 minutes 56 seconds
+	
+=> Training epoch # 24	
+ | [# 24][ 75/391]    Time 0.828  Loss 1.0704  Top1  67.188%  Top5  91.406%	
+ | [# 24][150/391]    Time 0.864  Loss 1.1830  Top1  68.750%  Top5  91.406%	
+ | [# 24][225/391]    Time 0.829  Loss 1.1150  Top1  65.625%  Top5  92.188%	
+ | [# 24][300/391]    Time 0.818  Loss 0.8592  Top1  72.656%  Top5  96.094%	
+ | [# 24][375/391]    Time 0.804  Loss 1.1418  Top1  64.844%  Top5  92.188%	
+ * Finished epoch # 24     top1:  59.870  top5:  86.98%	
+ * Elapsed time: 2 hours 8 minutes 16 seconds
+	
+=> Training epoch # 25	
+ | [# 25][ 75/391]    Time 0.844  Loss 1.0000  Top1  71.094%  Top5  91.406%	
+ | [# 25][150/391]    Time 0.814  Loss 0.9949  Top1  70.312%  Top5  92.969%	
+ | [# 25][225/391]    Time 0.808  Loss 0.9093  Top1  75.781%  Top5  89.844%	
+ | [# 25][300/391]    Time 0.836  Loss 1.0322  Top1  71.875%  Top5  96.094%	
+ | [# 25][375/391]    Time 0.809  Loss 1.1275  Top1  68.750%  Top5  89.844%	
+ * Finished epoch # 25     top1:  57.840  top5:  85.93%	
+ * Elapsed time: 2 hours 13 minutes 36 seconds
+	
+=> Training epoch # 26	
+ | [# 26][ 75/391]    Time 0.775  Loss 0.9039  Top1  75.000%  Top5  96.094%	
+ | [# 26][150/391]    Time 0.820  Loss 1.1589  Top1  67.969%  Top5  90.625%	
+ | [# 26][225/391]    Time 0.835  Loss 0.9578  Top1  67.969%  Top5  93.750%	
+ | [# 26][300/391]    Time 0.816  Loss 1.1156  Top1  63.281%  Top5  93.750%	
+ | [# 26][375/391]    Time 0.830  Loss 1.0265  Top1  75.000%  Top5  93.750%	
+ * Finished epoch # 26     top1:  57.720  top5:  84.17%	
+ * Elapsed time: 2 hours 18 minutes 56 seconds
+	
+=> Training epoch # 27	
+ | [# 27][ 75/391]    Time 0.816  Loss 0.9926  Top1  66.406%  Top5  93.750%	
+ | [# 27][150/391]    Time 0.799  Loss 0.8901  Top1  71.094%  Top5  94.531%	
+ | [# 27][225/391]    Time 0.831  Loss 1.1922  Top1  65.625%  Top5  89.062%	
+ | [# 27][300/391]    Time 0.816  Loss 1.1982  Top1  66.406%  Top5  90.625%	
+ | [# 27][375/391]    Time 0.852  Loss 0.9792  Top1  71.094%  Top5  92.188%	
+ * Finished epoch # 27     top1:  61.810  top5:  87.64%	
+ * Elapsed time: 2 hours 24 minutes 16 seconds
+	
+ * Best model (Top1): 	61.81%
+              (Top5): 	87.64%
+	
+=> Training epoch # 28	
+ | [# 28][ 75/391]    Time 0.811  Loss 0.9974  Top1  69.531%  Top5  95.312%	
+ | [# 28][150/391]    Time 0.812  Loss 1.1219  Top1  67.969%  Top5  89.844%	
+ | [# 28][225/391]    Time 0.839  Loss 0.7744  Top1  76.562%  Top5  93.750%	
+ | [# 28][300/391]    Time 0.851  Loss 1.1228  Top1  68.750%  Top5  88.281%	
+ | [# 28][375/391]    Time 0.828  Loss 1.2971  Top1  64.844%  Top5  88.281%	
+ * Finished epoch # 28     top1:  60.200  top5:  87.35%	
+ * Elapsed time: 2 hours 29 minutes 36 seconds
+	
+=> Training epoch # 29	
+ | [# 29][ 75/391]    Time 0.821  Loss 0.8507  Top1  73.438%  Top5  94.531%	
+ | [# 29][150/391]    Time 0.817  Loss 0.8159  Top1  77.344%  Top5  94.531%	
+ | [# 29][225/391]    Time 0.842  Loss 1.1563  Top1  68.750%  Top5  91.406%	
+ | [# 29][300/391]    Time 0.822  Loss 0.9263  Top1  73.438%  Top5  94.531%	
+ | [# 29][375/391]    Time 0.803  Loss 1.2754  Top1  64.062%  Top5  93.750%	
+ * Finished epoch # 29     top1:  57.870  top5:  85.71%	
+ * Elapsed time: 2 hours 34 minutes 56 seconds
+	
+=> Training epoch # 30	
+ | [# 30][ 75/391]    Time 0.819  Loss 0.9960  Top1  72.656%  Top5  93.750%	
+ | [# 30][150/391]    Time 0.852  Loss 0.9465  Top1  75.781%  Top5  95.312%	
+ | [# 30][225/391]    Time 0.829  Loss 1.0037  Top1  67.188%  Top5  90.625%	
+ | [# 30][300/391]    Time 0.820  Loss 1.1771  Top1  64.844%  Top5  92.188%	
+ | [# 30][375/391]    Time 0.807  Loss 0.9143  Top1  77.344%  Top5  90.625%	
+ * Finished epoch # 30     top1:  60.090  top5:  86.66%	
+ * Elapsed time: 2 hours 40 minutes 16 seconds
+	
+=> Training epoch # 31	
+ | [# 31][ 75/391]    Time 0.819  Loss 0.7865  Top1  79.688%  Top5  93.750%	
+ | [# 31][150/391]    Time 0.811  Loss 0.9454  Top1  70.312%  Top5  91.406%	
+ | [# 31][225/391]    Time 0.820  Loss 1.0375  Top1  66.406%  Top5  96.094%	
+ | [# 31][300/391]    Time 0.819  Loss 0.8979  Top1  71.875%  Top5  92.188%	
+ | [# 31][375/391]    Time 0.830  Loss 0.9850  Top1  64.844%  Top5  98.438%	
+ * Finished epoch # 31     top1:  60.560  top5:  87.69%	
+ * Elapsed time: 2 hours 45 minutes 37 seconds
+	
+=> Training epoch # 32	
+ | [# 32][ 75/391]    Time 0.822  Loss 1.1259  Top1  61.719%  Top5  94.531%	
+ | [# 32][150/391]    Time 0.828  Loss 1.0127  Top1  67.188%  Top5  94.531%	
+ | [# 32][225/391]    Time 0.816  Loss 0.8100  Top1  75.781%  Top5  96.094%	
+ | [# 32][300/391]    Time 0.803  Loss 0.9887  Top1  70.312%  Top5  92.969%	
+ | [# 32][375/391]    Time 0.823  Loss 1.1600  Top1  69.531%  Top5  89.062%	
+ * Finished epoch # 32     top1:  62.960  top5:  88.10%	
+ * Elapsed time: 2 hours 50 minutes 58 seconds
+	
+ * Best model (Top1): 	62.96%
+              (Top5): 	88.10%
+	
+=> Training epoch # 33	
+ | [# 33][ 75/391]    Time 0.849  Loss 1.0407  Top1  71.094%  Top5  90.625%	
+ | [# 33][150/391]    Time 0.808  Loss 1.0203  Top1  75.000%  Top5  92.969%	
+ | [# 33][225/391]    Time 0.797  Loss 1.1258  Top1  64.844%  Top5  92.188%	
+ | [# 33][300/391]    Time 0.820  Loss 1.0376  Top1  67.969%  Top5  92.188%	
+ | [# 33][375/391]    Time 0.783  Loss 0.9475  Top1  74.219%  Top5  92.188%	
+ * Finished epoch # 33     top1:  61.720  top5:  87.14%	
+ * Elapsed time: 2 hours 56 minutes 18 seconds
+	
+=> Training epoch # 34	
+ | [# 34][ 75/391]    Time 0.835  Loss 0.9471  Top1  67.188%  Top5  96.875%	
+ | [# 34][150/391]    Time 0.839  Loss 1.1213  Top1  65.625%  Top5  94.531%	
+ | [# 34][225/391]    Time 0.833  Loss 0.8870  Top1  77.344%  Top5  93.750%	
+ | [# 34][300/391]    Time 0.831  Loss 0.9888  Top1  70.312%  Top5  92.969%	
+ | [# 34][375/391]    Time 0.801  Loss 1.0433  Top1  69.531%  Top5  92.969%	
+ * Finished epoch # 34     top1:  62.740  top5:  88.52%	
+ * Elapsed time: 3 hours 1 minutes 38 seconds
+	
+=> Training epoch # 35	
+ | [# 35][ 75/391]    Time 0.856  Loss 0.8736  Top1  77.344%  Top5  95.312%	
+ | [# 35][150/391]    Time 0.817  Loss 1.1743  Top1  68.750%  Top5  90.625%	
+ | [# 35][225/391]    Time 0.815  Loss 1.0345  Top1  65.625%  Top5  93.750%	
+ | [# 35][300/391]    Time 0.820  Loss 1.0811  Top1  71.094%  Top5  93.750%	
+ | [# 35][375/391]    Time 0.814  Loss 1.0186  Top1  71.875%  Top5  93.750%	
+ * Finished epoch # 35     top1:  62.250  top5:  88.29%	
+ * Elapsed time: 3 hours 6 minutes 58 seconds
+	
+=> Training epoch # 36	
+ | [# 36][ 75/391]    Time 0.845  Loss 1.1143  Top1  73.438%  Top5  92.969%	
+ | [# 36][150/391]    Time 0.816  Loss 1.0799  Top1  70.312%  Top5  93.750%	
+ | [# 36][225/391]    Time 0.836  Loss 0.9299  Top1  70.312%  Top5  95.312%	
+ | [# 36][300/391]    Time 0.839  Loss 0.9862  Top1  73.438%  Top5  93.750%	
+ | [# 36][375/391]    Time 0.809  Loss 0.9512  Top1  75.781%  Top5  89.062%	
+ * Finished epoch # 36     top1:  60.860  top5:  87.88%	
+ * Elapsed time: 3 hours 12 minutes 17 seconds
+	
+=> Training epoch # 37	
+ | [# 37][ 75/391]    Time 0.842  Loss 0.9363  Top1  71.875%  Top5  93.750%	
+ | [# 37][150/391]    Time 0.824  Loss 0.9387  Top1  71.094%  Top5  96.094%	
+ | [# 37][225/391]    Time 0.817  Loss 1.0274  Top1  73.438%  Top5  91.406%	
+ | [# 37][300/391]    Time 0.779  Loss 1.0624  Top1  65.625%  Top5  93.750%	
+ | [# 37][375/391]    Time 0.834  Loss 1.0059  Top1  69.531%  Top5  93.750%	
+ * Finished epoch # 37     top1:  59.960  top5:  87.32%	
+ * Elapsed time: 3 hours 17 minutes 37 seconds
+	
+=> Training epoch # 38	
+ | [# 38][ 75/391]    Time 0.812  Loss 1.0046  Top1  73.438%  Top5  94.531%	
+ | [# 38][150/391]    Time 0.807  Loss 0.9412  Top1  71.875%  Top5  96.094%	
+ | [# 38][225/391]    Time 0.808  Loss 1.1071  Top1  67.969%  Top5  93.750%	
+ | [# 38][300/391]    Time 0.812  Loss 1.1154  Top1  73.438%  Top5  89.844%	
+ | [# 38][375/391]    Time 0.813  Loss 0.8897  Top1  71.875%  Top5  94.531%	
+ * Finished epoch # 38     top1:  60.630  top5:  87.35%	
+ * Elapsed time: 3 hours 22 minutes 56 seconds
+	
+=> Training epoch # 39	
+ | [# 39][ 75/391]    Time 0.815  Loss 1.0912  Top1  72.656%  Top5  90.625%	
+ | [# 39][150/391]    Time 0.818  Loss 1.0278  Top1  72.656%  Top5  90.625%	
+ | [# 39][225/391]    Time 0.792  Loss 1.0025  Top1  68.750%  Top5  92.969%	
+ | [# 39][300/391]    Time 0.804  Loss 0.9354  Top1  70.312%  Top5  93.750%	
+ | [# 39][375/391]    Time 0.825  Loss 1.1118  Top1  67.188%  Top5  92.969%	
+ * Finished epoch # 39     top1:  64.500  top5:  88.97%	
+ * Elapsed time: 3 hours 28 minutes 15 seconds
+	
+ * Best model (Top1): 	64.50%
+              (Top5): 	88.97%
+	
+=> Training epoch # 40	
+ | [# 40][ 75/391]    Time 0.814  Loss 0.8182  Top1  79.688%  Top5  96.094%	
+ | [# 40][150/391]    Time 0.815  Loss 0.8733  Top1  73.438%  Top5  95.312%	
+ | [# 40][225/391]    Time 0.828  Loss 0.9096  Top1  69.531%  Top5  95.312%	
+ | [# 40][300/391]    Time 0.816  Loss 0.8855  Top1  74.219%  Top5  96.094%	
+ | [# 40][375/391]    Time 0.819  Loss 0.9753  Top1  76.562%  Top5  90.625%	
+ * Finished epoch # 40     top1:  61.000  top5:  88.03%	
+ * Elapsed time: 3 hours 33 minutes 34 seconds
+	
+=> Training epoch # 41	
+ | [# 41][ 75/391]    Time 0.813  Loss 0.9840  Top1  66.406%  Top5  97.656%	
+ | [# 41][150/391]    Time 0.812  Loss 0.7693  Top1  78.906%  Top5  95.312%	
+ | [# 41][225/391]    Time 0.813  Loss 0.9440  Top1  74.219%  Top5  95.312%	
+ | [# 41][300/391]    Time 0.813  Loss 1.1141  Top1  70.312%  Top5  90.625%	
+ | [# 41][375/391]    Time 0.823  Loss 0.9808  Top1  71.094%  Top5  90.625%	
+ * Finished epoch # 41     top1:  59.740  top5:  86.24%	
+ * Elapsed time: 3 hours 38 minutes 54 seconds
+	
+=> Training epoch # 42	
+ | [# 42][ 75/391]    Time 0.816  Loss 0.8945  Top1  75.000%  Top5  93.750%	
+ | [# 42][150/391]    Time 0.820  Loss 1.2837  Top1  60.938%  Top5  89.062%	
+ | [# 42][225/391]    Time 0.802  Loss 1.0812  Top1  64.062%  Top5  95.312%	
+ | [# 42][300/391]    Time 0.799  Loss 1.0444  Top1  71.875%  Top5  90.625%	
+ | [# 42][375/391]    Time 0.821  Loss 0.9194  Top1  73.438%  Top5  92.188%	
+ * Finished epoch # 42     top1:  62.230  top5:  88.22%	
+ * Elapsed time: 3 hours 44 minutes 13 seconds
+	
+=> Training epoch # 43	
+ | [# 43][ 75/391]    Time 0.821  Loss 0.8696  Top1  72.656%  Top5  94.531%	
+ | [# 43][150/391]    Time 0.809  Loss 1.0070  Top1  68.750%  Top5  92.188%	
+ | [# 43][225/391]    Time 0.814  Loss 0.9430  Top1  68.750%  Top5  96.094%	
+ | [# 43][300/391]    Time 0.797  Loss 0.9252  Top1  72.656%  Top5  94.531%	
+ | [# 43][375/391]    Time 0.811  Loss 1.1347  Top1  62.500%  Top5  94.531%	
+ * Finished epoch # 43     top1:  62.160  top5:  87.54%	
+ * Elapsed time: 3 hours 49 minutes 32 seconds
+	
+=> Training epoch # 44	
+ | [# 44][ 75/391]    Time 0.809  Loss 1.0071  Top1  67.969%  Top5  93.750%	
+ | [# 44][150/391]    Time 0.825  Loss 0.8862  Top1  77.344%  Top5  92.188%	
+ | [# 44][225/391]    Time 0.831  Loss 0.8414  Top1  76.562%  Top5  93.750%	
+ | [# 44][300/391]    Time 0.810  Loss 0.8618  Top1  73.438%  Top5  94.531%	
+ | [# 44][375/391]    Time 0.800  Loss 0.9693  Top1  75.781%  Top5  92.969%	
+ * Finished epoch # 44     top1:  62.520  top5:  88.43%	
+ * Elapsed time: 3 hours 54 minutes 52 seconds
+	
+=> Training epoch # 45	
+ | [# 45][ 75/391]    Time 0.814  Loss 0.9843  Top1  69.531%  Top5  96.094%	
+ | [# 45][150/391]    Time 0.805  Loss 0.9938  Top1  69.531%  Top5  92.969%	
+ | [# 45][225/391]    Time 0.810  Loss 1.0031  Top1  74.219%  Top5  91.406%	
+ | [# 45][300/391]    Time 0.843  Loss 0.9668  Top1  74.219%  Top5  93.750%	
+ | [# 45][375/391]    Time 0.817  Loss 0.9766  Top1  74.219%  Top5  93.750%	
+ * Finished epoch # 45     top1:  64.270  top5:  88.88%	
+ * Elapsed time: 4 hours 0 minutes 11 seconds
+	
+=> Training epoch # 46	
+ | [# 46][ 75/391]    Time 0.818  Loss 0.9742  Top1  70.312%  Top5  93.750%	
+ | [# 46][150/391]    Time 0.845  Loss 0.9667  Top1  71.094%  Top5  92.969%	
+ | [# 46][225/391]    Time 0.820  Loss 0.9206  Top1  78.906%  Top5  92.969%	
+ | [# 46][300/391]    Time 0.811  Loss 1.0792  Top1  67.969%  Top5  92.188%	
+ | [# 46][375/391]    Time 0.814  Loss 0.9061  Top1  72.656%  Top5  96.875%	
+ * Finished epoch # 46     top1:  63.550  top5:  88.91%	
+ * Elapsed time: 4 hours 5 minutes 30 seconds
+	
+=> Training epoch # 47	
+ | [# 47][ 75/391]    Time 0.814  Loss 0.9820  Top1  71.094%  Top5  93.750%	
+ | [# 47][150/391]    Time 0.813  Loss 0.9103  Top1  71.875%  Top5  95.312%	
+ | [# 47][225/391]    Time 0.803  Loss 1.1795  Top1  62.500%  Top5  92.188%	
+ | [# 47][300/391]    Time 0.801  Loss 0.8875  Top1  73.438%  Top5  95.312%	
+ | [# 47][375/391]    Time 0.802  Loss 1.0329  Top1  71.875%  Top5  91.406%	
+ * Finished epoch # 47     top1:  61.440  top5:  87.68%	
+ * Elapsed time: 4 hours 10 minutes 50 seconds
+	
+=> Training epoch # 48	
+ | [# 48][ 75/391]    Time 0.823  Loss 0.6949  Top1  78.906%  Top5  96.875%	
+ | [# 48][150/391]    Time 0.817  Loss 0.8634  Top1  78.906%  Top5  95.312%	
+ | [# 48][225/391]    Time 0.840  Loss 1.2429  Top1  64.844%  Top5  92.188%	
+ | [# 48][300/391]    Time 0.839  Loss 0.8793  Top1  70.312%  Top5  93.750%	
+ | [# 48][375/391]    Time 0.814  Loss 0.8458  Top1  73.438%  Top5  96.875%	
+ * Finished epoch # 48     top1:  64.570  top5:  89.49%	
+ * Elapsed time: 4 hours 16 minutes 10 seconds
+	
+ * Best model (Top1): 	64.57%
+              (Top5): 	89.49%
+	
+=> Training epoch # 49	
+ | [# 49][ 75/391]    Time 0.824  Loss 0.7974  Top1  75.000%  Top5  96.875%	
+ | [# 49][150/391]    Time 0.807  Loss 1.0276  Top1  67.969%  Top5  91.406%	
+ | [# 49][225/391]    Time 0.817  Loss 0.8114  Top1  78.125%  Top5  93.750%	
+ | [# 49][300/391]    Time 0.821  Loss 0.8930  Top1  75.000%  Top5  93.750%	
+ | [# 49][375/391]    Time 0.823  Loss 0.9281  Top1  64.844%  Top5  96.094%	
+ * Finished epoch # 49     top1:  63.880  top5:  89.37%	
+ * Elapsed time: 4 hours 21 minutes 31 seconds
+	
+=> Training epoch # 50	
+ | [# 50][ 75/391]    Time 0.822  Loss 0.9439  Top1  72.656%  Top5  92.188%	
+ | [# 50][150/391]    Time 0.818  Loss 1.4055  Top1  60.156%  Top5  93.750%	
+ | [# 50][225/391]    Time 0.818  Loss 1.1251  Top1  64.844%  Top5  93.750%	
+ | [# 50][300/391]    Time 0.819  Loss 0.7296  Top1  81.250%  Top5  94.531%	
+ | [# 50][375/391]    Time 0.876  Loss 0.9589  Top1  71.094%  Top5  92.188%	
+ * Finished epoch # 50     top1:  59.710  top5:  86.98%	
+ * Elapsed time: 4 hours 26 minutes 51 seconds
+	
+=> Training epoch # 51	
+ | [# 51][ 75/391]    Time 0.819  Loss 0.8545  Top1  70.312%  Top5  97.656%	
+ | [# 51][150/391]    Time 0.817  Loss 1.0757  Top1  71.094%  Top5  92.188%	
+ | [# 51][225/391]    Time 0.814  Loss 0.9424  Top1  73.438%  Top5  93.750%	
+ | [# 51][300/391]    Time 0.818  Loss 0.7979  Top1  75.000%  Top5  96.094%	
+ | [# 51][375/391]    Time 0.833  Loss 0.8629  Top1  73.438%  Top5  93.750%	
+ * Finished epoch # 51     top1:  63.280  top5:  88.72%	
+ * Elapsed time: 4 hours 32 minutes 12 seconds
+	
+=> Training epoch # 52	
+ | [# 52][ 75/391]    Time 0.819  Loss 1.0190  Top1  67.969%  Top5  96.875%	
+ | [# 52][150/391]    Time 0.823  Loss 1.0900  Top1  72.656%  Top5  92.188%	
+ | [# 52][225/391]    Time 0.809  Loss 0.8820  Top1  73.438%  Top5  93.750%	
+ | [# 52][300/391]    Time 0.807  Loss 1.0253  Top1  71.094%  Top5  94.531%	
+ | [# 52][375/391]    Time 0.851  Loss 1.0025  Top1  70.312%  Top5  93.750%	
+ * Finished epoch # 52     top1:  60.910  top5:  86.81%	
+ * Elapsed time: 4 hours 37 minutes 33 seconds
+	
+=> Training epoch # 53	
+ | [# 53][ 75/391]    Time 0.837  Loss 0.8458  Top1  73.438%  Top5  95.312%	
+ | [# 53][150/391]    Time 0.817  Loss 0.7383  Top1  77.344%  Top5  97.656%	
+ | [# 53][225/391]    Time 0.814  Loss 1.0406  Top1  72.656%  Top5  93.750%	
+ | [# 53][300/391]    Time 0.803  Loss 0.8192  Top1  78.906%  Top5  95.312%	
+ | [# 53][375/391]    Time 0.846  Loss 1.0455  Top1  69.531%  Top5  94.531%	
+ * Finished epoch # 53     top1:  60.930  top5:  86.93%	
+ * Elapsed time: 4 hours 42 minutes 54 seconds
+	
+=> Training epoch # 54	
+ | [# 54][ 75/391]    Time 0.817  Loss 0.8715  Top1  72.656%  Top5  96.875%	
+ | [# 54][150/391]    Time 0.836  Loss 0.8697  Top1  72.656%  Top5  92.969%	
+ | [# 54][225/391]    Time 0.815  Loss 1.0114  Top1  73.438%  Top5  91.406%	
+ | [# 54][300/391]    Time 0.807  Loss 0.7273  Top1  80.469%  Top5  96.875%	
+ | [# 54][375/391]    Time 0.837  Loss 0.9935  Top1  71.875%  Top5  94.531%	
+ * Finished epoch # 54     top1:  61.760  top5:  87.97%	
+ * Elapsed time: 4 hours 48 minutes 14 seconds
+	
+=> Training epoch # 55	
+ | [# 55][ 75/391]    Time 0.833  Loss 0.8406  Top1  73.438%  Top5  96.875%	
+ | [# 55][150/391]    Time 0.819  Loss 0.6734  Top1  79.688%  Top5  96.094%	
+ | [# 55][225/391]    Time 0.784  Loss 0.7931  Top1  80.469%  Top5  93.750%	
+ | [# 55][300/391]    Time 0.800  Loss 0.8640  Top1  75.781%  Top5  92.969%	
+ | [# 55][375/391]    Time 0.805  Loss 1.0089  Top1  69.531%  Top5  94.531%	
+ * Finished epoch # 55     top1:  63.250  top5:  88.85%	
+ * Elapsed time: 4 hours 53 minutes 34 seconds
+	
+=> Training epoch # 56	
+ | [# 56][ 75/391]    Time 0.826  Loss 0.8584  Top1  76.562%  Top5  93.750%	
+ | [# 56][150/391]    Time 0.804  Loss 0.9743  Top1  70.312%  Top5  97.656%	
+ | [# 56][225/391]    Time 0.782  Loss 0.7678  Top1  80.469%  Top5  95.312%	
+ | [# 56][300/391]    Time 0.822  Loss 0.8833  Top1  75.781%  Top5  94.531%	
+ | [# 56][375/391]    Time 0.798  Loss 1.0739  Top1  71.875%  Top5  89.844%	
+ * Finished epoch # 56     top1:  64.150  top5:  89.55%	
+ * Elapsed time: 4 hours 58 minutes 54 seconds
+	
+=> Training epoch # 57	
+ | [# 57][ 75/391]    Time 0.801  Loss 0.9767  Top1  70.312%  Top5  92.969%	
+ | [# 57][150/391]    Time 0.816  Loss 0.7991  Top1  75.000%  Top5  94.531%	
+ | [# 57][225/391]    Time 0.817  Loss 0.8970  Top1  72.656%  Top5  92.969%	
+ | [# 57][300/391]    Time 0.813  Loss 0.7975  Top1  78.125%  Top5  93.750%	
+ | [# 57][375/391]    Time 0.820  Loss 0.9648  Top1  71.094%  Top5  92.188%	
+ * Finished epoch # 57     top1:  62.090  top5:  87.79%	
+ * Elapsed time: 5 hours 4 minutes 15 seconds
+	
+=> Training epoch # 58	
+ | [# 58][ 75/391]    Time 0.817  Loss 0.8244  Top1  78.125%  Top5  92.188%	
+ | [# 58][150/391]    Time 0.824  Loss 0.9684  Top1  72.656%  Top5  95.312%	
+ | [# 58][225/391]    Time 0.819  Loss 0.9722  Top1  72.656%  Top5  95.312%	
+ | [# 58][300/391]    Time 0.836  Loss 1.1480  Top1  66.406%  Top5  91.406%	
+ | [# 58][375/391]    Time 0.839  Loss 0.8995  Top1  74.219%  Top5  93.750%	
+ * Finished epoch # 58     top1:  59.800  top5:  86.02%	
+ * Elapsed time: 5 hours 9 minutes 35 seconds
+	
+=> Training epoch # 59	
+ | [# 59][ 75/391]    Time 0.819  Loss 0.9160  Top1  71.875%  Top5  94.531%	
+ | [# 59][150/391]    Time 0.817  Loss 0.9372  Top1  70.312%  Top5  98.438%	
+ | [# 59][225/391]    Time 0.852  Loss 0.9710  Top1  71.094%  Top5  92.188%	
+ | [# 59][300/391]    Time 0.834  Loss 0.9324  Top1  71.875%  Top5  95.312%	
+ | [# 59][375/391]    Time 0.822  Loss 1.0890  Top1  69.531%  Top5  92.969%	
+ * Finished epoch # 59     top1:  64.440  top5:  88.79%	
+ * Elapsed time: 5 hours 14 minutes 56 seconds
+	
+=> Training epoch # 60	
+ | [# 60][ 75/391]    Time 0.804  Loss 0.5271  Top1  85.938%  Top5  97.656%	
+ | [# 60][150/391]    Time 0.815  Loss 0.4642  Top1  87.500%  Top5  96.875%	
+ | [# 60][225/391]    Time 0.813  Loss 0.5404  Top1  81.250%  Top5  96.875%	
+ | [# 60][300/391]    Time 0.804  Loss 0.4283  Top1  86.719%  Top5  97.656%	
+ | [# 60][375/391]    Time 0.813  Loss 0.4478  Top1  85.156%  Top5  97.656%	
+ * Finished epoch # 60     top1:  77.070  top5:  95.12%	
+ * Elapsed time: 5 hours 20 minutes 16 seconds
+	
+ * Best model (Top1): 	77.07%
+              (Top5): 	95.12%
+
+=> Loading checkpoint /home/bumsoo/Github/ImageRecognition/Torch/modelState/cifar100/wide-resnet-28x10/best.t7  
+=> Resuming model from /home/bumsoo/Github/ImageRecognition/Torch/modelState/cifar100/wide-resnet-28x10/model_60.t7 
+Skipping memory optimization. Network is already optimized for training mode. 
+
+=> Training epoch # 61  
+ | [# 61][ 75/391]    Time 0.345  Loss 0.3455  Top1  89.062%  Top5  99.219% 
+ | [# 61][150/391]    Time 0.792  Loss 0.3313  Top1  89.062%  Top5 100.000% 
+ | [# 61][225/391]    Time 0.850  Loss 0.4270  Top1  86.719%  Top5  99.219% 
+ | [# 61][300/391]    Time 0.851  Loss 0.2938  Top1  89.844%  Top5  99.219% 
+ | [# 61][375/391]    Time 0.756  Loss 0.4814  Top1  85.938%  Top5  94.531% 
+ * Finished epoch # 61     top1:  78.180  top5:  95.13% 
+ * Elapsed time: 0 hours 4 minutes 25 seconds
+  
+ * Best model (Top1):   78.18%
+              (Top5):   95.13%
+
+=> Loading checkpoint /home/bumsoo/Github/ImageRecognition/Torch/modelState/cifar100/wide-resnet-28x10/best.t7  
+=> Resuming model from /home/bumsoo/Github/ImageRecognition/Torch/modelState/cifar100/wide-resnet-28x10/model_61.t7 
+Skipping memory optimization. Network is already optimized for training mode. 
+
+=> Training epoch # 62  
+ | [# 62][ 75/391]    Time 0.361  Loss 0.3147  Top1  90.625%  Top5 100.000% 
+ | [# 62][150/391]    Time 0.381  Loss 0.2980  Top1  91.406%  Top5  99.219% 
+ | [# 62][225/391]    Time 0.374  Loss 0.3546  Top1  87.500%  Top5 100.000% 
+ | [# 62][300/391]    Time 0.379  Loss 0.2160  Top1  90.625%  Top5 100.000% 
+ | [# 62][375/391]    Time 0.381  Loss 0.3149  Top1  90.625%  Top5 100.000% 
+ * Finished epoch # 62     top1:  77.380  top5:  94.82% 
+ * Elapsed time: 0 hours 2 minutes 30 seconds
+  
+=> Training epoch # 63  
+ | [# 63][ 75/391]    Time 0.379  Loss 0.2650  Top1  92.188%  Top5 100.000% 
+ | [# 63][150/391]    Time 0.375  Loss 0.2171  Top1  94.531%  Top5 100.000% 
+ | [# 63][225/391]    Time 0.376  Loss 0.2320  Top1  94.531%  Top5 100.000% 
+ | [# 63][300/391]    Time 0.386  Loss 0.3374  Top1  89.062%  Top5  98.438% 
+ | [# 63][375/391]    Time 0.381  Loss 0.2299  Top1  95.312%  Top5 100.000% 
+ * Finished epoch # 63     top1:  77.330  top5:  94.62% 
+ * Elapsed time: 0 hours 5 minutes 1 seconds
+  
+=> Training epoch # 64  
+ | [# 64][ 75/391]    Time 0.383  Loss 0.1636  Top1  95.312%  Top5 100.000% 
+ | [# 64][150/391]    Time 0.383  Loss 0.1778  Top1  94.531%  Top5  99.219% 
+ | [# 64][225/391]    Time 0.411  Loss 0.2275  Top1  92.969%  Top5 100.000% 
+ | [# 64][300/391]    Time 0.386  Loss 0.3168  Top1  89.062%  Top5 100.000% 
+ | [# 64][375/391]    Time 0.382  Loss 0.2026  Top1  96.094%  Top5 100.000% 
+ * Finished epoch # 64     top1:  76.870  top5:  94.72% 
+ * Elapsed time: 0 hours 7 minutes 32 seconds
+  
+=> Training epoch # 65  
+ | [# 65][ 75/391]    Time 0.376  Loss 0.1581  Top1  96.094%  Top5 100.000% 
+ | [# 65][150/391]    Time 0.406  Loss 0.2523  Top1  93.750%  Top5  97.656% 
+ | [# 65][225/391]    Time 0.384  Loss 0.2108  Top1  95.312%  Top5 100.000% 
+ | [# 65][300/391]    Time 0.410  Loss 0.2138  Top1  94.531%  Top5 100.000% 
+ | [# 65][375/391]    Time 0.377  Loss 0.2455  Top1  93.750%  Top5 100.000% 
+ * Finished epoch # 65     top1:  77.330  top5:  94.41% 
+ * Elapsed time: 0 hours 10 minutes 3 seconds
+  
+=> Training epoch # 66  
+ | [# 66][ 75/391]    Time 0.373  Loss 0.1337  Top1  98.438%  Top5 100.000% 
+ | [# 66][150/391]    Time 0.380  Loss 0.1856  Top1  94.531%  Top5 100.000% 
+ | [# 66][225/391]    Time 0.378  Loss 0.2328  Top1  90.625%  Top5 100.000% 
+ | [# 66][300/391]    Time 0.385  Loss 0.2064  Top1  96.094%  Top5  99.219% 
+ | [# 66][375/391]    Time 0.384  Loss 0.2532  Top1  92.969%  Top5 100.000% 
+ * Finished epoch # 66     top1:  77.160  top5:  94.55% 
+ * Elapsed time: 0 hours 12 minutes 34 seconds
+  
+=> Training epoch # 67  
+ | [# 67][ 75/391]    Time 0.381  Loss 0.1239  Top1  96.094%  Top5 100.000% 
+ | [# 67][150/391]    Time 0.379  Loss 0.1408  Top1  96.094%  Top5 100.000% 
+ | [# 67][225/391]    Time 0.383  Loss 0.1846  Top1  96.094%  Top5 100.000% 
+ | [# 67][300/391]    Time 0.382  Loss 0.1701  Top1  96.094%  Top5 100.000% 
+ | [# 67][375/391]    Time 0.382  Loss 0.2411  Top1  95.312%  Top5 100.000% 
+ * Finished epoch # 67     top1:  75.900  top5:  94.00% 
+ * Elapsed time: 0 hours 15 minutes 6 seconds
+  
+=> Training epoch # 68  
+ | [# 68][ 75/391]    Time 0.402  Loss 0.2300  Top1  94.531%  Top5 100.000% 
+ | [# 68][150/391]    Time 0.387  Loss 0.2165  Top1  96.094%  Top5  99.219% 
+ | [# 68][225/391]    Time 0.401  Loss 0.2133  Top1  92.969%  Top5 100.000% 
+ | [# 68][300/391]    Time 0.401  Loss 0.1959  Top1  93.750%  Top5 100.000% 
+ | [# 68][375/391]    Time 0.390  Loss 0.2358  Top1  92.969%  Top5 100.000% 
+ * Finished epoch # 68     top1:  76.520  top5:  94.71% 
+ * Elapsed time: 0 hours 17 minutes 38 seconds
+  
+=> Training epoch # 69  
+ | [# 69][ 75/391]    Time 0.411  Loss 0.1464  Top1  94.531%  Top5 100.000% 
+ | [# 69][150/391]    Time 0.414  Loss 0.2375  Top1  92.969%  Top5 100.000% 
+ | [# 69][225/391]    Time 0.399  Loss 0.2278  Top1  92.188%  Top5 100.000% 
+ | [# 69][300/391]    Time 0.381  Loss 0.1781  Top1  94.531%  Top5 100.000% 
+ | [# 69][375/391]    Time 0.403  Loss 0.2014  Top1  94.531%  Top5  99.219% 
+ * Finished epoch # 69     top1:  75.890  top5:  93.87% 
+ * Elapsed time: 0 hours 20 minutes 9 seconds
+  
+=> Training epoch # 70  
+ | [# 70][ 75/391]    Time 0.400  Loss 0.2877  Top1  89.844%  Top5  99.219% 
+ | [# 70][150/391]    Time 0.375  Loss 0.1511  Top1  96.094%  Top5 100.000% 
+ | [# 70][225/391]    Time 0.372  Loss 0.2115  Top1  94.531%  Top5  99.219% 
+ | [# 70][300/391]    Time 0.383  Loss 0.2457  Top1  92.969%  Top5 100.000% 
+ | [# 70][375/391]    Time 0.398  Loss 0.2755  Top1  92.969%  Top5 100.000% 
+ * Finished epoch # 70     top1:  75.770  top5:  93.90% 
+ * Elapsed time: 0 hours 22 minutes 40 seconds
+  
+=> Training epoch # 71  
+ | [# 71][ 75/391]    Time 0.400  Loss 0.1837  Top1  95.312%  Top5 100.000% 
+ | [# 71][150/391]    Time 0.383  Loss 0.2695  Top1  90.625%  Top5 100.000% 
+ | [# 71][225/391]    Time 0.404  Loss 0.1602  Top1  95.312%  Top5 100.000% 
+ | [# 71][300/391]    Time 0.381  Loss 0.1987  Top1  92.188%  Top5 100.000% 
+ | [# 71][375/391]    Time 0.380  Loss 0.2038  Top1  95.312%  Top5  99.219% 
+ * Finished epoch # 71     top1:  74.310  top5:  93.14% 
+ * Elapsed time: 0 hours 25 minutes 12 seconds
+  
+=> Training epoch # 72  
+ | [# 72][ 75/391]    Time 0.372  Loss 0.2177  Top1  93.750%  Top5  98.438% 
+ | [# 72][150/391]    Time 0.380  Loss 0.1101  Top1  96.875%  Top5 100.000% 
+ | [# 72][225/391]    Time 0.381  Loss 0.1738  Top1  96.094%  Top5 100.000% 
+ | [# 72][300/391]    Time 0.375  Loss 0.2839  Top1  92.969%  Top5  98.438% 
+ | [# 72][375/391]    Time 0.391  Loss 0.2296  Top1  95.312%  Top5 100.000% 
+ * Finished epoch # 72     top1:  74.830  top5:  93.62% 
+ * Elapsed time: 0 hours 27 minutes 43 seconds
+  
+=> Training epoch # 73  
+ | [# 73][ 75/391]    Time 0.386  Loss 0.2041  Top1  94.531%  Top5  99.219% 
+ | [# 73][150/391]    Time 0.371  Loss 0.1380  Top1  96.875%  Top5 100.000% 
+ | [# 73][225/391]    Time 0.388  Loss 0.1640  Top1  96.094%  Top5 100.000% 
+ | [# 73][300/391]    Time 0.380  Loss 0.3494  Top1  87.500%  Top5 100.000% 
+ | [# 73][375/391]    Time 0.411  Loss 0.2037  Top1  92.969%  Top5 100.000% 
+ * Finished epoch # 73     top1:  74.870  top5:  93.47% 
+ * Elapsed time: 0 hours 30 minutes 14 seconds
+  
+=> Training epoch # 74  
+ | [# 74][ 75/391]    Time 0.409  Loss 0.2750  Top1  93.750%  Top5  99.219% 
+ | [# 74][150/391]    Time 0.392  Loss 0.2146  Top1  95.312%  Top5 100.000% 
+ | [# 74][225/391]    Time 0.382  Loss 0.1780  Top1  96.094%  Top5 100.000% 
+ | [# 74][300/391]    Time 0.376  Loss 0.2127  Top1  92.969%  Top5 100.000% 
+ | [# 74][375/391]    Time 0.381  Loss 0.2475  Top1  90.625%  Top5  99.219% 
+ * Finished epoch # 74     top1:  73.440  top5:  93.20% 
+ * Elapsed time: 0 hours 32 minutes 45 seconds
+  
+=> Training epoch # 75  
+ | [# 75][ 75/391]    Time 0.413  Loss 0.3579  Top1  89.062%  Top5  99.219% 
+ | [# 75][150/391]    Time 0.393  Loss 0.2396  Top1  93.750%  Top5  99.219% 
+ | [# 75][225/391]    Time 0.384  Loss 0.1980  Top1  93.750%  Top5 100.000% 
+ | [# 75][300/391]    Time 0.385  Loss 0.2075  Top1  95.312%  Top5 100.000% 
+ | [# 75][375/391]    Time 0.413  Loss 0.2752  Top1  92.969%  Top5  98.438% 
+ * Finished epoch # 75     top1:  74.830  top5:  93.88% 
+ * Elapsed time: 0 hours 35 minutes 17 seconds
+  
+=> Training epoch # 76  
+ | [# 76][ 75/391]    Time 0.395  Loss 0.2297  Top1  90.625%  Top5  99.219% 
+ | [# 76][150/391]    Time 0.384  Loss 0.2643  Top1  92.188%  Top5  99.219% 
+ | [# 76][225/391]    Time 0.381  Loss 0.2399  Top1  92.188%  Top5 100.000% 
+ | [# 76][300/391]    Time 0.376  Loss 0.2646  Top1  92.188%  Top5 100.000% 
+ | [# 76][375/391]    Time 0.376  Loss 0.2967  Top1  92.188%  Top5  97.656% 
+ * Finished epoch # 76     top1:  73.800  top5:  93.13% 
+ * Elapsed time: 0 hours 37 minutes 48 seconds
+  
+=> Training epoch # 77  
+ | [# 77][ 75/391]    Time 0.371  Loss 0.1722  Top1  95.312%  Top5 100.000% 
+ | [# 77][150/391]    Time 0.377  Loss 0.1353  Top1  95.312%  Top5 100.000% 
+ | [# 77][225/391]    Time 0.376  Loss 0.2026  Top1  92.969%  Top5 100.000% 
+ | [# 77][300/391]    Time 0.379  Loss 0.1604  Top1  96.875%  Top5 100.000% 
+ | [# 77][375/391]    Time 0.382  Loss 0.2048  Top1  93.750%  Top5 100.000% 
+ * Finished epoch # 77     top1:  74.750  top5:  93.40% 
+ * Elapsed time: 0 hours 40 minutes 19 seconds
+  
+=> Training epoch # 78  
+ | [# 78][ 75/391]    Time 0.397  Loss 0.1790  Top1  96.094%  Top5 100.000% 
+ | [# 78][150/391]    Time 0.379  Loss 0.1791  Top1  94.531%  Top5 100.000% 
+ | [# 78][225/391]    Time 0.410  Loss 0.2107  Top1  95.312%  Top5  99.219% 
+ | [# 78][300/391]    Time 0.411  Loss 0.2131  Top1  96.094%  Top5  99.219% 
+ | [# 78][375/391]    Time 0.375  Loss 0.2417  Top1  90.625%  Top5 100.000% 
+ * Finished epoch # 78     top1:  74.240  top5:  92.92% 
+ * Elapsed time: 0 hours 42 minutes 51 seconds
+  
+=> Training epoch # 79  
+ | [# 79][ 75/391]    Time 0.379  Loss 0.2036  Top1  94.531%  Top5 100.000% 
+ | [# 79][150/391]    Time 0.381  Loss 0.1422  Top1  97.656%  Top5 100.000% 
+ | [# 79][225/391]    Time 0.373  Loss 0.2148  Top1  93.750%  Top5  99.219% 
+ | [# 79][300/391]    Time 0.401  Loss 0.2564  Top1  92.188%  Top5 100.000% 
+ | [# 79][375/391]    Time 0.399  Loss 0.2678  Top1  91.406%  Top5 100.000% 
+ * Finished epoch # 79     top1:  74.390  top5:  93.09% 
+ * Elapsed time: 0 hours 45 minutes 24 seconds
+  
+=> Training epoch # 80  
+ | [# 80][ 75/391]    Time 0.371  Loss 0.1573  Top1  96.094%  Top5 100.000% 
+ | [# 80][150/391]    Time 0.405  Loss 0.1586  Top1  95.312%  Top5 100.000% 
+ | [# 80][225/391]    Time 0.409  Loss 0.2379  Top1  92.969%  Top5  98.438% 
+ | [# 80][300/391]    Time 0.405  Loss 0.2320  Top1  93.750%  Top5  99.219% 
+ | [# 80][375/391]    Time 0.399  Loss 0.2302  Top1  96.094%  Top5  99.219% 
+ * Finished epoch # 80     top1:  74.500  top5:  93.20% 
+ * Elapsed time: 0 hours 47 minutes 56 seconds
+  
+=> Training epoch # 81  
+ | [# 81][ 75/391]    Time 0.404  Loss 0.2060  Top1  92.188%  Top5 100.000% 
+ | [# 81][150/391]    Time 0.406  Loss 0.3239  Top1  90.625%  Top5  99.219% 
+ | [# 81][225/391]    Time 0.407  Loss 0.1543  Top1  96.875%  Top5 100.000% 
+ | [# 81][300/391]    Time 0.401  Loss 0.1990  Top1  94.531%  Top5 100.000% 
+ | [# 81][375/391]    Time 0.375  Loss 0.2264  Top1  93.750%  Top5 100.000% 
+ * Finished epoch # 81     top1:  73.950  top5:  92.91% 
+ * Elapsed time: 0 hours 50 minutes 29 seconds
+  
+=> Training epoch # 82  
+ | [# 82][ 75/391]    Time 0.399  Loss 0.2051  Top1  93.750%  Top5  99.219% 
+ | [# 82][150/391]    Time 0.387  Loss 0.2142  Top1  93.750%  Top5  99.219% 
+ | [# 82][225/391]    Time 0.392  Loss 0.2284  Top1  91.406%  Top5 100.000% 
+ | [# 82][300/391]    Time 0.397  Loss 0.1812  Top1  93.750%  Top5 100.000% 
+ | [# 82][375/391]    Time 0.367  Loss 0.2198  Top1  95.312%  Top5 100.000% 
+ * Finished epoch # 82     top1:  73.470  top5:  92.69% 
+ * Elapsed time: 0 hours 53 minutes 2 seconds
+  
+=> Training epoch # 83  
+ | [# 83][ 75/391]    Time 0.389  Loss 0.1457  Top1  96.094%  Top5 100.000% 
+ | [# 83][150/391]    Time 0.369  Loss 0.1801  Top1  96.094%  Top5 100.000% 
+ | [# 83][225/391]    Time 0.375  Loss 0.2987  Top1  92.188%  Top5  99.219% 
+ | [# 83][300/391]    Time 0.375  Loss 0.2139  Top1  92.969%  Top5 100.000% 
+ | [# 83][375/391]    Time 0.376  Loss 0.2022  Top1  95.312%  Top5 100.000% 
+ * Finished epoch # 83     top1:  73.850  top5:  93.03% 
+ * Elapsed time: 0 hours 55 minutes 36 seconds
+  
+=> Training epoch # 84  
+ | [# 84][ 75/391]    Time 0.377  Loss 0.2060  Top1  93.750%  Top5 100.000% 
+ | [# 84][150/391]    Time 0.384  Loss 0.1581  Top1  96.094%  Top5  99.219% 
+ | [# 84][225/391]    Time 0.375  Loss 0.3116  Top1  90.625%  Top5  98.438% 
+ | [# 84][300/391]    Time 0.412  Loss 0.1540  Top1  95.312%  Top5 100.000% 
+ | [# 84][375/391]    Time 0.400  Loss 0.3166  Top1  89.844%  Top5 100.000% 
+ * Finished epoch # 84     top1:  73.250  top5:  92.32% 
+ * Elapsed time: 0 hours 58 minutes 9 seconds
+  
+=> Training epoch # 85  
+ | [# 85][ 75/391]    Time 0.671  Loss 0.2119  Top1  96.094%  Top5  99.219% 
+ | [# 85][150/391]    Time 0.400  Loss 0.1981  Top1  96.094%  Top5 100.000% 
+ | [# 85][225/391]    Time 0.370  Loss 0.2482  Top1  93.750%  Top5  99.219% 
+ | [# 85][300/391]    Time 0.396  Loss 0.2165  Top1  96.875%  Top5  99.219% 
+ | [# 85][375/391]    Time 0.397  Loss 0.2422  Top1  93.750%  Top5 100.000% 
+ * Finished epoch # 85     top1:  72.970  top5:  92.80% 
+ * Elapsed time: 1 hours 0 minutes 50 seconds
+  
+=> Training epoch # 86  
+ | [# 86][ 75/391]    Time 0.370  Loss 0.1505  Top1  95.312%  Top5 100.000% 
+ | [# 86][150/391]    Time 0.406  Loss 0.2433  Top1  92.188%  Top5  99.219% 
+ | [# 86][225/391]    Time 0.403  Loss 0.2297  Top1  94.531%  Top5 100.000% 
+ | [# 86][300/391]    Time 0.416  Loss 0.2794  Top1  91.406%  Top5 100.000% 
+ | [# 86][375/391]    Time 0.373  Loss 0.2086  Top1  94.531%  Top5 100.000% 
+ * Finished epoch # 86     top1:  74.470  top5:  93.12% 
+ * Elapsed time: 1 hours 3 minutes 23 seconds
+  
+=> Training epoch # 87  
+ | [# 87][ 75/391]    Time 0.375  Loss 0.0679  Top1 100.000%  Top5 100.000% 
+ | [# 87][150/391]    Time 0.410  Loss 0.2416  Top1  94.531%  Top5 100.000% 
+ | [# 87][225/391]    Time 0.420  Loss 0.1436  Top1  95.312%  Top5 100.000% 
+ | [# 87][300/391]    Time 0.400  Loss 0.2535  Top1  93.750%  Top5 100.000% 
+ | [# 87][375/391]    Time 0.407  Loss 0.2455  Top1  89.844%  Top5 100.000% 
+ * Finished epoch # 87     top1:  73.270  top5:  92.44% 
+ * Elapsed time: 1 hours 5 minutes 56 seconds
+  
+=> Training epoch # 88  
+ | [# 88][ 75/391]    Time 0.407  Loss 0.2488  Top1  91.406%  Top5 100.000% 
+ | [# 88][150/391]    Time 0.401  Loss 0.1802  Top1  95.312%  Top5 100.000% 
+ | [# 88][225/391]    Time 0.380  Loss 0.2058  Top1  91.406%  Top5 100.000% 
+ | [# 88][300/391]    Time 0.386  Loss 0.3905  Top1  88.281%  Top5  99.219% 
+ | [# 88][375/391]    Time 0.367  Loss 0.2345  Top1  94.531%  Top5  99.219% 
+ * Finished epoch # 88     top1:  74.140  top5:  93.09% 
+ * Elapsed time: 1 hours 8 minutes 28 seconds
+  
+=> Training epoch # 89  
+ | [# 89][ 75/391]    Time 0.373  Loss 0.2164  Top1  93.750%  Top5  99.219% 
+ | [# 89][150/391]    Time 0.397  Loss 0.1792  Top1  95.312%  Top5  99.219% 
+ | [# 89][225/391]    Time 0.370  Loss 0.3323  Top1  87.500%  Top5  99.219% 
+ | [# 89][300/391]    Time 0.380  Loss 0.2782  Top1  91.406%  Top5 100.000% 
+ | [# 89][375/391]    Time 0.374  Loss 0.3686  Top1  89.844%  Top5  98.438% 
+ * Finished epoch # 89     top1:  73.900  top5:  92.95% 
+ * Elapsed time: 1 hours 11 minutes 2 seconds
+  
+=> Training epoch # 90  
+ | [# 90][ 75/391]    Time 0.402  Loss 0.2152  Top1  95.312%  Top5 100.000% 
+ | [# 90][150/391]    Time 0.377  Loss 0.2994  Top1  90.625%  Top5  99.219% 
+ | [# 90][225/391]    Time 0.396  Loss 0.2462  Top1  91.406%  Top5  99.219% 
+ | [# 90][300/391]    Time 0.397  Loss 0.1912  Top1  96.875%  Top5 100.000% 
+ | [# 90][375/391]    Time 0.401  Loss 0.2524  Top1  94.531%  Top5  99.219% 
+ * Finished epoch # 90     top1:  72.300  top5:  92.37% 
+ * Elapsed time: 1 hours 13 minutes 34 seconds
+  
+=> Training epoch # 91  
+ | [# 91][ 75/391]    Time 0.367  Loss 0.2101  Top1  92.969%  Top5  99.219% 
+ | [# 91][150/391]    Time 0.409  Loss 0.2052  Top1  93.750%  Top5  99.219% 
+ | [# 91][225/391]    Time 0.379  Loss 0.1892  Top1  94.531%  Top5 100.000% 
+ | [# 91][300/391]    Time 0.375  Loss 0.2560  Top1  89.844%  Top5 100.000% 
+ | [# 91][375/391]    Time 0.406  Loss 0.2573  Top1  90.625%  Top5  99.219% 
+ * Finished epoch # 91     top1:  73.380  top5:  92.84% 
+ * Elapsed time: 1 hours 16 minutes 8 seconds
+  
+=> Training epoch # 92  
+ | [# 92][ 75/391]    Time 0.395  Loss 0.2162  Top1  93.750%  Top5  99.219% 
+ | [# 92][150/391]    Time 0.373  Loss 0.1541  Top1  95.312%  Top5  99.219% 
+ | [# 92][225/391]    Time 0.405  Loss 0.3294  Top1  88.281%  Top5 100.000% 
+ | [# 92][300/391]    Time 0.372  Loss 0.2530  Top1  93.750%  Top5 100.000% 
+ | [# 92][375/391]    Time 0.399  Loss 0.2164  Top1  95.312%  Top5 100.000% 
+ * Finished epoch # 92     top1:  73.420  top5:  92.55% 
+ * Elapsed time: 1 hours 18 minutes 41 seconds
+  
+=> Training epoch # 93  
+ | [# 93][ 75/391]    Time 0.371  Loss 0.1555  Top1  95.312%  Top5 100.000% 
+ | [# 93][150/391]    Time 0.398  Loss 0.2206  Top1  92.188%  Top5 100.000% 
+ | [# 93][225/391]    Time 0.378  Loss 0.1736  Top1  94.531%  Top5 100.000% 
+ | [# 93][300/391]    Time 0.400  Loss 0.2177  Top1  92.188%  Top5 100.000% 
+ | [# 93][375/391]    Time 0.410  Loss 0.1225  Top1  97.656%  Top5 100.000% 
+ * Finished epoch # 93     top1:  73.480  top5:  93.18% 
+ * Elapsed time: 1 hours 21 minutes 13 seconds
+  
+=> Training epoch # 94  
+ | [# 94][ 75/391]    Time 0.398  Loss 0.1638  Top1  94.531%  Top5 100.000% 
+ | [# 94][150/391]    Time 0.372  Loss 0.1773  Top1  96.094%  Top5 100.000% 
+ | [# 94][225/391]    Time 0.407  Loss 0.2122  Top1  95.312%  Top5 100.000% 
+ | [# 94][300/391]    Time 0.411  Loss 0.1658  Top1  93.750%  Top5 100.000% 
+ | [# 94][375/391]    Time 0.392  Loss 0.2254  Top1  92.969%  Top5  99.219% 
+ * Finished epoch # 94     top1:  72.010  top5:  92.04% 
+ * Elapsed time: 1 hours 23 minutes 45 seconds
+  
+=> Training epoch # 95  
+ | [# 95][ 75/391]    Time 0.407  Loss 0.1010  Top1  99.219%  Top5 100.000% 
+ | [# 95][150/391]    Time 0.378  Loss 0.1401  Top1  96.094%  Top5 100.000% 
+ | [# 95][225/391]    Time 0.405  Loss 0.1218  Top1  97.656%  Top5 100.000% 
+ | [# 95][300/391]    Time 0.389  Loss 0.2623  Top1  92.969%  Top5  99.219% 
+ | [# 95][375/391]    Time 0.398  Loss 0.2512  Top1  92.969%  Top5 100.000% 
+ * Finished epoch # 95     top1:  73.380  top5:  92.62% 
+ * Elapsed time: 1 hours 26 minutes 19 seconds
+  
+=> Training epoch # 96  
+ | [# 96][ 75/391]    Time 0.373  Loss 0.1227  Top1  96.094%  Top5 100.000% 
+ | [# 96][150/391]    Time 0.414  Loss 0.1554  Top1  94.531%  Top5 100.000% 
+ | [# 96][225/391]    Time 0.405  Loss 0.2375  Top1  91.406%  Top5 100.000% 
+ | [# 96][300/391]    Time 0.375  Loss 0.2711  Top1  93.750%  Top5  99.219% 
+ | [# 96][375/391]    Time 0.379  Loss 0.2412  Top1  92.188%  Top5 100.000% 
+ * Finished epoch # 96     top1:  74.470  top5:  93.21% 
+ * Elapsed time: 1 hours 28 minutes 52 seconds
+  
+=> Training epoch # 97  
+ | [# 97][ 75/391]    Time 0.409  Loss 0.2252  Top1  92.188%  Top5  97.656% 
+ | [# 97][150/391]    Time 0.403  Loss 0.2621  Top1  92.188%  Top5 100.000% 
+ | [# 97][225/391]    Time 0.410  Loss 0.2146  Top1  90.625%  Top5  99.219% 
+ | [# 97][300/391]    Time 0.375  Loss 0.1565  Top1  96.094%  Top5 100.000% 
+ | [# 97][375/391]    Time 0.406  Loss 0.3442  Top1  89.062%  Top5 100.000% 
+ * Finished epoch # 97     top1:  73.540  top5:  93.09% 
+ * Elapsed time: 1 hours 31 minutes 25 seconds
+  
+=> Training epoch # 98  
+ | [# 98][ 75/391]    Time 0.387  Loss 0.2302  Top1  93.750%  Top5 100.000% 
+ | [# 98][150/391]    Time 0.469  Loss 0.1723  Top1  96.094%  Top5 100.000% 
+ | [# 98][225/391]    Time 0.439  Loss 0.2054  Top1  93.750%  Top5 100.000% 
+ | [# 98][300/391]    Time 0.475  Loss 0.2569  Top1  91.406%  Top5 100.000% 
+ | [# 98][375/391]    Time 0.381  Loss 0.2305  Top1  92.188%  Top5 100.000% 
+ * Finished epoch # 98     top1:  73.090  top5:  92.45% 
+ * Elapsed time: 1 hours 34 minutes 8 seconds
+  
+=> Training epoch # 99  
+ | [# 99][ 75/391]    Time 0.379  Loss 0.1431  Top1  96.094%  Top5 100.000% 
+ | [# 99][150/391]    Time 0.375  Loss 0.1253  Top1  96.875%  Top5 100.000% 
+ | [# 99][225/391]    Time 0.383  Loss 0.2232  Top1  92.969%  Top5 100.000% 
+ | [# 99][300/391]    Time 0.405  Loss 0.1805  Top1  96.094%  Top5  99.219% 
+ | [# 99][375/391]    Time 0.374  Loss 0.1689  Top1  94.531%  Top5 100.000% 
+ * Finished epoch # 99     top1:  73.160  top5:  92.66% 
+ * Elapsed time: 1 hours 36 minutes 41 seconds
+  
+=> Training epoch # 100 
+ | [#100][ 75/391]    Time 0.409  Loss 0.1664  Top1  95.312%  Top5 100.000% 
+ | [#100][150/391]    Time 0.403  Loss 0.1139  Top1  96.875%  Top5 100.000% 
+ | [#100][225/391]    Time 0.371  Loss 0.2185  Top1  94.531%  Top5  99.219% 
+ | [#100][300/391]    Time 0.411  Loss 0.2309  Top1  92.969%  Top5 100.000% 
+ | [#100][375/391]    Time 0.376  Loss 0.1797  Top1  96.094%  Top5 100.000% 
+ * Finished epoch # 100     top1:  72.140  top5:  91.77%  
+ * Elapsed time: 1 hours 39 minutes 14 seconds
+  
+=> Training epoch # 101 
+ | [#101][ 75/391]    Time 0.383  Loss 0.1736  Top1  95.312%  Top5 100.000% 
+ | [#101][150/391]    Time 0.393  Loss 0.1915  Top1  96.094%  Top5 100.000% 
+ | [#101][225/391]    Time 0.379  Loss 0.1657  Top1  97.656%  Top5 100.000% 
+ | [#101][300/391]    Time 0.371  Loss 0.1918  Top1  92.969%  Top5 100.000% 
+ | [#101][375/391]    Time 0.385  Loss 0.1863  Top1  94.531%  Top5 100.000% 
+ * Finished epoch # 101     top1:  71.650  top5:  92.40%  
+ * Elapsed time: 1 hours 41 minutes 47 seconds
+  
+=> Training epoch # 102 
+ | [#102][ 75/391]    Time 0.407  Loss 0.1373  Top1  94.531%  Top5 100.000% 
+ | [#102][150/391]    Time 0.413  Loss 0.2849  Top1  89.844%  Top5  99.219% 
+ | [#102][225/391]    Time 0.420  Loss 0.2348  Top1  94.531%  Top5 100.000% 
+ | [#102][300/391]    Time 0.393  Loss 0.1316  Top1  96.875%  Top5 100.000% 
+ | [#102][375/391]    Time 0.415  Loss 0.1524  Top1  97.656%  Top5 100.000% 
+ * Finished epoch # 102     top1:  73.490  top5:  92.70%  
+ * Elapsed time: 1 hours 44 minutes 24 seconds
+  
+=> Training epoch # 103 
+ | [#103][ 75/391]    Time 0.398  Loss 0.1945  Top1  96.875%  Top5 100.000% 
+ | [#103][150/391]    Time 0.388  Loss 0.1994  Top1  95.312%  Top5 100.000% 
+ | [#103][225/391]    Time 0.410  Loss 0.2460  Top1  92.969%  Top5 100.000% 
+ | [#103][300/391]    Time 0.409  Loss 0.2499  Top1  93.750%  Top5 100.000% 
+ | [#103][375/391]    Time 0.436  Loss 0.2845  Top1  91.406%  Top5  99.219% 
+ * Finished epoch # 103     top1:  73.350  top5:  92.79%  
+ * Elapsed time: 1 hours 47 minutes 0 seconds
+  
+=> Training epoch # 104 
+ | [#104][ 75/391]    Time 0.410  Loss 0.1733  Top1  94.531%  Top5 100.000% 
+ | [#104][150/391]    Time 0.388  Loss 0.1670  Top1  94.531%  Top5 100.000% 
+ | [#104][225/391]    Time 0.413  Loss 0.2522  Top1  92.969%  Top5 100.000% 
+ | [#104][300/391]    Time 0.411  Loss 0.2152  Top1  93.750%  Top5 100.000% 
+ | [#104][375/391]    Time 0.400  Loss 0.1485  Top1  96.094%  Top5  99.219% 
+ * Finished epoch # 104     top1:  73.820  top5:  92.45%  
+ * Elapsed time: 1 hours 49 minutes 36 seconds
+  
+=> Training epoch # 105 
+ | [#105][ 75/391]    Time 0.416  Loss 0.1277  Top1  96.094%  Top5 100.000% 
+ | [#105][150/391]    Time 0.407  Loss 0.1943  Top1  95.312%  Top5 100.000% 
+ | [#105][225/391]    Time 0.429  Loss 0.2546  Top1  92.969%  Top5  99.219% 
+ | [#105][300/391]    Time 0.478  Loss 0.1341  Top1  96.875%  Top5 100.000% 
+ | [#105][375/391]    Time 0.373  Loss 0.2400  Top1  94.531%  Top5 100.000% 
+ * Finished epoch # 105     top1:  73.390  top5:  92.33%  
+ * Elapsed time: 1 hours 52 minutes 21 seconds
+  
+=> Training epoch # 106 
+ | [#106][ 75/391]    Time 0.405  Loss 0.1328  Top1  96.094%  Top5 100.000% 
+ | [#106][150/391]    Time 0.407  Loss 0.0896  Top1 100.000%  Top5 100.000% 
+ | [#106][225/391]    Time 0.399  Loss 0.1592  Top1  96.875%  Top5 100.000% 
+ | [#106][300/391]    Time 0.428  Loss 0.2123  Top1  94.531%  Top5 100.000% 
+ | [#106][375/391]    Time 0.436  Loss 0.3051  Top1  91.406%  Top5 100.000% 
+ * Finished epoch # 106     top1:  72.330  top5:  92.26%  
+ * Elapsed time: 1 hours 55 minutes 4 seconds
+  
+=> Training epoch # 107 
+ | [#107][ 75/391]    Time 0.491  Loss 0.1436  Top1  96.094%  Top5 100.000% 
+ | [#107][150/391]    Time 0.449  Loss 0.1773  Top1  92.969%  Top5 100.000% 
+ | [#107][225/391]    Time 0.468  Loss 0.2012  Top1  93.750%  Top5 100.000% 
+ | [#107][300/391]    Time 0.418  Loss 0.1459  Top1  95.312%  Top5 100.000% 
+ | [#107][375/391]    Time 0.477  Loss 0.2323  Top1  92.969%  Top5 100.000% 
+ * Finished epoch # 107     top1:  74.010  top5:  92.88%  
+ * Elapsed time: 1 hours 57 minutes 58 seconds
+  
+=> Training epoch # 108 
+ | [#108][ 75/391]    Time 0.398  Loss 0.1641  Top1  95.312%  Top5  99.219% 
+ | [#108][150/391]    Time 0.374  Loss 0.2096  Top1  92.188%  Top5  99.219% 
+ | [#108][225/391]    Time 0.406  Loss 0.3800  Top1  87.500%  Top5  99.219% 
+ | [#108][300/391]    Time 0.384  Loss 0.1104  Top1  95.312%  Top5 100.000% 
+ | [#108][375/391]    Time 0.395  Loss 0.2484  Top1  90.625%  Top5 100.000% 
+ * Finished epoch # 108     top1:  71.920  top5:  92.05%  
+ * Elapsed time: 2 hours 0 minutes 31 seconds
+  
+=> Training epoch # 109 
+ | [#109][ 75/391]    Time 0.406  Loss 0.1605  Top1  96.875%  Top5 100.000% 
+ | [#109][150/391]    Time 0.409  Loss 0.0927  Top1  98.438%  Top5 100.000% 
+ | [#109][225/391]    Time 0.402  Loss 0.1498  Top1  96.094%  Top5 100.000% 
+ | [#109][300/391]    Time 0.374  Loss 0.1880  Top1  92.969%  Top5 100.000% 
+ | [#109][375/391]    Time 0.371  Loss 0.2164  Top1  92.969%  Top5  99.219% 
+ * Finished epoch # 109     top1:  72.810  top5:  92.35%  
+ * Elapsed time: 2 hours 3 minutes 4 seconds
+  
+=> Training epoch # 110 
+ | [#110][ 75/391]    Time 0.398  Loss 0.1744  Top1  93.750%  Top5 100.000% 
+ | [#110][150/391]    Time 0.403  Loss 0.1385  Top1  96.875%  Top5 100.000% 
+ | [#110][225/391]    Time 0.379  Loss 0.1891  Top1  92.969%  Top5 100.000% 
+ | [#110][300/391]    Time 0.375  Loss 0.2282  Top1  92.969%  Top5 100.000% 
+ | [#110][375/391]    Time 0.399  Loss 0.2378  Top1  93.750%  Top5 100.000% 
+ * Finished epoch # 110     top1:  73.680  top5:  92.89%  
+ * Elapsed time: 2 hours 5 minutes 37 seconds
+  
+=> Training epoch # 111 
+ | [#111][ 75/391]    Time 0.370  Loss 0.1305  Top1  95.312%  Top5 100.000% 
+ | [#111][150/391]    Time 0.406  Loss 0.1440  Top1  97.656%  Top5 100.000% 
+ | [#111][225/391]    Time 0.385  Loss 0.1521  Top1  95.312%  Top5 100.000% 
+ | [#111][300/391]    Time 0.407  Loss 0.1982  Top1  93.750%  Top5  99.219% 
+ | [#111][375/391]    Time 0.379  Loss 0.2083  Top1  92.188%  Top5 100.000% 
+ * Finished epoch # 111     top1:  72.590  top5:  92.39%  
+ * Elapsed time: 2 hours 8 minutes 10 seconds
+  
+=> Training epoch # 112 
+ | [#112][ 75/391]    Time 0.397  Loss 0.2629  Top1  90.625%  Top5 100.000% 
+ | [#112][150/391]    Time 0.400  Loss 0.1575  Top1  96.875%  Top5 100.000% 
+ | [#112][225/391]    Time 0.374  Loss 0.2140  Top1  95.312%  Top5 100.000% 
+ | [#112][300/391]    Time 0.401  Loss 0.2321  Top1  94.531%  Top5 100.000% 
+ | [#112][375/391]    Time 0.411  Loss 0.2047  Top1  94.531%  Top5 100.000% 
+ * Finished epoch # 112     top1:  73.350  top5:  92.81%  
+ * Elapsed time: 2 hours 10 minutes 43 seconds
+  
+=> Training epoch # 113 
+ | [#113][ 75/391]    Time 0.399  Loss 0.1696  Top1  93.750%  Top5 100.000% 
+ | [#113][150/391]    Time 0.399  Loss 0.1498  Top1  94.531%  Top5 100.000% 
+ | [#113][225/391]    Time 0.402  Loss 0.2260  Top1  92.969%  Top5 100.000% 
+ | [#113][300/391]    Time 0.368  Loss 0.2178  Top1  93.750%  Top5  99.219% 
+ | [#113][375/391]    Time 0.389  Loss 0.1743  Top1  94.531%  Top5 100.000% 
+ * Finished epoch # 113     top1:  73.800  top5:  92.77%  
+ * Elapsed time: 2 hours 13 minutes 15 seconds
+  
+=> Training epoch # 114 
+ | [#114][ 75/391]    Time 0.397  Loss 0.1912  Top1  96.094%  Top5  99.219% 
+ | [#114][150/391]    Time 0.400  Loss 0.1841  Top1  94.531%  Top5 100.000% 
+ | [#114][225/391]    Time 0.381  Loss 0.1804  Top1  95.312%  Top5  99.219% 
+ | [#114][300/391]    Time 0.378  Loss 0.2259  Top1  93.750%  Top5 100.000% 
+ | [#114][375/391]    Time 0.375  Loss 0.1645  Top1  96.094%  Top5  99.219% 
+ * Finished epoch # 114     top1:  73.000  top5:  92.17%  
+ * Elapsed time: 2 hours 15 minutes 48 seconds
+  
+=> Training epoch # 115 
+ | [#115][ 75/391]    Time 0.394  Loss 0.1281  Top1  96.094%  Top5  99.219% 
+ | [#115][150/391]    Time 0.404  Loss 0.0930  Top1  98.438%  Top5 100.000% 
+ | [#115][225/391]    Time 0.400  Loss 0.2003  Top1  93.750%  Top5 100.000% 
+ | [#115][300/391]    Time 0.375  Loss 0.1637  Top1  93.750%  Top5 100.000% 
+ | [#115][375/391]    Time 0.408  Loss 0.2263  Top1  93.750%  Top5 100.000% 
+ * Finished epoch # 115     top1:  73.800  top5:  92.89%  
+ * Elapsed time: 2 hours 18 minutes 21 seconds
+  
+=> Training epoch # 116 
+ | [#116][ 75/391]    Time 0.395  Loss 0.2096  Top1  92.969%  Top5 100.000% 
+ | [#116][150/391]    Time 0.389  Loss 0.1469  Top1  97.656%  Top5 100.000% 
+ | [#116][225/391]    Time 0.393  Loss 0.1587  Top1  96.094%  Top5 100.000% 
+ | [#116][300/391]    Time 0.379  Loss 0.1738  Top1  94.531%  Top5 100.000% 
+ | [#116][375/391]    Time 0.378  Loss 0.2159  Top1  94.531%  Top5  99.219% 
+ * Finished epoch # 116     top1:  73.290  top5:  92.73%  
+ * Elapsed time: 2 hours 20 minutes 54 seconds
+  
+=> Training epoch # 117 
+ | [#117][ 75/391]    Time 0.389  Loss 0.1621  Top1  95.312%  Top5 100.000% 
+ | [#117][150/391]    Time 0.370  Loss 0.1190  Top1  96.094%  Top5 100.000% 
+ | [#117][225/391]    Time 0.399  Loss 0.1401  Top1  96.875%  Top5 100.000% 
+ | [#117][300/391]    Time 0.399  Loss 0.1089  Top1  97.656%  Top5 100.000% 
+ | [#117][375/391]    Time 0.376  Loss 0.1535  Top1  95.312%  Top5 100.000% 
+ * Finished epoch # 117     top1:  71.800  top5:  91.97%  
+ * Elapsed time: 2 hours 23 minutes 27 seconds
+  
+=> Training epoch # 118 
+ | [#118][ 75/391]    Time 0.395  Loss 0.1772  Top1  95.312%  Top5  99.219% 
+ | [#118][150/391]    Time 0.403  Loss 0.1250  Top1  95.312%  Top5 100.000% 
+ | [#118][225/391]    Time 0.396  Loss 0.1307  Top1  97.656%  Top5 100.000% 
+ | [#118][300/391]    Time 0.399  Loss 0.1231  Top1  95.312%  Top5 100.000% 
+ | [#118][375/391]    Time 0.382  Loss 0.1663  Top1  92.969%  Top5 100.000% 
+ * Finished epoch # 118     top1:  73.460  top5:  92.64%  
+ * Elapsed time: 2 hours 26 minutes 0 seconds
+  
+=> Training epoch # 119 
+ | [#119][ 75/391]    Time 0.402  Loss 0.1321  Top1  96.875%  Top5  99.219% 
+ | [#119][150/391]    Time 0.381  Loss 0.1267  Top1  95.312%  Top5 100.000% 
+ | [#119][225/391]    Time 0.403  Loss 0.2368  Top1  92.188%  Top5 100.000% 
+ | [#119][300/391]    Time 0.398  Loss 0.2092  Top1  92.969%  Top5 100.000% 
+ | [#119][375/391]    Time 0.398  Loss 0.1669  Top1  95.312%  Top5 100.000% 
+ * Finished epoch # 119     top1:  72.320  top5:  91.79%  
+ * Elapsed time: 2 hours 28 minutes 33 seconds
+  
+=> Training epoch # 120 
+ | [#120][ 75/391]    Time 0.378  Loss 0.0496  Top1  98.438%  Top5 100.000% 
+ | [#120][150/391]    Time 0.377  Loss 0.0525  Top1  98.438%  Top5 100.000% 
+ | [#120][225/391]    Time 0.377  Loss 0.0574  Top1 100.000%  Top5 100.000% 
+ | [#120][300/391]    Time 0.405  Loss 0.0418  Top1  99.219%  Top5 100.000% 
+ | [#120][375/391]    Time 0.400  Loss 0.0348  Top1  99.219%  Top5 100.000% 
+ * Finished epoch # 120     top1:  79.420  top5:  94.97%  
+ * Elapsed time: 2 hours 31 minutes 5 seconds
+  
+ * Best model (Top1):   79.42%
+              (Top5):   94.97%
+  
+=> Training epoch # 121 
+ | [#121][ 75/391]    Time 0.400  Loss 0.0330  Top1 100.000%  Top5 100.000% 
+ | [#121][150/391]    Time 0.399  Loss 0.0130  Top1 100.000%  Top5 100.000% 
+ | [#121][225/391]    Time 0.377  Loss 0.0295  Top1  99.219%  Top5 100.000% 
+ | [#121][300/391]    Time 0.404  Loss 0.0495  Top1  97.656%  Top5 100.000% 
+ | [#121][375/391]    Time 0.369  Loss 0.0471  Top1  98.438%  Top5 100.000% 
+ * Finished epoch # 121     top1:  80.110  top5:  95.00%  
+ * Elapsed time: 2 hours 33 minutes 38 seconds
+  
+ * Best model (Top1):   80.11%
+              (Top5):   95.00%
+  
+=> Training epoch # 122 
+ | [#122][ 75/391]    Time 0.397  Loss 0.0208  Top1 100.000%  Top5 100.000% 
+ | [#122][150/391]    Time 0.379  Loss 0.0590  Top1  99.219%  Top5 100.000% 
+ | [#122][225/391]    Time 0.373  Loss 0.0108  Top1 100.000%  Top5 100.000% 
+ | [#122][300/391]    Time 0.402  Loss 0.0202  Top1 100.000%  Top5 100.000% 
+ | [#122][375/391]    Time 0.389  Loss 0.0104  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 122     top1:  80.280  top5:  95.07%  
+ * Elapsed time: 2 hours 36 minutes 10 seconds
+  
+ * Best model (Top1):   80.28%
+              (Top5):   95.07%
+  
+=> Training epoch # 123 
+ | [#123][ 75/391]    Time 0.374  Loss 0.0099  Top1 100.000%  Top5 100.000% 
+ | [#123][150/391]    Time 0.400  Loss 0.0121  Top1 100.000%  Top5 100.000% 
+ | [#123][225/391]    Time 0.375  Loss 0.0494  Top1  99.219%  Top5 100.000% 
+ | [#123][300/391]    Time 0.401  Loss 0.0206  Top1  99.219%  Top5 100.000% 
+ | [#123][375/391]    Time 0.392  Loss 0.0331  Top1  99.219%  Top5 100.000% 
+ * Finished epoch # 123     top1:  80.410  top5:  95.08%  
+ * Elapsed time: 2 hours 38 minutes 43 seconds
+  
+ * Best model (Top1):   80.41%
+              (Top5):   95.08%
+  
+=> Training epoch # 124 
+ | [#124][ 75/391]    Time 0.366  Loss 0.0113  Top1 100.000%  Top5 100.000% 
+ | [#124][150/391]    Time 0.407  Loss 0.0152  Top1 100.000%  Top5 100.000% 
+ | [#124][225/391]    Time 0.393  Loss 0.0077  Top1 100.000%  Top5 100.000% 
+ | [#124][300/391]    Time 0.374  Loss 0.0153  Top1 100.000%  Top5 100.000% 
+ | [#124][375/391]    Time 0.416  Loss 0.0124  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 124     top1:  80.520  top5:  94.97%  
+ * Elapsed time: 2 hours 41 minutes 16 seconds
+  
+ * Best model (Top1):   80.52%
+              (Top5):   94.97%
+  
+=> Training epoch # 125 
+ | [#125][ 75/391]    Time 0.398  Loss 0.0141  Top1 100.000%  Top5 100.000% 
+ | [#125][150/391]    Time 0.403  Loss 0.0203  Top1  99.219%  Top5 100.000% 
+ | [#125][225/391]    Time 0.394  Loss 0.0209  Top1  99.219%  Top5 100.000% 
+ | [#125][300/391]    Time 0.399  Loss 0.0242  Top1 100.000%  Top5 100.000% 
+ | [#125][375/391]    Time 0.398  Loss 0.0283  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 125     top1:  80.690  top5:  95.05%  
+ * Elapsed time: 2 hours 43 minutes 48 seconds
+  
+ * Best model (Top1):   80.69%
+              (Top5):   95.05%
+  
+=> Training epoch # 126 
+ | [#126][ 75/391]    Time 0.376  Loss 0.0158  Top1 100.000%  Top5 100.000% 
+ | [#126][150/391]    Time 0.397  Loss 0.0358  Top1  99.219%  Top5 100.000% 
+ | [#126][225/391]    Time 0.383  Loss 0.0124  Top1 100.000%  Top5 100.000% 
+ | [#126][300/391]    Time 0.402  Loss 0.0093  Top1 100.000%  Top5 100.000% 
+ | [#126][375/391]    Time 0.396  Loss 0.0312  Top1  99.219%  Top5 100.000% 
+ * Finished epoch # 126     top1:  80.730  top5:  95.15%  
+ * Elapsed time: 2 hours 46 minutes 21 seconds
+  
+ * Best model (Top1):   80.73%
+              (Top5):   95.15%
+  
+=> Training epoch # 127 
+ | [#127][ 75/391]    Time 0.378  Loss 0.0114  Top1 100.000%  Top5 100.000% 
+ | [#127][150/391]    Time 0.405  Loss 0.0067  Top1 100.000%  Top5 100.000% 
+ | [#127][225/391]    Time 0.384  Loss 0.0208  Top1 100.000%  Top5 100.000% 
+ | [#127][300/391]    Time 0.402  Loss 0.0122  Top1 100.000%  Top5 100.000% 
+ | [#127][375/391]    Time 0.401  Loss 0.0065  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 127     top1:  80.610  top5:  95.18%  
+ * Elapsed time: 2 hours 48 minutes 53 seconds
+  
+=> Training epoch # 128 
+ | [#128][ 75/391]    Time 0.388  Loss 0.0100  Top1 100.000%  Top5 100.000% 
+ | [#128][150/391]    Time 0.372  Loss 0.0087  Top1 100.000%  Top5 100.000% 
+ | [#128][225/391]    Time 0.393  Loss 0.0221  Top1 100.000%  Top5 100.000% 
+ | [#128][300/391]    Time 0.400  Loss 0.0111  Top1 100.000%  Top5 100.000% 
+ | [#128][375/391]    Time 0.386  Loss 0.0235  Top1  99.219%  Top5 100.000% 
+ * Finished epoch # 128     top1:  80.700  top5:  95.06%  
+ * Elapsed time: 2 hours 51 minutes 27 seconds
+  
+=> Training epoch # 129 
+ | [#129][ 75/391]    Time 0.405  Loss 0.0127  Top1 100.000%  Top5 100.000% 
+ | [#129][150/391]    Time 0.384  Loss 0.0226  Top1  99.219%  Top5 100.000% 
+ | [#129][225/391]    Time 0.402  Loss 0.0156  Top1 100.000%  Top5 100.000% 
+ | [#129][300/391]    Time 0.372  Loss 0.0120  Top1 100.000%  Top5 100.000% 
+ | [#129][375/391]    Time 0.390  Loss 0.0148  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 129     top1:  80.880  top5:  95.17%  
+ * Elapsed time: 2 hours 54 minutes 0 seconds
+  
+ * Best model (Top1):   80.88%
+              (Top5):   95.17%
+  
+=> Training epoch # 130 
+ | [#130][ 75/391]    Time 0.406  Loss 0.0255  Top1  99.219%  Top5 100.000% 
+ | [#130][150/391]    Time 0.407  Loss 0.0121  Top1 100.000%  Top5 100.000% 
+ | [#130][225/391]    Time 0.396  Loss 0.0100  Top1 100.000%  Top5 100.000% 
+ | [#130][300/391]    Time 0.403  Loss 0.0076  Top1 100.000%  Top5 100.000% 
+ | [#130][375/391]    Time 0.383  Loss 0.0446  Top1  99.219%  Top5 100.000% 
+ * Finished epoch # 130     top1:  80.840  top5:  95.20%  
+ * Elapsed time: 2 hours 56 minutes 32 seconds
+  
+=> Training epoch # 131 
+ | [#131][ 75/391]    Time 0.409  Loss 0.0085  Top1 100.000%  Top5 100.000% 
+ | [#131][150/391]    Time 0.397  Loss 0.0108  Top1 100.000%  Top5 100.000% 
+ | [#131][225/391]    Time 0.372  Loss 0.0112  Top1 100.000%  Top5 100.000% 
+ | [#131][300/391]    Time 0.402  Loss 0.0108  Top1 100.000%  Top5 100.000% 
+ | [#131][375/391]    Time 0.400  Loss 0.0113  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 131     top1:  80.990  top5:  95.21%  
+ * Elapsed time: 2 hours 59 minutes 5 seconds
+  
+ * Best model (Top1):   80.99%
+              (Top5):   95.21%
+  
+=> Training epoch # 132 
+ | [#132][ 75/391]    Time 0.404  Loss 0.0073  Top1 100.000%  Top5 100.000% 
+ | [#132][150/391]    Time 0.401  Loss 0.0211  Top1  99.219%  Top5 100.000% 
+ | [#132][225/391]    Time 0.373  Loss 0.0304  Top1  99.219%  Top5 100.000% 
+ | [#132][300/391]    Time 0.399  Loss 0.0095  Top1 100.000%  Top5 100.000% 
+ | [#132][375/391]    Time 0.374  Loss 0.0049  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 132     top1:  80.990  top5:  95.15%  
+ * Elapsed time: 3 hours 1 minutes 38 seconds
+  
+=> Training epoch # 133 
+ | [#133][ 75/391]    Time 0.373  Loss 0.0077  Top1 100.000%  Top5 100.000% 
+ | [#133][150/391]    Time 0.378  Loss 0.0168  Top1  99.219%  Top5 100.000% 
+ | [#133][225/391]    Time 0.401  Loss 0.0092  Top1 100.000%  Top5 100.000% 
+ | [#133][300/391]    Time 0.408  Loss 0.0155  Top1 100.000%  Top5 100.000% 
+ | [#133][375/391]    Time 0.401  Loss 0.0087  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 133     top1:  80.840  top5:  95.03%  
+ * Elapsed time: 3 hours 4 minutes 11 seconds
+  
+=> Training epoch # 134 
+ | [#134][ 75/391]    Time 0.383  Loss 0.0327  Top1  99.219%  Top5 100.000% 
+ | [#134][150/391]    Time 0.371  Loss 0.0151  Top1 100.000%  Top5 100.000% 
+ | [#134][225/391]    Time 0.370  Loss 0.0126  Top1 100.000%  Top5 100.000% 
+ | [#134][300/391]    Time 0.399  Loss 0.0104  Top1 100.000%  Top5 100.000% 
+ | [#134][375/391]    Time 0.399  Loss 0.0131  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 134     top1:  80.880  top5:  95.28%  
+ * Elapsed time: 3 hours 6 minutes 45 seconds
+  
+=> Training epoch # 135 
+ | [#135][ 75/391]    Time 0.425  Loss 0.0161  Top1 100.000%  Top5 100.000% 
+ | [#135][150/391]    Time 0.432  Loss 0.0055  Top1 100.000%  Top5 100.000% 
+ | [#135][225/391]    Time 0.474  Loss 0.0109  Top1 100.000%  Top5 100.000% 
+ | [#135][300/391]    Time 0.454  Loss 0.0105  Top1 100.000%  Top5 100.000% 
+ | [#135][375/391]    Time 0.429  Loss 0.0186  Top1  99.219%  Top5 100.000% 
+ * Finished epoch # 135     top1:  81.050  top5:  95.17%  
+ * Elapsed time: 3 hours 9 minutes 35 seconds
+  
+ * Best model (Top1):   81.05%
+              (Top5):   95.17%
+  
+=> Training epoch # 136 
+ | [#136][ 75/391]    Time 0.423  Loss 0.0063  Top1 100.000%  Top5 100.000% 
+ | [#136][150/391]    Time 0.383  Loss 0.0055  Top1 100.000%  Top5 100.000% 
+ | [#136][225/391]    Time 0.378  Loss 0.0062  Top1 100.000%  Top5 100.000% 
+ | [#136][300/391]    Time 0.401  Loss 0.0084  Top1 100.000%  Top5 100.000% 
+ | [#136][375/391]    Time 0.410  Loss 0.0142  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 136     top1:  80.800  top5:  95.21%  
+ * Elapsed time: 3 hours 12 minutes 14 seconds
+  
+=> Training epoch # 137 
+ | [#137][ 75/391]    Time 0.381  Loss 0.0248  Top1  99.219%  Top5 100.000% 
+ | [#137][150/391]    Time 0.401  Loss 0.0111  Top1 100.000%  Top5 100.000% 
+ | [#137][225/391]    Time 0.397  Loss 0.0084  Top1 100.000%  Top5 100.000% 
+ | [#137][300/391]    Time 0.395  Loss 0.0124  Top1 100.000%  Top5 100.000% 
+ | [#137][375/391]    Time 0.408  Loss 0.0079  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 137     top1:  81.040  top5:  95.28%  
+ * Elapsed time: 3 hours 14 minutes 47 seconds
+  
+=> Training epoch # 138 
+ | [#138][ 75/391]    Time 0.408  Loss 0.0165  Top1  99.219%  Top5 100.000% 
+ | [#138][150/391]    Time 0.398  Loss 0.0079  Top1 100.000%  Top5 100.000% 
+ | [#138][225/391]    Time 0.400  Loss 0.0128  Top1 100.000%  Top5 100.000% 
+ | [#138][300/391]    Time 0.405  Loss 0.0127  Top1 100.000%  Top5 100.000% 
+ | [#138][375/391]    Time 0.388  Loss 0.0099  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 138     top1:  80.880  top5:  95.28%  
+ * Elapsed time: 3 hours 17 minutes 20 seconds
+  
+=> Training epoch # 139 
+ | [#139][ 75/391]    Time 0.391  Loss 0.0062  Top1 100.000%  Top5 100.000% 
+ | [#139][150/391]    Time 0.408  Loss 0.0188  Top1  99.219%  Top5 100.000% 
+ | [#139][225/391]    Time 0.371  Loss 0.0093  Top1 100.000%  Top5 100.000% 
+ | [#139][300/391]    Time 0.371  Loss 0.0162  Top1 100.000%  Top5 100.000% 
+ | [#139][375/391]    Time 0.392  Loss 0.0113  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 139     top1:  80.860  top5:  95.28%  
+ * Elapsed time: 3 hours 19 minutes 53 seconds
+  
+=> Training epoch # 140 
+ | [#140][ 75/391]    Time 0.410  Loss 0.0069  Top1 100.000%  Top5 100.000% 
+ | [#140][150/391]    Time 0.400  Loss 0.0159  Top1 100.000%  Top5 100.000% 
+ | [#140][225/391]    Time 0.402  Loss 0.0085  Top1 100.000%  Top5 100.000% 
+ | [#140][300/391]    Time 0.389  Loss 0.0063  Top1 100.000%  Top5 100.000% 
+ | [#140][375/391]    Time 0.402  Loss 0.0101  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 140     top1:  80.790  top5:  95.24%  
+ * Elapsed time: 3 hours 22 minutes 26 seconds
+  
+=> Training epoch # 141 
+ | [#141][ 75/391]    Time 0.408  Loss 0.0142  Top1 100.000%  Top5 100.000% 
+ | [#141][150/391]    Time 0.375  Loss 0.0101  Top1 100.000%  Top5 100.000% 
+ | [#141][225/391]    Time 0.400  Loss 0.0078  Top1 100.000%  Top5 100.000% 
+ | [#141][300/391]    Time 0.388  Loss 0.0089  Top1 100.000%  Top5 100.000% 
+ | [#141][375/391]    Time 0.372  Loss 0.0101  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 141     top1:  80.780  top5:  95.25%  
+ * Elapsed time: 3 hours 24 minutes 59 seconds
+  
+=> Training epoch # 142 
+ | [#142][ 75/391]    Time 0.398  Loss 0.0145  Top1 100.000%  Top5 100.000% 
+ | [#142][150/391]    Time 0.400  Loss 0.0105  Top1 100.000%  Top5 100.000% 
+ | [#142][225/391]    Time 0.373  Loss 0.0151  Top1 100.000%  Top5 100.000% 
+ | [#142][300/391]    Time 0.411  Loss 0.0134  Top1 100.000%  Top5 100.000% 
+ | [#142][375/391]    Time 0.407  Loss 0.0133  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 142     top1:  80.970  top5:  95.16%  
+ * Elapsed time: 3 hours 27 minutes 33 seconds
+  
+=> Training epoch # 143 
+ | [#143][ 75/391]    Time 0.382  Loss 0.0098  Top1 100.000%  Top5 100.000% 
+ | [#143][150/391]    Time 0.371  Loss 0.0070  Top1 100.000%  Top5 100.000% 
+ | [#143][225/391]    Time 0.371  Loss 0.0196  Top1 100.000%  Top5 100.000% 
+ | [#143][300/391]    Time 0.378  Loss 0.0066  Top1 100.000%  Top5 100.000% 
+ | [#143][375/391]    Time 0.399  Loss 0.0089  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 143     top1:  81.080  top5:  95.19%  
+ * Elapsed time: 3 hours 30 minutes 6 seconds
+  
+ * Best model (Top1):   81.08%
+              (Top5):   95.19%
+  
+=> Training epoch # 144 
+ | [#144][ 75/391]    Time 0.401  Loss 0.0060  Top1 100.000%  Top5 100.000% 
+ | [#144][150/391]    Time 0.403  Loss 0.0070  Top1 100.000%  Top5 100.000% 
+ | [#144][225/391]    Time 0.394  Loss 0.0548  Top1  99.219%  Top5 100.000% 
+ | [#144][300/391]    Time 0.400  Loss 0.0091  Top1 100.000%  Top5 100.000% 
+ | [#144][375/391]    Time 0.389  Loss 0.0133  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 144     top1:  81.110  top5:  95.24%  
+ * Elapsed time: 3 hours 32 minutes 39 seconds
+  
+ * Best model (Top1):   81.11%
+              (Top5):   95.24%
+  
+=> Training epoch # 145 
+ | [#145][ 75/391]    Time 0.384  Loss 0.0074  Top1 100.000%  Top5 100.000% 
+ | [#145][150/391]    Time 0.398  Loss 0.0063  Top1 100.000%  Top5 100.000% 
+ | [#145][225/391]    Time 0.394  Loss 0.0086  Top1 100.000%  Top5 100.000% 
+ | [#145][300/391]    Time 0.373  Loss 0.0073  Top1 100.000%  Top5 100.000% 
+ | [#145][375/391]    Time 0.377  Loss 0.0145  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 145     top1:  81.200  top5:  95.43%  
+ * Elapsed time: 3 hours 35 minutes 12 seconds
+  
+ * Best model (Top1):   81.20%
+              (Top5):   95.43%
+  
+=> Training epoch # 146 
+ | [#146][ 75/391]    Time 0.385  Loss 0.0076  Top1 100.000%  Top5 100.000% 
+ | [#146][150/391]    Time 0.369  Loss 0.0145  Top1 100.000%  Top5 100.000% 
+ | [#146][225/391]    Time 0.409  Loss 0.0108  Top1 100.000%  Top5 100.000% 
+ | [#146][300/391]    Time 0.388  Loss 0.0153  Top1  99.219%  Top5 100.000% 
+ | [#146][375/391]    Time 0.376  Loss 0.0077  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 146     top1:  80.870  top5:  95.30%  
+ * Elapsed time: 3 hours 37 minutes 45 seconds
+  
+=> Training epoch # 147 
+ | [#147][ 75/391]    Time 0.378  Loss 0.0062  Top1 100.000%  Top5 100.000% 
+ | [#147][150/391]    Time 0.372  Loss 0.0083  Top1 100.000%  Top5 100.000% 
+ | [#147][225/391]    Time 0.376  Loss 0.0066  Top1 100.000%  Top5 100.000% 
+ | [#147][300/391]    Time 0.368  Loss 0.0129  Top1 100.000%  Top5 100.000% 
+ | [#147][375/391]    Time 0.375  Loss 0.0074  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 147     top1:  81.100  top5:  95.40%  
+ * Elapsed time: 3 hours 40 minutes 18 seconds
+  
+=> Training epoch # 148 
+ | [#148][ 75/391]    Time 0.368  Loss 0.0068  Top1 100.000%  Top5 100.000% 
+ | [#148][150/391]    Time 0.401  Loss 0.0086  Top1 100.000%  Top5 100.000% 
+ | [#148][225/391]    Time 0.397  Loss 0.0171  Top1  99.219%  Top5 100.000% 
+ | [#148][300/391]    Time 0.428  Loss 0.0105  Top1 100.000%  Top5 100.000% 
+ | [#148][375/391]    Time 0.393  Loss 0.0116  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 148     top1:  81.030  top5:  95.32%  
+ * Elapsed time: 3 hours 42 minutes 51 seconds
+  
+=> Training epoch # 149 
+ | [#149][ 75/391]    Time 0.366  Loss 0.0168  Top1  99.219%  Top5 100.000% 
+ | [#149][150/391]    Time 0.373  Loss 0.0092  Top1 100.000%  Top5 100.000% 
+ | [#149][225/391]    Time 0.381  Loss 0.0078  Top1 100.000%  Top5 100.000% 
+ | [#149][300/391]    Time 0.406  Loss 0.0100  Top1 100.000%  Top5 100.000% 
+ | [#149][375/391]    Time 0.408  Loss 0.0067  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 149     top1:  81.160  top5:  95.39%  
+ * Elapsed time: 3 hours 45 minutes 23 seconds
+  
+=> Training epoch # 150 
+ | [#150][ 75/391]    Time 0.398  Loss 0.0175  Top1 100.000%  Top5 100.000% 
+ | [#150][150/391]    Time 0.397  Loss 0.0112  Top1 100.000%  Top5 100.000% 
+ | [#150][225/391]    Time 0.381  Loss 0.0118  Top1 100.000%  Top5 100.000% 
+ | [#150][300/391]    Time 0.395  Loss 0.0090  Top1 100.000%  Top5 100.000% 
+ | [#150][375/391]    Time 0.403  Loss 0.0146  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 150     top1:  81.180  top5:  95.21%  
+ * Elapsed time: 3 hours 47 minutes 56 seconds
+  
+=> Training epoch # 151 
+ | [#151][ 75/391]    Time 0.410  Loss 0.0071  Top1 100.000%  Top5 100.000% 
+ | [#151][150/391]    Time 0.375  Loss 0.0143  Top1 100.000%  Top5 100.000% 
+ | [#151][225/391]    Time 0.398  Loss 0.0088  Top1 100.000%  Top5 100.000% 
+ | [#151][300/391]    Time 0.375  Loss 0.0147  Top1 100.000%  Top5 100.000% 
+ | [#151][375/391]    Time 0.395  Loss 0.0129  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 151     top1:  81.020  top5:  95.41%  
+ * Elapsed time: 3 hours 50 minutes 29 seconds
+  
+=> Training epoch # 152 
+ | [#152][ 75/391]    Time 0.395  Loss 0.0065  Top1 100.000%  Top5 100.000% 
+ | [#152][150/391]    Time 0.400  Loss 0.0107  Top1 100.000%  Top5 100.000% 
+ | [#152][225/391]    Time 0.371  Loss 0.0124  Top1 100.000%  Top5 100.000% 
+ | [#152][300/391]    Time 0.394  Loss 0.0083  Top1 100.000%  Top5 100.000% 
+ | [#152][375/391]    Time 0.380  Loss 0.0135  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 152     top1:  80.920  top5:  95.30%  
+ * Elapsed time: 3 hours 53 minutes 2 seconds
+  
+=> Training epoch # 153 
+ | [#153][ 75/391]    Time 0.375  Loss 0.0105  Top1 100.000%  Top5 100.000% 
+ | [#153][150/391]    Time 0.402  Loss 0.0179  Top1 100.000%  Top5 100.000% 
+ | [#153][225/391]    Time 0.389  Loss 0.0141  Top1 100.000%  Top5 100.000% 
+ | [#153][300/391]    Time 0.380  Loss 0.0112  Top1 100.000%  Top5 100.000% 
+ | [#153][375/391]    Time 0.376  Loss 0.0098  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 153     top1:  81.300  top5:  95.31%  
+ * Elapsed time: 3 hours 55 minutes 35 seconds
+  
+ * Best model (Top1):   81.30%
+              (Top5):   95.31%
+  
+=> Training epoch # 154 
+ | [#154][ 75/391]    Time 0.375  Loss 0.0113  Top1 100.000%  Top5 100.000% 
+ | [#154][150/391]    Time 0.370  Loss 0.0078  Top1 100.000%  Top5 100.000% 
+ | [#154][225/391]    Time 0.375  Loss 0.0093  Top1 100.000%  Top5 100.000% 
+ | [#154][300/391]    Time 0.391  Loss 0.0108  Top1 100.000%  Top5 100.000% 
+ | [#154][375/391]    Time 0.402  Loss 0.0128  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 154     top1:  81.050  top5:  95.24%  
+ * Elapsed time: 3 hours 58 minutes 8 seconds
+  
+=> Training epoch # 155 
+ | [#155][ 75/391]    Time 0.374  Loss 0.0123  Top1 100.000%  Top5 100.000% 
+ | [#155][150/391]    Time 0.373  Loss 0.0104  Top1 100.000%  Top5 100.000% 
+ | [#155][225/391]    Time 0.382  Loss 0.0089  Top1 100.000%  Top5 100.000% 
+ | [#155][300/391]    Time 0.398  Loss 0.0090  Top1 100.000%  Top5 100.000% 
+ | [#155][375/391]    Time 0.395  Loss 0.0083  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 155     top1:  81.250  top5:  95.42%  
+ * Elapsed time: 4 hours 0 minutes 41 seconds
+  
+=> Training epoch # 156 
+ | [#156][ 75/391]    Time 0.397  Loss 0.0109  Top1 100.000%  Top5 100.000% 
+ | [#156][150/391]    Time 0.403  Loss 0.0072  Top1 100.000%  Top5 100.000% 
+ | [#156][225/391]    Time 0.407  Loss 0.0074  Top1 100.000%  Top5 100.000% 
+ | [#156][300/391]    Time 0.401  Loss 0.0122  Top1 100.000%  Top5 100.000% 
+ | [#156][375/391]    Time 0.397  Loss 0.0132  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 156     top1:  80.940  top5:  95.20%  
+ * Elapsed time: 4 hours 3 minutes 13 seconds
+  
+=> Training epoch # 157 
+ | [#157][ 75/391]    Time 0.401  Loss 0.0170  Top1  99.219%  Top5 100.000% 
+ | [#157][150/391]    Time 0.378  Loss 0.0113  Top1 100.000%  Top5 100.000% 
+ | [#157][225/391]    Time 0.378  Loss 0.0117  Top1 100.000%  Top5 100.000% 
+ | [#157][300/391]    Time 0.377  Loss 0.0082  Top1 100.000%  Top5 100.000% 
+ | [#157][375/391]    Time 0.375  Loss 0.0090  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 157     top1:  81.140  top5:  95.29%  
+ * Elapsed time: 4 hours 5 minutes 45 seconds
+  
+=> Training epoch # 158 
+ | [#158][ 75/391]    Time 0.377  Loss 0.0124  Top1 100.000%  Top5 100.000% 
+ | [#158][150/391]    Time 0.399  Loss 0.0067  Top1 100.000%  Top5 100.000% 
+ | [#158][225/391]    Time 0.402  Loss 0.0071  Top1 100.000%  Top5 100.000% 
+ | [#158][300/391]    Time 0.390  Loss 0.0056  Top1 100.000%  Top5 100.000% 
+ | [#158][375/391]    Time 0.389  Loss 0.0117  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 158     top1:  81.170  top5:  95.37%  
+ * Elapsed time: 4 hours 8 minutes 17 seconds
+  
+=> Training epoch # 159 
+ | [#159][ 75/391]    Time 0.389  Loss 0.0116  Top1 100.000%  Top5 100.000% 
+ | [#159][150/391]    Time 0.400  Loss 0.0096  Top1 100.000%  Top5 100.000% 
+ | [#159][225/391]    Time 0.390  Loss 0.0085  Top1 100.000%  Top5 100.000% 
+ | [#159][300/391]    Time 0.400  Loss 0.0082  Top1 100.000%  Top5 100.000% 
+ | [#159][375/391]    Time 0.394  Loss 0.0076  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 159     top1:  81.220  top5:  95.30%  
+ * Elapsed time: 4 hours 10 minutes 51 seconds
+  
+=> Training epoch # 160 
+ | [#160][ 75/391]    Time 0.389  Loss 0.0058  Top1 100.000%  Top5 100.000% 
+ | [#160][150/391]    Time 0.399  Loss 0.0065  Top1 100.000%  Top5 100.000% 
+ | [#160][225/391]    Time 0.408  Loss 0.0073  Top1 100.000%  Top5 100.000% 
+ | [#160][300/391]    Time 0.396  Loss 0.0101  Top1 100.000%  Top5 100.000% 
+ | [#160][375/391]    Time 0.395  Loss 0.0128  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 160     top1:  81.190  top5:  95.32%  
+ * Elapsed time: 4 hours 13 minutes 44 seconds
+  
+=> Training epoch # 161 
+ | [#161][ 75/391]    Time 0.392  Loss 0.0082  Top1 100.000%  Top5 100.000% 
+ | [#161][150/391]    Time 0.397  Loss 0.0104  Top1 100.000%  Top5 100.000% 
+ | [#161][225/391]    Time 0.392  Loss 0.0094  Top1 100.000%  Top5 100.000% 
+ | [#161][300/391]    Time 0.398  Loss 0.0061  Top1 100.000%  Top5 100.000% 
+ | [#161][375/391]    Time 0.386  Loss 0.0069  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 161     top1:  81.350  top5:  95.39%  
+ * Elapsed time: 4 hours 16 minutes 18 seconds
+  
+ * Best model (Top1):   81.35%
+              (Top5):   95.39%
+  
+=> Training epoch # 162 
+ | [#162][ 75/391]    Time 0.389  Loss 0.0067  Top1 100.000%  Top5 100.000% 
+ | [#162][150/391]    Time 0.390  Loss 0.0092  Top1 100.000%  Top5 100.000% 
+ | [#162][225/391]    Time 0.412  Loss 0.0134  Top1  99.219%  Top5 100.000% 
+ | [#162][300/391]    Time 0.391  Loss 0.0104  Top1 100.000%  Top5 100.000% 
+ | [#162][375/391]    Time 0.392  Loss 0.0158  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 162     top1:  81.190  top5:  95.41%  
+ * Elapsed time: 4 hours 18 minutes 52 seconds
+  
+=> Training epoch # 163 
+ | [#163][ 75/391]    Time 0.393  Loss 0.0056  Top1 100.000%  Top5 100.000% 
+ | [#163][150/391]    Time 0.396  Loss 0.0097  Top1 100.000%  Top5 100.000% 
+ | [#163][225/391]    Time 0.407  Loss 0.0081  Top1 100.000%  Top5 100.000% 
+ | [#163][300/391]    Time 0.393  Loss 0.0101  Top1 100.000%  Top5 100.000% 
+ | [#163][375/391]    Time 0.392  Loss 0.0067  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 163     top1:  81.440  top5:  95.35%  
+ * Elapsed time: 4 hours 21 minutes 26 seconds
+  
+ * Best model (Top1):   81.44%
+              (Top5):   95.35%
+  
+=> Training epoch # 164 
+ | [#164][ 75/391]    Time 0.394  Loss 0.0112  Top1 100.000%  Top5 100.000% 
+ | [#164][150/391]    Time 0.409  Loss 0.0110  Top1 100.000%  Top5 100.000% 
+ | [#164][225/391]    Time 0.399  Loss 0.0106  Top1 100.000%  Top5 100.000% 
+ | [#164][300/391]    Time 0.397  Loss 0.0074  Top1 100.000%  Top5 100.000% 
+ | [#164][375/391]    Time 0.389  Loss 0.0124  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 164     top1:  81.370  top5:  95.33%  
+ * Elapsed time: 4 hours 24 minutes 0 seconds
+  
+=> Training epoch # 165 
+ | [#165][ 75/391]    Time 0.393  Loss 0.0100  Top1 100.000%  Top5 100.000% 
+ | [#165][150/391]    Time 0.393  Loss 0.0088  Top1 100.000%  Top5 100.000% 
+ | [#165][225/391]    Time 0.392  Loss 0.0083  Top1 100.000%  Top5 100.000% 
+ | [#165][300/391]    Time 0.408  Loss 0.0097  Top1 100.000%  Top5 100.000% 
+ | [#165][375/391]    Time 0.391  Loss 0.0090  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 165     top1:  81.230  top5:  95.48%  
+ * Elapsed time: 4 hours 26 minutes 34 seconds
+  
+=> Training epoch # 166 
+ | [#166][ 75/391]    Time 0.388  Loss 0.0069  Top1 100.000%  Top5 100.000% 
+ | [#166][150/391]    Time 0.387  Loss 0.0075  Top1 100.000%  Top5 100.000% 
+ | [#166][225/391]    Time 0.395  Loss 0.0144  Top1  99.219%  Top5 100.000% 
+ | [#166][300/391]    Time 0.395  Loss 0.0145  Top1  99.219%  Top5 100.000% 
+ | [#166][375/391]    Time 0.401  Loss 0.0090  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 166     top1:  81.430  top5:  95.37%  
+ * Elapsed time: 4 hours 29 minutes 7 seconds
+  
+=> Training epoch # 167 
+ | [#167][ 75/391]    Time 0.392  Loss 0.0200  Top1  99.219%  Top5 100.000% 
+ | [#167][150/391]    Time 0.391  Loss 0.0102  Top1 100.000%  Top5 100.000% 
+ | [#167][225/391]    Time 0.382  Loss 0.0077  Top1 100.000%  Top5 100.000% 
+ | [#167][300/391]    Time 0.391  Loss 0.0107  Top1 100.000%  Top5 100.000% 
+ | [#167][375/391]    Time 0.406  Loss 0.0095  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 167     top1:  81.350  top5:  95.49%  
+ * Elapsed time: 4 hours 31 minutes 41 seconds
+  
+=> Training epoch # 168 
+ | [#168][ 75/391]    Time 0.393  Loss 0.0113  Top1 100.000%  Top5 100.000% 
+ | [#168][150/391]    Time 0.390  Loss 0.0065  Top1 100.000%  Top5 100.000% 
+ | [#168][225/391]    Time 0.386  Loss 0.0080  Top1 100.000%  Top5 100.000% 
+ | [#168][300/391]    Time 0.400  Loss 0.0065  Top1 100.000%  Top5 100.000% 
+ | [#168][375/391]    Time 0.386  Loss 0.0082  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 168     top1:  81.320  top5:  95.50%  
+ * Elapsed time: 4 hours 34 minutes 15 seconds
+  
+=> Training epoch # 169 
+ | [#169][ 75/391]    Time 0.389  Loss 0.0067  Top1 100.000%  Top5 100.000% 
+ | [#169][150/391]    Time 0.394  Loss 0.0071  Top1 100.000%  Top5 100.000% 
+ | [#169][225/391]    Time 0.398  Loss 0.0051  Top1 100.000%  Top5 100.000% 
+ | [#169][300/391]    Time 0.411  Loss 0.0100  Top1 100.000%  Top5 100.000% 
+ | [#169][375/391]    Time 0.384  Loss 0.0064  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 169     top1:  81.500  top5:  95.44%  
+ * Elapsed time: 4 hours 36 minutes 49 seconds
+  
+ * Best model (Top1):   81.50%
+              (Top5):   95.44%
+  
+=> Training epoch # 170 
+ | [#170][ 75/391]    Time 0.386  Loss 0.0088  Top1 100.000%  Top5 100.000% 
+ | [#170][150/391]    Time 0.391  Loss 0.0178  Top1 100.000%  Top5 100.000% 
+ | [#170][225/391]    Time 0.387  Loss 0.0079  Top1 100.000%  Top5 100.000% 
+ | [#170][300/391]    Time 0.389  Loss 0.0087  Top1 100.000%  Top5 100.000% 
+ | [#170][375/391]    Time 0.393  Loss 0.0242  Top1  99.219%  Top5 100.000% 
+ * Finished epoch # 170     top1:  81.380  top5:  95.51%  
+ * Elapsed time: 4 hours 39 minutes 22 seconds
+  
+=> Training epoch # 171 
+ | [#171][ 75/391]    Time 0.387  Loss 0.0110  Top1 100.000%  Top5 100.000% 
+ | [#171][150/391]    Time 0.413  Loss 0.0158  Top1  99.219%  Top5 100.000% 
+ | [#171][225/391]    Time 0.392  Loss 0.0068  Top1 100.000%  Top5 100.000% 
+ | [#171][300/391]    Time 0.391  Loss 0.0084  Top1 100.000%  Top5 100.000% 
+ | [#171][375/391]    Time 0.405  Loss 0.0070  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 171     top1:  81.250  top5:  95.30%  
+ * Elapsed time: 4 hours 41 minutes 56 seconds
+  
+=> Training epoch # 172 
+ | [#172][ 75/391]    Time 0.387  Loss 0.0084  Top1 100.000%  Top5 100.000% 
+ | [#172][150/391]    Time 0.391  Loss 0.0085  Top1 100.000%  Top5 100.000% 
+ | [#172][225/391]    Time 0.391  Loss 0.0051  Top1 100.000%  Top5 100.000% 
+ | [#172][300/391]    Time 0.391  Loss 0.0076  Top1 100.000%  Top5 100.000% 
+ | [#172][375/391]    Time 0.391  Loss 0.0111  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 172     top1:  81.320  top5:  95.41%  
+ * Elapsed time: 4 hours 44 minutes 30 seconds
+  
+=> Training epoch # 173 
+ | [#173][ 75/391]    Time 0.390  Loss 0.0107  Top1 100.000%  Top5 100.000% 
+ | [#173][150/391]    Time 0.392  Loss 0.0108  Top1 100.000%  Top5 100.000% 
+ | [#173][225/391]    Time 0.390  Loss 0.0074  Top1 100.000%  Top5 100.000% 
+ | [#173][300/391]    Time 0.386  Loss 0.0111  Top1 100.000%  Top5 100.000% 
+ | [#173][375/391]    Time 0.399  Loss 0.0067  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 173     top1:  81.250  top5:  95.47%  
+ * Elapsed time: 4 hours 47 minutes 3 seconds
+  
+=> Training epoch # 174 
+ | [#174][ 75/391]    Time 0.412  Loss 0.0072  Top1 100.000%  Top5 100.000% 
+ | [#174][150/391]    Time 0.408  Loss 0.0066  Top1 100.000%  Top5 100.000% 
+ | [#174][225/391]    Time 0.395  Loss 0.0080  Top1 100.000%  Top5 100.000% 
+ | [#174][300/391]    Time 0.399  Loss 0.0123  Top1 100.000%  Top5 100.000% 
+ | [#174][375/391]    Time 0.403  Loss 0.0178  Top1  99.219%  Top5 100.000% 
+ * Finished epoch # 174     top1:  81.520  top5:  95.45%  
+ * Elapsed time: 4 hours 49 minutes 37 seconds
+  
+ * Best model (Top1):   81.52%
+              (Top5):   95.45%
+  
+=> Training epoch # 175 
+ | [#175][ 75/391]    Time 0.396  Loss 0.0090  Top1 100.000%  Top5 100.000% 
+ | [#175][150/391]    Time 0.395  Loss 0.0072  Top1 100.000%  Top5 100.000% 
+ | [#175][225/391]    Time 0.388  Loss 0.0060  Top1 100.000%  Top5 100.000% 
+ | [#175][300/391]    Time 0.395  Loss 0.0080  Top1 100.000%  Top5 100.000% 
+ | [#175][375/391]    Time 0.393  Loss 0.0091  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 175     top1:  81.340  top5:  95.46%  
+ * Elapsed time: 4 hours 52 minutes 11 seconds
+  
+=> Training epoch # 176 
+ | [#176][ 75/391]    Time 0.401  Loss 0.0088  Top1 100.000%  Top5 100.000% 
+ | [#176][150/391]    Time 0.391  Loss 0.0094  Top1 100.000%  Top5 100.000% 
+ | [#176][225/391]    Time 0.390  Loss 0.0091  Top1 100.000%  Top5 100.000% 
+ | [#176][300/391]    Time 0.399  Loss 0.0049  Top1 100.000%  Top5 100.000% 
+ | [#176][375/391]    Time 0.392  Loss 0.0124  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 176     top1:  81.460  top5:  95.56%  
+ * Elapsed time: 4 hours 54 minutes 44 seconds
+  
+=> Training epoch # 177 
+ | [#177][ 75/391]    Time 0.394  Loss 0.0091  Top1 100.000%  Top5 100.000% 
+ | [#177][150/391]    Time 0.391  Loss 0.0106  Top1 100.000%  Top5 100.000% 
+ | [#177][225/391]    Time 0.394  Loss 0.0080  Top1 100.000%  Top5 100.000% 
+ | [#177][300/391]    Time 0.390  Loss 0.0076  Top1 100.000%  Top5 100.000% 
+ | [#177][375/391]    Time 0.393  Loss 0.0090  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 177     top1:  81.250  top5:  95.44%  
+ * Elapsed time: 4 hours 57 minutes 18 seconds
+  
+=> Training epoch # 178 
+ | [#178][ 75/391]    Time 0.395  Loss 0.0071  Top1 100.000%  Top5 100.000% 
+ | [#178][150/391]    Time 0.400  Loss 0.0076  Top1 100.000%  Top5 100.000% 
+ | [#178][225/391]    Time 0.394  Loss 0.0103  Top1 100.000%  Top5 100.000% 
+ | [#178][300/391]    Time 0.394  Loss 0.0085  Top1 100.000%  Top5 100.000% 
+ | [#178][375/391]    Time 0.389  Loss 0.0106  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 178     top1:  81.480  top5:  95.45%  
+ * Elapsed time: 4 hours 59 minutes 52 seconds
+  
+=> Training epoch # 179 
+ | [#179][ 75/391]    Time 0.394  Loss 0.0124  Top1 100.000%  Top5 100.000% 
+ | [#179][150/391]    Time 0.392  Loss 0.0090  Top1 100.000%  Top5 100.000% 
+ | [#179][225/391]    Time 0.391  Loss 0.0237  Top1  99.219%  Top5 100.000% 
+ | [#179][300/391]    Time 0.389  Loss 0.0107  Top1 100.000%  Top5 100.000% 
+ | [#179][375/391]    Time 0.401  Loss 0.0111  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 179     top1:  81.280  top5:  95.36%  
+ * Elapsed time: 5 hours 2 minutes 26 seconds
+  
+=> Training epoch # 180 
+ | [#180][ 75/391]    Time 0.402  Loss 0.0076  Top1 100.000%  Top5 100.000% 
+ | [#180][150/391]    Time 0.392  Loss 0.0093  Top1 100.000%  Top5 100.000% 
+ | [#180][225/391]    Time 0.396  Loss 0.0082  Top1 100.000%  Top5 100.000% 
+ | [#180][300/391]    Time 0.406  Loss 0.0114  Top1  99.219%  Top5 100.000% 
+ | [#180][375/391]    Time 0.387  Loss 0.0098  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 180     top1:  81.240  top5:  95.28%  
+ * Elapsed time: 5 hours 4 minutes 59 seconds
+  
+=> Training epoch # 181 
+ | [#181][ 75/391]    Time 0.394  Loss 0.0096  Top1 100.000%  Top5 100.000% 
+ | [#181][150/391]    Time 0.388  Loss 0.0086  Top1 100.000%  Top5 100.000% 
+ | [#181][225/391]    Time 0.408  Loss 0.0087  Top1 100.000%  Top5 100.000% 
+ | [#181][300/391]    Time 0.391  Loss 0.0069  Top1 100.000%  Top5 100.000% 
+ | [#181][375/391]    Time 0.401  Loss 0.0092  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 181     top1:  81.470  top5:  95.30%  
+ * Elapsed time: 5 hours 7 minutes 33 seconds
+  
+=> Training epoch # 182 
+ | [#182][ 75/391]    Time 0.394  Loss 0.0055  Top1 100.000%  Top5 100.000% 
+ | [#182][150/391]    Time 0.383  Loss 0.0133  Top1 100.000%  Top5 100.000% 
+ | [#182][225/391]    Time 0.391  Loss 0.0097  Top1 100.000%  Top5 100.000% 
+ | [#182][300/391]    Time 0.391  Loss 0.0087  Top1 100.000%  Top5 100.000% 
+ | [#182][375/391]    Time 0.390  Loss 0.0091  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 182     top1:  81.400  top5:  95.53%  
+ * Elapsed time: 5 hours 10 minutes 7 seconds
+  
+=> Training epoch # 183 
+ | [#183][ 75/391]    Time 0.400  Loss 0.0109  Top1 100.000%  Top5 100.000% 
+ | [#183][150/391]    Time 0.391  Loss 0.0211  Top1 100.000%  Top5 100.000% 
+ | [#183][225/391]    Time 0.406  Loss 0.0082  Top1 100.000%  Top5 100.000% 
+ | [#183][300/391]    Time 0.392  Loss 0.0090  Top1 100.000%  Top5 100.000% 
+ | [#183][375/391]    Time 0.392  Loss 0.0074  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 183     top1:  81.290  top5:  95.35%  
+ * Elapsed time: 5 hours 12 minutes 41 seconds
+  
+=> Training epoch # 184 
+ | [#184][ 75/391]    Time 0.394  Loss 0.0061  Top1 100.000%  Top5 100.000% 
+ | [#184][150/391]    Time 0.395  Loss 0.0079  Top1 100.000%  Top5 100.000% 
+ | [#184][225/391]    Time 0.401  Loss 0.0083  Top1 100.000%  Top5 100.000% 
+ | [#184][300/391]    Time 0.391  Loss 0.0077  Top1 100.000%  Top5 100.000% 
+ | [#184][375/391]    Time 0.394  Loss 0.0106  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 184     top1:  81.360  top5:  95.35%  
+ * Elapsed time: 5 hours 15 minutes 15 seconds
+  
+=> Training epoch # 185 
+ | [#185][ 75/391]    Time 0.397  Loss 0.0114  Top1 100.000%  Top5 100.000% 
+ | [#185][150/391]    Time 0.390  Loss 0.0098  Top1 100.000%  Top5 100.000% 
+ | [#185][225/391]    Time 0.394  Loss 0.0071  Top1 100.000%  Top5 100.000% 
+ | [#185][300/391]    Time 0.386  Loss 0.0092  Top1 100.000%  Top5 100.000% 
+ | [#185][375/391]    Time 0.390  Loss 0.0053  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 185     top1:  81.390  top5:  95.47%  
+ * Elapsed time: 5 hours 17 minutes 48 seconds
+  
+=> Training epoch # 186 
+ | [#186][ 75/391]    Time 0.386  Loss 0.0076  Top1 100.000%  Top5 100.000% 
+ | [#186][150/391]    Time 0.392  Loss 0.0103  Top1 100.000%  Top5 100.000% 
+ | [#186][225/391]    Time 0.390  Loss 0.0233  Top1  99.219%  Top5 100.000% 
+ | [#186][300/391]    Time 0.389  Loss 0.0076  Top1 100.000%  Top5 100.000% 
+ | [#186][375/391]    Time 0.390  Loss 0.0139  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 186     top1:  81.300  top5:  95.41%  
+ * Elapsed time: 5 hours 20 minutes 21 seconds
+  
+=> Training epoch # 187 
+ | [#187][ 75/391]    Time 0.392  Loss 0.0050  Top1 100.000%  Top5 100.000% 
+ | [#187][150/391]    Time 0.387  Loss 0.0068  Top1 100.000%  Top5 100.000% 
+ | [#187][225/391]    Time 0.393  Loss 0.0072  Top1 100.000%  Top5 100.000% 
+ | [#187][300/391]    Time 0.392  Loss 0.0102  Top1 100.000%  Top5 100.000% 
+ | [#187][375/391]    Time 0.394  Loss 0.0058  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 187     top1:  81.430  top5:  95.40%  
+ * Elapsed time: 5 hours 22 minutes 54 seconds
+  
+=> Training epoch # 188 
+ | [#188][ 75/391]    Time 0.389  Loss 0.0076  Top1 100.000%  Top5 100.000% 
+ | [#188][150/391]    Time 0.393  Loss 0.0063  Top1 100.000%  Top5 100.000% 
+ | [#188][225/391]    Time 0.390  Loss 0.0067  Top1 100.000%  Top5 100.000% 
+ | [#188][300/391]    Time 0.397  Loss 0.0069  Top1 100.000%  Top5 100.000% 
+ | [#188][375/391]    Time 0.398  Loss 0.0058  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 188     top1:  81.470  top5:  95.44%  
+ * Elapsed time: 5 hours 25 minutes 26 seconds
+  
+=> Training epoch # 189 
+ | [#189][ 75/391]    Time 0.387  Loss 0.0073  Top1 100.000%  Top5 100.000% 
+ | [#189][150/391]    Time 0.395  Loss 0.0072  Top1 100.000%  Top5 100.000% 
+ | [#189][225/391]    Time 0.394  Loss 0.0083  Top1 100.000%  Top5 100.000% 
+ | [#189][300/391]    Time 0.391  Loss 0.0055  Top1 100.000%  Top5 100.000% 
+ | [#189][375/391]    Time 0.392  Loss 0.0094  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 189     top1:  81.290  top5:  95.41%  
+ * Elapsed time: 5 hours 27 minutes 59 seconds
+  
+=> Training epoch # 190 
+ | [#190][ 75/391]    Time 0.406  Loss 0.0105  Top1 100.000%  Top5 100.000% 
+ | [#190][150/391]    Time 0.387  Loss 0.0109  Top1 100.000%  Top5 100.000% 
+ | [#190][225/391]    Time 0.394  Loss 0.0090  Top1 100.000%  Top5 100.000% 
+ | [#190][300/391]    Time 0.398  Loss 0.0103  Top1 100.000%  Top5 100.000% 
+ | [#190][375/391]    Time 0.392  Loss 0.0091  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 190     top1:  81.330  top5:  95.43%  
+ * Elapsed time: 5 hours 30 minutes 32 seconds
+  
+=> Training epoch # 191 
+ | [#191][ 75/391]    Time 0.390  Loss 0.0082  Top1 100.000%  Top5 100.000% 
+ | [#191][150/391]    Time 0.394  Loss 0.0092  Top1 100.000%  Top5 100.000% 
+ | [#191][225/391]    Time 0.391  Loss 0.0102  Top1 100.000%  Top5 100.000% 
+ | [#191][300/391]    Time 0.391  Loss 0.0099  Top1 100.000%  Top5 100.000% 
+ | [#191][375/391]    Time 0.395  Loss 0.0179  Top1  99.219%  Top5 100.000% 
+ * Finished epoch # 191     top1:  81.310  top5:  95.45%  
+ * Elapsed time: 5 hours 33 minutes 4 seconds
+  
+=> Training epoch # 192 
+ | [#192][ 75/391]    Time 0.390  Loss 0.0056  Top1 100.000%  Top5 100.000% 
+ | [#192][150/391]    Time 0.392  Loss 0.0080  Top1 100.000%  Top5 100.000% 
+ | [#192][225/391]    Time 0.394  Loss 0.0105  Top1 100.000%  Top5 100.000% 
+ | [#192][300/391]    Time 0.395  Loss 0.0066  Top1 100.000%  Top5 100.000% 
+ | [#192][375/391]    Time 0.391  Loss 0.0115  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 192     top1:  81.320  top5:  95.49%  
+ * Elapsed time: 5 hours 35 minutes 37 seconds
+  
+=> Training epoch # 193 
+ | [#193][ 75/391]    Time 0.390  Loss 0.0137  Top1 100.000%  Top5 100.000% 
+ | [#193][150/391]    Time 0.394  Loss 0.0074  Top1 100.000%  Top5 100.000% 
+ | [#193][225/391]    Time 0.394  Loss 0.0072  Top1 100.000%  Top5 100.000% 
+ | [#193][300/391]    Time 0.393  Loss 0.0075  Top1 100.000%  Top5 100.000% 
+ | [#193][375/391]    Time 0.394  Loss 0.0095  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 193     top1:  81.310  top5:  95.49%  
+ * Elapsed time: 5 hours 38 minutes 10 seconds
+  
+=> Training epoch # 194 
+ | [#194][ 75/391]    Time 0.391  Loss 0.0052  Top1 100.000%  Top5 100.000% 
+ | [#194][150/391]    Time 0.392  Loss 0.0097  Top1 100.000%  Top5 100.000% 
+ | [#194][225/391]    Time 0.392  Loss 0.0244  Top1 100.000%  Top5 100.000% 
+ | [#194][300/391]    Time 0.389  Loss 0.0095  Top1 100.000%  Top5 100.000% 
+ | [#194][375/391]    Time 0.392  Loss 0.0087  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 194     top1:  81.550  top5:  95.44%  
+ * Elapsed time: 5 hours 40 minutes 42 seconds
+  
+ * Best model (Top1):   81.55%
+              (Top5):   95.44%
+  
+=> Training epoch # 195 
+ | [#195][ 75/391]    Time 0.390  Loss 0.0165  Top1  99.219%  Top5 100.000% 
+ | [#195][150/391]    Time 0.393  Loss 0.0074  Top1 100.000%  Top5 100.000% 
+ | [#195][225/391]    Time 0.393  Loss 0.0126  Top1 100.000%  Top5 100.000% 
+ | [#195][300/391]    Time 0.398  Loss 0.0068  Top1 100.000%  Top5 100.000% 
+ | [#195][375/391]    Time 0.384  Loss 0.0078  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 195     top1:  81.500  top5:  95.53%  
+ * Elapsed time: 5 hours 43 minutes 14 seconds
+  
+=> Training epoch # 196 
+ | [#196][ 75/391]    Time 0.394  Loss 0.0157  Top1  99.219%  Top5 100.000% 
+ | [#196][150/391]    Time 0.397  Loss 0.0078  Top1 100.000%  Top5 100.000% 
+ | [#196][225/391]    Time 0.388  Loss 0.0105  Top1 100.000%  Top5 100.000% 
+ | [#196][300/391]    Time 0.393  Loss 0.0092  Top1 100.000%  Top5 100.000% 
+ | [#196][375/391]    Time 0.391  Loss 0.0077  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 196     top1:  81.450  top5:  95.47%  
+ * Elapsed time: 5 hours 45 minutes 47 seconds
+  
+=> Training epoch # 197 
+ | [#197][ 75/391]    Time 0.388  Loss 0.0082  Top1 100.000%  Top5 100.000% 
+ | [#197][150/391]    Time 0.401  Loss 0.0144  Top1  99.219%  Top5 100.000% 
+ | [#197][225/391]    Time 0.390  Loss 0.0109  Top1 100.000%  Top5 100.000% 
+ | [#197][300/391]    Time 0.401  Loss 0.0086  Top1 100.000%  Top5 100.000% 
+ | [#197][375/391]    Time 0.400  Loss 0.0105  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 197     top1:  81.320  top5:  95.48%  
+ * Elapsed time: 5 hours 48 minutes 20 seconds
+  
+=> Training epoch # 198 
+ | [#198][ 75/391]    Time 0.389  Loss 0.0109  Top1 100.000%  Top5 100.000% 
+ | [#198][150/391]    Time 0.391  Loss 0.0080  Top1 100.000%  Top5 100.000% 
+ | [#198][225/391]    Time 0.391  Loss 0.0092  Top1 100.000%  Top5 100.000% 
+ | [#198][300/391]    Time 0.390  Loss 0.0088  Top1 100.000%  Top5 100.000% 
+ | [#198][375/391]    Time 0.396  Loss 0.0072  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 198     top1:  81.380  top5:  95.46%  
+ * Elapsed time: 5 hours 50 minutes 52 seconds
+  
+=> Training epoch # 199 
+ | [#199][ 75/391]    Time 0.385  Loss 0.0114  Top1 100.000%  Top5 100.000% 
+ | [#199][150/391]    Time 0.387  Loss 0.0143  Top1 100.000%  Top5 100.000% 
+ | [#199][225/391]    Time 0.388  Loss 0.0288  Top1  99.219%  Top5 100.000% 
+ | [#199][300/391]    Time 0.387  Loss 0.0077  Top1 100.000%  Top5 100.000% 
+ | [#199][375/391]    Time 0.391  Loss 0.0095  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 199     top1:  81.380  top5:  95.58%  
+ * Elapsed time: 5 hours 53 minutes 25 seconds
+  
+=> Training epoch # 200 
+ | [#200][ 75/391]    Time 0.393  Loss 0.0105  Top1 100.000%  Top5 100.000% 
+ | [#200][150/391]    Time 0.389  Loss 0.0097  Top1 100.000%  Top5 100.000% 
+ | [#200][225/391]    Time 0.391  Loss 0.0106  Top1 100.000%  Top5 100.000% 
+ | [#200][300/391]    Time 0.391  Loss 0.0141  Top1 100.000%  Top5 100.000% 
+ | [#200][375/391]    Time 0.390  Loss 0.0070  Top1 100.000%  Top5 100.000% 
+ * Finished epoch # 200     top1:  81.360  top5:  95.55%  
+ * Elapsed time: 5 hours 55 minutes 57 seconds
+  
+ * Finished Top1: 81.550  Top5: 95.440  

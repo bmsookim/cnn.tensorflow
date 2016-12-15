@@ -1,0 +1,471 @@
+=> Creating model from file: models/wide-resnet.lua	
+ | Wide-ResNet-28x10 CIFAR-10	
+warning: could not load nccl, falling back to default communication	
+DataParallelTable: 2 x nn.Sequential {
+  [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+  (1): cudnn.SpatialConvolution(3 -> 16, 3x3, 1,1, 1,1) without bias
+  (2): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> (3) -> (4) -> output]
+      (1): nn.SpatialBatchNormalization (4D) (16)
+      (2): cudnn.ReLU
+      (3): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.SpatialBatchNormalization (4D) (160)
+          |      (3): cudnn.ReLU
+          |      (4): nn.Dropout(0.300000)
+          |      (5): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): cudnn.SpatialConvolution(16 -> 160, 1x1) without bias
+           ... -> output
+      }
+      (4): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (160)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (160)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (160)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (160)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (160)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (160)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (3): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> (3) -> (4) -> output]
+      (1): nn.SpatialBatchNormalization (4D) (160)
+      (2): cudnn.ReLU
+      (3): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> output]
+          |      (1): cudnn.SpatialConvolution(160 -> 320, 3x3, 2,2, 1,1) without bias
+          |      (2): nn.SpatialBatchNormalization (4D) (320)
+          |      (3): cudnn.ReLU
+          |      (4): nn.Dropout(0.300000)
+          |      (5): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): cudnn.SpatialConvolution(160 -> 320, 1x1, 2,2) without bias
+           ... -> output
+      }
+      (4): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (320)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (320)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (320)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (320)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (320)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (320)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (4): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> (3) -> (4) -> output]
+      (1): nn.SpatialBatchNormalization (4D) (320)
+      (2): cudnn.ReLU
+      (3): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> output]
+          |      (1): cudnn.SpatialConvolution(320 -> 640, 3x3, 2,2, 1,1) without bias
+          |      (2): nn.SpatialBatchNormalization (4D) (640)
+          |      (3): cudnn.ReLU
+          |      (4): nn.Dropout(0.300000)
+          |      (5): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): cudnn.SpatialConvolution(320 -> 640, 1x1, 2,2) without bias
+           ... -> output
+      }
+      (4): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (640)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (640)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (640)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (640)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (640)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (640)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (5): nn.SpatialBatchNormalization (4D) (640)
+  (6): cudnn.ReLU
+  (7): cudnn.SpatialAveragePooling(8x8, 1,1)
+  (8): nn.View(640)
+  (9): nn.Linear(640 -> 10)
+}
+=> Training epoch # 1	
+ | [#  1][ 75/391]    Time 0.091  Loss 1.6673  Top1  35.938%	
+ | [#  1][150/391]    Time 0.176  Loss 1.5404  Top1  42.188%	
+ | [#  1][225/391]    Time 0.233  Loss 1.2596  Top1  51.562%	
+ | [#  1][300/391]    Time 0.207  Loss 1.1096  Top1  60.938%	
+ | [#  1][375/391]    Time 0.135  Loss 1.1579  Top1  61.719%	
+ * Finished epoch # 1     top1:  53.220%	
+ * Elapsed time: 0 hours 1 minutes 16 seconds
+	
+==================================================================	
+ * Best model (Top1): 	53.22%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-28x10/	
+==================================================================
+	
+=> Training epoch # 2	
+ | [#  2][ 75/391]    Time 0.095  Loss 1.2462  Top1  55.469%	
+ | [#  2][150/391]    Time 0.199  Loss 1.0632  Top1  59.375%	
+ | [#  2][225/391]    Time 0.200  Loss 0.9464  Top1  66.406%	
+ | [#  2][300/391]    Time 0.206  Loss 0.8100  Top1  75.781%	
+ | [#  2][375/391]    Time 0.194  Loss 0.8470  Top1  67.969%	
+ * Finished epoch # 2     top1:  64.900%	
+ * Elapsed time: 0 hours 2 minutes 32 seconds
+	
+==================================================================	
+ * Best model (Top1): 	64.90%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-28x10/	
+==================================================================
+	
+=> Training epoch # 3	
+ | [#  3][ 75/391]    Time 0.201  Loss 0.6176  Top1  78.906%	
+ | [#  3][150/391]    Time 0.200  Loss 0.5719  Top1  79.688%	
+ | [#  3][225/391]    Time 0.209  Loss 0.7539  Top1  74.219%	
+ | [#  3][300/391]    Time 0.207  Loss 0.6848  Top1  73.438%	
+ | [#  3][375/391]    Time 0.195  Loss 0.8667  Top1  73.438%	
+ * Finished epoch # 3     top1:  75.150%	
+ * Elapsed time: 0 hours 3 minutes 46 seconds
+	
+==================================================================	
+ * Best model (Top1): 	75.15%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-28x10/	
+==================================================================
+	
+=> Training epoch # 4	
+ | [#  4][ 75/391]    Time 0.208  Loss 0.6948  Top1  75.781%	
+ | [#  4][150/391]    Time 0.198  Loss 0.6418  Top1  76.562%	
+ | [#  4][225/391]    Time 0.201  Loss 0.5204  Top1  80.469%	
+ | [#  4][300/391]    Time 0.197  Loss 0.6331  Top1  78.906%	
+ | [#  4][375/391]    Time 0.194  Loss 0.6670  Top1  77.344%	
+ * Finished epoch # 4     top1:  76.970%	
+ * Elapsed time: 0 hours 5 minutes 0 seconds
+	
+==================================================================	
+ * Best model (Top1): 	76.97%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-28x10/	
+==================================================================
+	
+=> Training epoch # 5	
+ | [#  5][ 75/391]    Time 0.217  Loss 0.4950  Top1  82.812%	
+ | [#  5][150/391]    Time 0.195  Loss 0.6662  Top1  79.688%	
+ | [#  5][225/391]    Time 0.194  Loss 0.7106  Top1  75.781%	
+ | [#  5][300/391]    Time 0.196  Loss 0.5938  Top1  78.125%	
+ | [#  5][375/391]    Time 0.207  Loss 0.6182  Top1  81.250%	
+ * Finished epoch # 5     top1:  76.910%	
+ * Elapsed time: 0 hours 6 minutes 15 seconds
+	
+=> Training epoch # 6	
+ | [#  6][ 75/391]    Time 0.207  Loss 0.4858  Top1  82.031%	
+ | [#  6][150/391]    Time 0.206  Loss 0.6053  Top1  77.344%	
+ | [#  6][225/391]    Time 0.197  Loss 0.4159  Top1  84.375%	
+ | [#  6][300/391]    Time 0.201  Loss 0.5483  Top1  82.812%	
+ | [#  6][375/391]    Time 0.225  Loss 0.3698  Top1  87.500%	
+ * Finished epoch # 6     top1:  77.860%	
+ * Elapsed time: 0 hours 7 minutes 30 seconds
+	
+==================================================================	
+ * Best model (Top1): 	77.86%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-28x10/	
+==================================================================
+	
+=> Training epoch # 7	
+ | [#  7][ 75/391]    Time 0.200  Loss 0.5418  Top1  82.031%	
+ | [#  7][150/391]    Time 0.208  Loss 0.4613  Top1  85.156%	
+ | [#  7][225/391]    Time 0.200  Loss 0.4148  Top1  85.938%	
+ | [#  7][300/391]    Time 0.207  Loss 0.6420  Top1  78.125%	
+ | [#  7][375/391]    Time 0.209  Loss 0.4680  Top1  84.375%	
+ * Finished epoch # 7     top1:  78.610%	
+ * Elapsed time: 0 hours 8 minutes 45 seconds
+	
+==================================================================	
+ * Best model (Top1): 	78.61%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-28x10/	
+==================================================================
+	
+=> Training epoch # 8	
+ | [#  8][ 75/391]    Time 0.221  Loss 0.4845  Top1  85.156%	
+ | [#  8][150/391]    Time 0.251  Loss 0.3846  Top1  89.062%	
+ | [#  8][225/391]    Time 0.199  Loss 0.4149  Top1  85.156%	
+ | [#  8][300/391]    Time 0.136  Loss 0.5213  Top1  82.031%	
+ | [#  8][375/391]    Time 0.205  Loss 0.5094  Top1  83.594%	
+ * Finished epoch # 8     top1:  80.180%	
+ * Elapsed time: 0 hours 10 minutes 0 seconds
+	
+==================================================================	
+ * Best model (Top1): 	80.18%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-28x10/	
+==================================================================
+	
+=> Training epoch # 9	
+ | [#  9][ 75/391]    Time 0.198  Loss 0.4717  Top1  81.250%	
+ | [#  9][150/391]    Time 0.203  Loss 0.4310  Top1  84.375%	
+ | [#  9][225/391]    Time 0.196  Loss 0.4017  Top1  85.156%	
+ | [#  9][300/391]    Time 0.202  Loss 0.5023  Top1  84.375%	
+ | [#  9][375/391]    Time 0.209  Loss 0.5408  Top1  82.812%	
+ * Finished epoch # 9     top1:  82.840%	
+ * Elapsed time: 0 hours 11 minutes 14 seconds
+	
+==================================================================	
+ * Best model (Top1): 	82.84%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-28x10/	
+==================================================================
+	
+=> Training epoch # 10	
+ | [# 10][ 75/391]    Time 0.090  Loss 0.3971  Top1  85.938%	
+ | [# 10][150/391]    Time 0.216  Loss 0.4937  Top1  87.500%	
+ | [# 10][225/391]    Time 0.205  Loss 0.5511  Top1  78.906%	
+ | [# 10][300/391]    Time 0.094  Loss 0.2856  Top1  91.406%	
+ | [# 10][375/391]    Time 0.192  Loss 0.6318  Top1  77.344%	
+ * Finished epoch # 10     top1:  79.300%	
+ * Elapsed time: 0 hours 12 minutes 29 seconds
+	
+=> Training epoch # 11	
+ | [# 11][ 75/391]    Time 0.204  Loss 0.3702  Top1  85.938%	
+ | [# 11][150/391]    Time 0.202  Loss 0.4785  Top1  83.594%	
+ | [# 11][225/391]    Time 0.203  Loss 0.4007  Top1  85.938%	
+ | [# 11][300/391]    Time 0.208  Loss 0.4021  Top1  85.938%	
+ | [# 11][375/391]    Time 0.195  Loss 0.4033  Top1  87.500%	
+ * Finished epoch # 11     top1:  82.260%	
+ * Elapsed time: 0 hours 13 minutes 44 seconds
+	
+=> Training epoch # 12	
+ | [# 12][ 75/391]    Time 0.196  Loss 0.4724  Top1  83.594%	
+ | [# 12][150/391]    Time 0.208  Loss 0.4669  Top1  86.719%	
+ | [# 12][225/391]    Time 0.197  Loss 0.3768  Top1  85.938%	
+ | [# 12][300/391]    Time 0.205  Loss 0.4626  Top1  85.156%	
+ | [# 12][375/391]    Time 0.197  Loss 0.5129  Top1  83.594%	
+ * Finished epoch # 12     top1:  83.380%	
+ * Elapsed time: 0 hours 15 minutes 3 seconds
+	
+==================================================================	
+ * Best model (Top1): 	83.38%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-28x10/	
+==================================================================
+	
+=> Training epoch # 13	
+ | [# 13][ 75/391]    Time 0.208  Loss 0.4771  Top1  85.938%	
+ | [# 13][150/391]    Time 0.198  Loss 0.4536  Top1  83.594%	
+ | [# 13][225/391]    Time 0.195  Loss 0.3457  Top1  89.062%	
+ | [# 13][300/391]    Time 0.093  Loss 0.4135  Top1  85.156%	
+ | [# 13][375/391]    Time 0.192  Loss 0.3681  Top1  85.156%	
+ * Finished epoch # 13     top1:  84.220%	
+ * Elapsed time: 0 hours 16 minutes 18 seconds
+	
+==================================================================	
+ * Best model (Top1): 	84.22%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-28x10/	
+==================================================================
+	
+=> Training epoch # 14	
+ | [# 14][ 75/391]    Time 0.205  Loss 0.3210  Top1  85.156%	
+ | [# 14][150/391]    Time 0.207  Loss 0.4219  Top1  83.594%	
+ | [# 14][225/391]    Time 0.200  Loss 0.3318  Top1  85.938%	
+ | [# 14][300/391]    Time 0.202  Loss 0.3954  Top1  85.938%	
+ | [# 14][375/391]    Time 0.192  Loss 0.3237  Top1  87.500%	
+ * Finished epoch # 14     top1:  84.130%	
+ * Elapsed time: 0 hours 17 minutes 33 seconds
+	
+=> Training epoch # 15	
+ | [# 15][ 75/391]    Time 0.202  Loss 0.3013  Top1  89.062%	
+ | [# 15][150/391]    Time 0.194  Loss 0.1923  Top1  92.969%	
+ | [# 15][225/391]    Time 0.203  Loss 0.4461  Top1  82.812%	
+ | [# 15][300/391]    Time 0.206  Loss 0.4177  Top1  85.938%	
+ | [# 15][375/391]    Time 0.199  Loss 0.3392  Top1  89.062%	
+ * Finished epoch # 15     top1:  83.820%	
+ * Elapsed time: 0 hours 18 minutes 48 seconds
+	
+=> Training epoch # 16	
+ | [# 16][ 75/391]    Time 0.201  Loss 0.2672  Top1  90.625%	
+ | [# 16][150/391]    Time 0.206  Loss 0.3628  Top1  86.719%	
+ | [# 16][225/391]    Time 0.205  Loss 0.4904  Top1  82.812%	
+ | [# 16][300/391]    Time 0.197  Loss 0.3271  Top1  86.719%	
+ | [# 16][375/391]    Time 0.192  Loss 0.4571  Top1  84.375%	
+ * Finished epoch # 16     top1:  85.450%	
+ * Elapsed time: 0 hours 20 minutes 2 seconds
+	
+==================================================================	
+ * Best model (Top1): 	85.45%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-28x10/	
+==================================================================
+	
+=> Training epoch # 17	
+ | [# 17][ 75/391]    Time 0.130  Loss 0.3810  Top1  82.812%	
+ | [# 17][150/391]    Time 0.215  Loss 0.3834  Top1  87.500%	
+ | [# 17][225/391]    Time 0.201  Loss 0.3356  Top1  89.844%	
+ | [# 17][300/391]    Time 0.309  Loss 0.2967  Top1  90.625%	
+ | [# 17][375/391]    Time 0.209  Loss 0.4081  Top1  86.719%	
+ * Finished epoch # 17     top1:  80.870%	
+ * Elapsed time: 0 hours 21 minutes 17 seconds
+	
+=> Training epoch # 18	
+ | [# 18][ 75/391]    Time 0.209  Loss 0.3179  Top1  88.281%	
+ | [# 18][150/391]    Time 0.198  Loss 0.3183  Top1  88.281%	
