@@ -12,6 +12,7 @@ th test.lua \
 -dataset ${dataset} \
 -data ${data} \
 -netType ${netType} \
+-resume modelState \
 -nGPU 2 \
 -batchSize 32 \
 -resetClassifier true \
