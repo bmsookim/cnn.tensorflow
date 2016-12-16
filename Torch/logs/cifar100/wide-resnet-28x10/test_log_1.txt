@@ -248,7 +248,4 @@ DataParallelTable: 2 x nn.Sequential {
   (8): nn.View(640)
   (9): nn.Linear(640 -> 100)
 }
-=> Downloading CIFAR-100 dataset from http://www.cs.toronto.edu/~kriz/cifar-100-binary.tar.gz	
- | combining dataset into a single file	
- | saving CIFAR-100 dataset to /home/bumsoo/Github/ImageRecognition/Torch/gen/cifar100.t7	
  * Results Top1: 81.530  Top5:  95.44%	
