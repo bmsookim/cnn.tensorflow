@@ -51,14 +51,14 @@ function checkpoint.best(opt)
    if opt.resume == 'none' then
       return nil
    end
-   local bestPath = paths.concat(opt.save, 'best.t7')
+   local bestPath = paths.concat(opt.resume, 'best.t7')
    if not paths.filep(bestPath) then
       return nil
    end
 
    print('=> Loading checkpoint ' .. bestPath)
    local best = torch.load(bestPath)
-   local optimState = torch.load(paths.concat(opt.save, best.optimFile))
+   local optimState = torch.load(paths.concat(opt.resume, best.optimFile))
 
    return best, optimState
 end
