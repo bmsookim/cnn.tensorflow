@@ -1,5 +1,5 @@
 export netType='wide-resnet'
-export depth=28
+export depth=40
 export width=10
 export dataset='cifar100'
 export save=logs/${dataset}/${netType}-${depth}x${width}/
@@ -10,6 +10,7 @@ mkdir -p modelState
 th main.lua \
 -dataset ${dataset} \
 -netType ${netType} \
+-resume modelState \
 -nGPU 2 \
 -top5_display true \
 -testOnly true \
