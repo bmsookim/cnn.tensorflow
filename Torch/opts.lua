@@ -42,7 +42,7 @@ function M.parse(arg)
    cmd:option('-tenCrop',         'false', 'Ten-crop testing')
    ------------- Checkpointing options ---------------
    cmd:option('-save',            'modelState', 'Directory in which to save checkpoints')
-   cmd:option('-resume',          'modelState', 'Resume from the latest checkpoint in this directory')
+   cmd:option('-resume',          '', 'Resume from the latest checkpoint in this directory')
    cmd:option('-saveLatest',      'false',      'Save the latest file')
    ---------- Optimization options ----------------------
    cmd:option('-LR',              0.1,     'initial learning rate')
