@@ -76,3 +76,40 @@ machine github.com
 login [:username]
 password [:password]
 ```
+
+### Jupyter notebook configuration
+
+For jupyter notebook configuration, type in the command line below.
+```bash
+$ jupyter notebook --generate-config
+
+* Result :
+Writing default config to: <HOME_DIR>/.jupyter/jupyter_notebook_config.py
+
+$ vi ~/.jupyter/jupyter_notebook_config.py
+```
+
+presh [Esc], then enter /ip to find the ip configuration. You will find the line below
+``` bash
+## The IP address the notebook server will listen on.
+#c.NotebookApp.ip = 'localhost'
+```
+
+Erase the '#' and change it into ...
+```bash
+c.NotebookApp.ip = '163.152.163.112' # the ip address for your server
+```
+
+presh [Esc], then enter /port to find the port number. You will find the line below
+```bash
+## The port the notebook server will listen on.
+#c.NotebookApp.port = 8888
+```
+
+Erase the '#' and enter whatever port number you want
+```bash
+c.NotebookApp.port = 9999
+
+```
+
+Now, Enjoy!
