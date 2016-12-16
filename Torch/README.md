@@ -52,7 +52,7 @@ Only conducted mean/std preprocessing.
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:-----------:|
 | wide-resnet 28x10 |    0    | Momentum |  4.2G  | 200   | 1 min 18 sec |    96.15    |
 | wide-resnet 28x10 |   0.3   | Momentum |  4.2G  | 200   | 1 min 18 sec |  **96.40**  |
-| wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 1 min 42 sec |    96.31    |
+| wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 1 min 42 sec |    96.35    |
 | wide-resnet 40x10 |   0.5   | Moemntum |  5.8G  | 200   | 1 min 42 sec |    96.25    |
 
 CIFAR-10 was updated with the following implementation details.
@@ -76,8 +76,8 @@ Only conducted mean/std preprocessing.
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
 | wide-resnet 28x10 |    0    | Momentum |  5.1G  | 200   | 1 min 18 sec |   81.01    |    95.44    |
-| wide-resnet 28x10 |   0.3   | Momentum |  5.1G  | 200   | 1 min 18 sec | **81.55**  |  **95.44**  |
-| wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 1 min 40 sec |   81.06    |    95.41    |
+| wide-resnet 28x10 |   0.3   | Momentum |  5.1G  | 200   | 1 min 18 sec |   81.55    |    95.44    |
+| wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 1 min 40 sec | **81.81**  |  **95.47**  |
 
 
 CIFAR-100 was updated with the following implementation details.
