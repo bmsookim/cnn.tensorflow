@@ -15,8 +15,6 @@ th test.lua \
 -resume modelState \
 -nGPU 2 \
 -batchSize 32 \
--resetClassifier true \
--nClasses 2 \
 -dropout 0 \
 -top5_display false \
 -testOnly false \

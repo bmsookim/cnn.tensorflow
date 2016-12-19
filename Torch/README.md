@@ -17,7 +17,7 @@ luarocks install optnet
 ## Environments
 | GPUs         | numbers | nvidia-version | dev    | memory |
 |:------------:|:-------:|:--------------:|:------:|:------:|
-| GTX 980 Ti   | 1       | 367.57         | local  |   6G   |
+| GTX 1070     | 1       | 367.57         | local  |   8G   |
 | GTX TitanX   | 2       | 372.20         | server |   12G  |
 
 ## Directories and datasets
@@ -37,7 +37,7 @@ You can train each dataset which could be either cifar10, cifar100, imagenet, ca
 |   Dataset   | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)|
 |:-----------:|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|
 | CIFAR-10    | wide-resnet 28x10 |   0.3   | Momentum |  5.8G  | 200   | 1 min 18 sec |    96.40   |
-| CIFAR-100   | wide-resnet 28x10 |   0.3   | Momentum |  6.9G  | 200   | 1 min 18 sec |    81.53   |
+| CIFAR-100   | wide-resnet 28x10 |   0.3   | Momentum |  6.9G  | 200   | 1 min 18 sec |    81.81   |
 | ILSVRC-2012 | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
 | Cat vs Dog  | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
 
