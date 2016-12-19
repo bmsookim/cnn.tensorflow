@@ -50,10 +50,10 @@ Only conducted mean/std preprocessing.
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | accuracy(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:-----------:|
-| wide-resnet 28x10 |    0    | Momentum |  4.2G  | 200   | 1 min 18 sec |    96.15    |
-| wide-resnet 28x10 |   0.3   | Momentum |  4.2G  | 200   | 1 min 18 sec |  **96.40**  |
-| wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 1 min 42 sec |    96.35    |
-| wide-resnet 40x10 |   0.5   | Moemntum |  5.8G  | 200   | 1 min 42 sec |    96.25    |
+| wide-resnet 28x10 |    0    | Momentum |  5.8G  | 200   | 1 min 18 sec |    96.15    |
+| wide-resnet 28x10 |   0.3   | Momentum |  5.8G  | 200   | 1 min 18 sec |      -      |
+| wide-resnet 40x10 |    0    | Momentum |  7.1G  | 200   | 1 min 48 sec |      -      |
+| wide-resnet 40x10 |   0.3   | Momentum |  7.1G  | 200   | 1 min 48 sec |    96.35    |
 
 CIFAR-10 was updated with the following implementation details.
 
@@ -98,9 +98,9 @@ CIFAR-100 was updated with the following implementation details.
 Below is the result of the validation set accuracy for **Kaggle Cat vs Dog dataset** training
 Unlike CIFAR implements above, we use a bottle-neck layer.
 
-| network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)|
-|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|
-| wide-resnet 40x2  |    0    | Momentum |  1.3G  |  90   | 1 min 34 sec |    97.55   |
-| wide-resnet 40x2  |   0.3   | Momentum |  1.3G  |  90   | - min -- sec |      -     |
-| wide-botnet 50x2  |   0.3   | Momentum |   -    |  90   | - min -- sec |      -     |
+| network           | dropout | Optimizer| Memory | epoch | per epoch     | Top1 acc(%)|
+|:-----------------:|:-------:|----------|:------:|:-----:|:-------------:|:----------:|
+| wide-resnet 40x2  |    0    | Momentum |  1.3G  |  90   | 1 min 34 sec  |    97.55   |
+| wide-resnet 34x4  |    0    | Momentum | 22.5G  |  90   | 11 min 39 sec |      -     |
+| wide-resnet 34x4  |   0.3   | Momentum | 22.5G  |  90   | 11 min 39 sec |    98.31   |
 
