@@ -39,7 +39,7 @@ You can train each dataset which could be either cifar10, cifar100, imagenet, ca
 | CIFAR-10    | wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 1 min 18 sec |    96.35   |
 | CIFAR-100   | wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 1 min 18 sec |    81.81   |
 | ILSVRC-2012 | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
-| Cat vs Dog  | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
+| Cat vs Dog  | wide-resnet 34x2  |   0.3   | Momentum |  6.02G |  90   | 1 min 39 sec |    98.75   |
 
 ## CIFAR-10 Results
 
@@ -104,4 +104,4 @@ Unlike CIFAR implements above, we use a bottle-neck layer.
 | network           | dropout | Optimizer| Memory | epoch | per epoch     | Top1 acc(%)|
 |:-----------------:|:-------:|----------|:------:|:-----:|:-------------:|:----------:|
 | wide-resnet 34x2  |   0.3   | Momentum | 6.02G  |  90   | 1 min 39 sec  |    98.75   |
-| wide-resnet 40x2  |   0.3   | Momentum | 6.91G  |  90   | 2 min 34 sec  |    98.25   |
+| wide-resnet 40x2  |   0.3   | Momentum | 6.91G  |  90   | 2 min 34 sec  |    98.40   |

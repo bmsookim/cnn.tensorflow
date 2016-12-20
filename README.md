@@ -6,8 +6,8 @@ This implements training & test results of the most popular image classifying ch
 ## Environments
 | GPUs         | numbers | nvidia-version | dev    | memory |
 |:------------:|:-------:|:--------------:|:------:|:------:|
-| GTX 980 Ti   | 1       | 367.57         | local  |   6G   |
-| GTX TitanX   | 2       | 372.20         | server |  12G   |
+| GTX TitanX   | 1       | 367.57         | local  |  12G   |
+| GTX TitanX   | 4       | 375.20         | server |  12G   |
 
 There are two versions of implementations in this repository.
 - [Tensorflow version](Tensorflow/)
