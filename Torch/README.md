@@ -36,8 +36,8 @@ You can train each dataset which could be either cifar10, cifar100, imagenet, ca
 ## Best Results
 |   Dataset   | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)|
 |:-----------:|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|
-| CIFAR-10    | wide-resnet 28x10 |   0.3   | Momentum |  5.8G  | 200   | 1 min 18 sec |    96.40   |
-| CIFAR-100   | wide-resnet 28x10 |   0.3   | Momentum |  6.9G  | 200   | 1 min 18 sec |    81.81   |
+| CIFAR-10    | wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 1 min 18 sec |    96.35   |
+| CIFAR-100   | wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 1 min 18 sec |    81.81   |
 | ILSVRC-2012 | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
 | Cat vs Dog  | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
 
@@ -46,14 +46,15 @@ You can train each dataset which could be either cifar10, cifar100, imagenet, ca
 ![alt tag](../GitImage/cifar10_image.png)
 
 Below is the result of the test set accuracy for **CIFAR-10 dataset** training.
-Only conducted mean/std preprocessing.
+Only conducted mean/std preprocessing. (accuracy is the average of 5 runs)
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | accuracy(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:-----------:|
 | wide-resnet 28x10 |    0    | Momentum |  5.8G  | 200   | 1 min 18 sec |    96.15    |
-| wide-resnet 28x10 |   0.3   | Momentum |  5.8G  | 200   | 1 min 18 sec |      -      |
-| wide-resnet 40x10 |    0    | Momentum |  7.1G  | 200   | 1 min 48 sec |      -      |
-| wide-resnet 40x10 |   0.3   | Momentum |  7.1G  | 200   | 1 min 48 sec |    96.35    |
+| wide-resnet 28x10 |   0.3   | Momentum |  5.8G  | 200   | 1 min 18 sec |    96.31    |
+| wide-resnet 28x12 |   0.3   | Momentum |  7.1G  | 200   | 1 min 35 sec |    96.33    |
+| wide-resnet 34x10 |   0.3   | Momentum |  5.3G  | 200   | 1 min 40 sec |    96.17    |
+| wide-resnet 40x10 |   0.3   | Momentum |  6.1G  | 200   | 1 min 48 sec |  **96.35**  |
 
 CIFAR-10 was updated with the following implementation details.
 
@@ -71,13 +72,15 @@ CIFAR-10 was updated with the following implementation details.
 ![alt tag](../GitImage/cifar100_image.png)
 
 Below is the result of the test set accuracy for **CIFAR-100 dataset** training
-Only conducted mean/std preprocessing.
+Only conducted mean/std preprocessing. (accuracy is the average of 5 runs)
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
 | wide-resnet 28x10 |    0    | Momentum |  5.1G  | 200   | 1 min 18 sec |   81.01    |    95.44    |
 | wide-resnet 28x10 |   0.3   | Momentum |  5.1G  | 200   | 1 min 18 sec |   81.55    |    95.44    |
-| wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 1 min 40 sec | **81.81**  |  **95.47**  |
+| wide-resnet 28x12 |   0.3   | Momentum |  7.1G  | 200   | 1 min 41 sec |   81.67    |    95.43    |
+| wide-resnet 34x10 |   0.3   | Momentum |  5.3G  | 200   | 1 min 40 sec | **81.88**  |    95.45    |
+| wide-resnet 40x10 |   0.3   | Momentum |  6.1G  | 200   | 1 min 40 sec |   81.81    |  **95.47**  |
 
 
 CIFAR-100 was updated with the following implementation details.
@@ -100,7 +103,5 @@ Unlike CIFAR implements above, we use a bottle-neck layer.
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch     | Top1 acc(%)|
 |:-----------------:|:-------:|----------|:------:|:-----:|:-------------:|:----------:|
-| wide-resnet 40x2  |    0    | Momentum |  1.3G  |  90   | 1 min 34 sec  |    97.55   |
-| wide-resnet 34x4  |    0    | Momentum | 22.5G  |  90   | 11 min 39 sec |      -     |
-| wide-resnet 34x4  |   0.3   | Momentum | 22.5G  |  90   | 11 min 39 sec |    98.31   |
-
+| wide-resnet 34x2  |   0.3   | Momentum | 6.02G  |  90   | 1 min 39 sec  |    98.75   |
+| wide-resnet 40x2  |   0.3   | Momentum | 6.91G  |  90   | 2 min 34 sec  |    98.25   |
