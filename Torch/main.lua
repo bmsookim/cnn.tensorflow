@@ -56,10 +56,6 @@ local startEpoch = checkpoint and checkpoint.epoch + 1 or opt.epochNumber
 local bestTop1 = 0
 local bestTop5 = 0
 for epoch = startEpoch, opt.nEpochs do
-    -- Test out what manual seed does
-    torch.manualSeed(opt.manualSeed + epoch)
-    cutorch.manualSeedAll(opt.manualSeed + epoch)
-
    -- Train for a single epoch
    local trainTop1, trainTop5, trainLoss = trainer:train(epoch, trainLoader)
 
