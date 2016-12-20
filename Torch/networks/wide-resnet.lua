@@ -82,14 +82,14 @@ local function createModel(opt)
       local nStages = torch.Tensor{16, 32, 32*k, 64*k, 128*k}
 
       -- The wide-resnet ImageNet model
-      model:add(Convolution(3,nStages[1],7,7,2,2,3,3))                -- 112 x 112
+      model:add(Convolution(3,nStages[1],7,7,2,2,3,3))           -- large conv at beginning (size: 112 x 112)
       model:add(SBatchNorm(nStages[1]))
       model:add(ReLU(true))
-      model:add(Max(3,3,2,2,1,1))                                     -- 56 x 56
-      model:add(Convolution(nStages[1],nStages[2],3,3,2,2,1,1))       -- 28 x 28
-      model:add(wide_layer(wide_basic, nStages[2], nStages[3], n, 1)) -- 28 x 28
-      model:add(wide_layer(wide_basic, nStages[3], nStages[4], n, 2)) -- 14 x 14
-      model:add(wide_layer(wide_basic, nStages[4], nStages[5], n, 2)) -- 7 x 7
+      model:add(Max(3,3,2,2,1,1))                                -- pooling to reduce dimension (size: 56 x 56)
+      model:add(Convolution(nStages[1],nStages[2],3,3,2,2,1,1))  -- one conv at the beginning (size: 28 x 28)
+      model:add(wide_layer(wide_basic, nStages[2], nStages[3], n, 1)) -- Stage1 (size: 28 x 28)
+      model:add(wide_layer(wide_basic, nStages[3], nStages[4], n, 2)) -- Stage2 (size: 14 x 14)
+      model:add(wide_layer(wide_basic, nStages[4], nStages[5], n, 2)) -- Stage3 (size: 7 x 7)
       model:add(SBatchNorm(nStages[5]))
       model:add(ReLU(true))
       model:add(Avg(7, 7, 1, 1))
@@ -100,17 +100,17 @@ local function createModel(opt)
       local n = (depth-4)/6
       local k = opt.widen_factor
       print(' | Wide-ResNet-' .. depth .. 'x' .. k .. ' Cat vs Dog')
-      local nStages = torch.Tensor{16, 32, 32*k, 64*k, 128*k}
+      local nStages = torch.Tensor{64, 128, 128*k, 256*k, 512*k}
 
       -- The wide-resnet Challenge model
-      model:add(Convolution(3,nStages[1],7,7,2,2,3,3))                -- 112 x 112
+      model:add(Convolution(3,nStages[1],7,7,2,2,3,3))          -- large conv at beginning (size: 112 x 112)
       model:add(SBatchNorm(nStages[1]))
       model:add(ReLU(true))
-      model:add(Max(3,3,2,2,1,1))                                     -- 56 x 56
-      model:add(Convolution(nStages[1],nStages[2],3,3,2,2,1,1))       -- 28 x 28
-      model:add(wide_layer(wide_basic, nStages[2], nStages[3], n, 1)) -- 28 x 28
-      model:add(wide_layer(wide_basic, nStages[3], nStages[4], n, 2)) -- 14 x 14
-      model:add(wide_layer(wide_basic, nStages[4], nStages[5], n, 2)) -- 7 x 7
+      model:add(Max(3,3,2,2,1,1))                               -- pooling to reduce dimension (size: 56 x 56)
+      model:add(Convolution(nStages[1],nStages[2],3,3,2,2,1,1)) -- one conv at the beginning (size: 28 x 28)
+      model:add(wide_layer(wide_basic, nStages[2], nStages[3], n, 1)) -- Stage1 (28 x 28)
+      model:add(wide_layer(wide_basic, nStages[3], nStages[4], n, 2)) -- Stage2 (14 x 14)
+      model:add(wide_layer(wide_basic, nStages[4], nStages[5], n, 2)) -- Stage3 (7 x 7)
       model:add(SBatchNorm(nStages[5]))
       model:add(ReLU(true))
       model:add(Avg(7, 7, 1, 1))
