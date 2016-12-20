@@ -46,7 +46,8 @@ You can train each dataset which could be either cifar10, cifar100, imagenet, ca
 ![alt tag](../GitImage/cifar10_image.png)
 
 Below is the result of the test set accuracy for **CIFAR-10 dataset** training.
-Only conducted mean/std preprocessing. (accuracy is the average of 5 runs)
+
+**Only conducted mean/std preprocessing**. (accuracy is the average of 5 runs)
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | accuracy(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:-----------:|
@@ -71,8 +72,9 @@ CIFAR-10 was updated with the following implementation details.
 
 ![alt tag](../GitImage/cifar100_image.png)
 
-Below is the result of the test set accuracy for **CIFAR-100 dataset** training
-Only conducted mean/std preprocessing. (accuracy is the average of 5 runs)
+Below is the result of the test set accuracy for **CIFAR-100 dataset** training.
+
+**Only conducted mean/std preprocessing**. (accuracy is the average of 5 runs)
 
 | network           | dropout | Optimizer| Memory | epoch | per epoch    | Top1 acc(%)| Top5 acc(%) |
 |:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|:-----------:|
