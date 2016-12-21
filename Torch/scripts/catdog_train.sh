@@ -1,7 +1,7 @@
 #!/bin/bash
 export netType='wide-resnet'
-export depth=10
-export width=1
+export depth=40
+export width=2
 export dataset='catdog'
 export data='gen/catdog'
 export save=logs/${dataset}/${netType}-${depth}x${width}/
@@ -27,7 +27,7 @@ th convert.lua \
     -data ${data} \
     -netType ${netType} \
     -nGPU 2 \
-    -batchSize 16 \
+    -batchSize 32 \
     -depth ${depth} \
     -widen_factor ${width} \
     -optnet false \

@@ -1,6 +1,6 @@
 #!/bin/bash
-export netType='resnet'
-export depth=50
+export netType='wide-resnet'
+export depth=40
 export width=2
 export dataset='catdog'
 export data='gen/catdog'
@@ -10,14 +10,14 @@ mkdir -p $save
 mkdir -p modelState
 
 th test.lua \
--dataset ${dataset} \
--data ${data} \
--netType ${netType} \
--resume modelState \
--nGPU 2 \
--batchSize 32 \
--dropout 0 \
--top5_display false \
--testOnly false \
--depth ${depth} \
--widen_factor ${width}
+    -dataset ${dataset} \
+    -data ${data} \
+    -netType ${netType} \
+    -resume modelState \
+    -nGPU 2 \
+    -batchSize 32 \
+    -dropout 0 \
+    -top5_display false \
+    -testOnly false \
+    -depth ${depth} \
+    -widen_factor ${width}
