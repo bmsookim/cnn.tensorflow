@@ -56,7 +56,7 @@ function checkpoint.best(opt)
       return nil
    end
 
-   print('=> Loading checkpoint ' .. bestPath)
+   -- print('=> Loading checkpoint ' .. bestPath)
    local best = torch.load(bestPath)
    local optimState = torch.load(paths.concat(opt.resume, best.optimFile))
 
@@ -114,6 +114,8 @@ function checkpoint.save(epoch, model, optimState, isBestModel, opt)
    else
       before_was_best = false
    end
+
+   model:cuda()
 end
 
 return checkpoint
