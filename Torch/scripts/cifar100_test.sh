@@ -1,3 +1,4 @@
+#!/bin/bash
 export netType='wide-resnet'
 export depth=40
 export width=10

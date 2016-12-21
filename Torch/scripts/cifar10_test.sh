@@ -1,5 +1,6 @@
+#!/bin/bash
 export netType='wide-resnet'
-export depth=40
+export depth=28
 export width=10
 export dataset='cifar10'
 export save=logs/${dataset}/${netType}-${depth}x${width}/
@@ -11,7 +12,7 @@ th main.lua \
 -dataset ${dataset} \
 -netType ${netType} \
 -resume modelState \
--nGPU 2 \
+-nGPU 1 \
 -batchSize 128 \
 -dropout 0 \
 -top5_display false \
