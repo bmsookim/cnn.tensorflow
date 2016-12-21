@@ -8,10 +8,7 @@
 --  Korea University, Data-Mining Lab
 --  Image Recognition Torch Implementation
 --
---  This source code is licensed under the BSD-style license found in the
---  LICENSE file in the root directory of this source tree. An additional grant
---  of patent rights can be found in the PATENTS file in the same directory.
---
+
 require 'torch'
 require 'paths'
 require 'optim'
@@ -81,7 +78,8 @@ for epoch = startEpoch, opt.nEpochs do
 
       end
    end
-   
+
+   -- Save the model (currently on best model save mode)
    checkpoints.save(epoch, model, trainer.optimState, bestModel, opt)
 end
 
