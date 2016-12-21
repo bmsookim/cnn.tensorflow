@@ -1,0 +1,496 @@
+=> Creating model from file: models/wide-resnet.lua	
+ | Wide-ResNet-40x10 CIFAR-10	
+nn.Sequential {
+  [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> (8) -> (9) -> output]
+  (1): cudnn.SpatialConvolution(3 -> 16, 3x3, 1,1, 1,1) without bias
+  (2): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> (3) -> (4) -> output]
+      (1): nn.SpatialBatchNormalization (4D) (16)
+      (2): cudnn.ReLU
+      (3): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> output]
+          |      (1): cudnn.SpatialConvolution(16 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (2): nn.SpatialBatchNormalization (4D) (160)
+          |      (3): cudnn.ReLU
+          |      (4): nn.Dropout(0.300000)
+          |      (5): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): cudnn.SpatialConvolution(16 -> 160, 1x1) without bias
+           ... -> output
+      }
+      (4): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (160)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (160)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (160)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (160)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (160)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (160)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (5): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (160)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (160)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (6): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (160)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (160)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(160 -> 160, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (3): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> (3) -> (4) -> output]
+      (1): nn.SpatialBatchNormalization (4D) (160)
+      (2): cudnn.ReLU
+      (3): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> output]
+          |      (1): cudnn.SpatialConvolution(160 -> 320, 3x3, 2,2, 1,1) without bias
+          |      (2): nn.SpatialBatchNormalization (4D) (320)
+          |      (3): cudnn.ReLU
+          |      (4): nn.Dropout(0.300000)
+          |      (5): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): cudnn.SpatialConvolution(160 -> 320, 1x1, 2,2) without bias
+           ... -> output
+      }
+      (4): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (320)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (320)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (320)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (320)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (320)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (320)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (5): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (320)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (320)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (6): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (320)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (320)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(320 -> 320, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (4): nn.Sequential {
+    [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> output]
+    (1): nn.Sequential {
+      [input -> (1) -> (2) -> (3) -> (4) -> output]
+      (1): nn.SpatialBatchNormalization (4D) (320)
+      (2): cudnn.ReLU
+      (3): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> output]
+          |      (1): cudnn.SpatialConvolution(320 -> 640, 3x3, 2,2, 1,1) without bias
+          |      (2): nn.SpatialBatchNormalization (4D) (640)
+          |      (3): cudnn.ReLU
+          |      (4): nn.Dropout(0.300000)
+          |      (5): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): cudnn.SpatialConvolution(320 -> 640, 1x1, 2,2) without bias
+           ... -> output
+      }
+      (4): nn.CAddTable
+    }
+    (2): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (640)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (640)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (3): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (640)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (640)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (4): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (640)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (640)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (5): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (640)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (640)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+    (6): nn.Sequential {
+      [input -> (1) -> (2) -> output]
+      (1): nn.ConcatTable {
+        input
+          |`-> (1): nn.Sequential {
+          |      [input -> (1) -> (2) -> (3) -> (4) -> (5) -> (6) -> (7) -> output]
+          |      (1): nn.SpatialBatchNormalization (4D) (640)
+          |      (2): cudnn.ReLU
+          |      (3): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |      (4): nn.SpatialBatchNormalization (4D) (640)
+          |      (5): cudnn.ReLU
+          |      (6): nn.Dropout(0.300000)
+          |      (7): cudnn.SpatialConvolution(640 -> 640, 3x3, 1,1, 1,1) without bias
+          |    }
+           `-> (2): nn.Identity
+           ... -> output
+      }
+      (2): nn.CAddTable
+    }
+  }
+  (5): nn.SpatialBatchNormalization (4D) (640)
+  (6): cudnn.ReLU
+  (7): cudnn.SpatialAveragePooling(8x8, 1,1)
+  (8): nn.View(640)
+  (9): nn.Linear(640 -> 10)
+}
+=> Training epoch # 1	
+ | [#  1][ 75/391]    Time 0.457  Loss 1.7692  Top1  29.688%	
+ | [#  1][150/391]    Time 0.463  Loss 1.6744  Top1  41.406%	
+ | [#  1][225/391]    Time 0.469  Loss 1.6499  Top1  39.844%	
+ | [#  1][300/391]    Time 0.420  Loss 1.1761  Top1  56.250%	
+ | [#  1][375/391]    Time 0.183  Loss 1.2555  Top1  54.688%	
+ * Finished epoch # 1     top1:  54.020%	
+ * Elapsed time: 0 hours 3 minutes 3 seconds
+	
+==================================================================	
+ * Best model (Top1): 	54.02%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-40x10/	
+==================================================================
+	
+=> Training epoch # 2	
+ | [#  2][ 75/391]    Time 0.493  Loss 1.0061  Top1  61.719%	
+ | [#  2][150/391]    Time 0.475  Loss 0.9124  Top1  65.625%	
+ | [#  2][225/391]    Time 0.480  Loss 0.9327  Top1  67.969%	
+ | [#  2][300/391]    Time 0.469  Loss 0.8383  Top1  71.094%	
+ | [#  2][375/391]    Time 0.483  Loss 0.7921  Top1  73.438%	
+ * Finished epoch # 2     top1:  57.130%	
+ * Elapsed time: 0 hours 6 minutes 8 seconds
+	
+==================================================================	
+ * Best model (Top1): 	57.13%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-40x10/	
+==================================================================
+	
+=> Training epoch # 3	
+ | [#  3][ 75/391]    Time 0.485  Loss 0.8041  Top1  71.094%	
+ | [#  3][150/391]    Time 0.464  Loss 0.6290  Top1  76.562%	
+ | [#  3][225/391]    Time 0.462  Loss 0.7590  Top1  75.000%	
+ | [#  3][300/391]    Time 0.469  Loss 0.8154  Top1  70.312%	
+ | [#  3][375/391]    Time 0.514  Loss 0.5840  Top1  78.125%	
+ * Finished epoch # 3     top1:  71.830%	
+ * Elapsed time: 0 hours 9 minutes 14 seconds
+	
+==================================================================	
+ * Best model (Top1): 	71.83%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-40x10/	
+==================================================================
+	
+=> Training epoch # 4	
+ | [#  4][ 75/391]    Time 0.489  Loss 0.6134  Top1  78.906%	
+ | [#  4][150/391]    Time 0.462  Loss 0.6201  Top1  77.344%	
+ | [#  4][225/391]    Time 0.703  Loss 0.6322  Top1  76.562%	
+ | [#  4][300/391]    Time 0.363  Loss 0.6682  Top1  75.000%	
+ | [#  4][375/391]    Time 0.397  Loss 0.5458  Top1  79.688%	
+ * Finished epoch # 4     top1:  79.370%	
+ * Elapsed time: 0 hours 12 minutes 20 seconds
+	
+==================================================================	
+ * Best model (Top1): 	79.37%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-40x10/	
+==================================================================
+	
+=> Training epoch # 5	
+ | [#  5][ 75/391]    Time 0.495  Loss 0.5809  Top1  79.688%	
+ | [#  5][150/391]    Time 0.488  Loss 0.6198  Top1  77.344%	
+ | [#  5][225/391]    Time 0.463  Loss 0.5470  Top1  82.812%	
+ | [#  5][300/391]    Time 0.479  Loss 0.6425  Top1  71.875%	
+ | [#  5][375/391]    Time 0.476  Loss 0.5129  Top1  85.156%	
+ * Finished epoch # 5     top1:  73.580%	
+ * Elapsed time: 0 hours 15 minutes 27 seconds
+	
+=> Training epoch # 6	
+ | [#  6][ 75/391]    Time 0.483  Loss 0.4043  Top1  88.281%	
+ | [#  6][150/391]    Time 0.487  Loss 0.5034  Top1  85.156%	
+ | [#  6][225/391]    Time 0.663  Loss 0.4885  Top1  82.031%	
+ | [#  6][300/391]    Time 0.398  Loss 0.4556  Top1  86.719%	
+ | [#  6][375/391]    Time 0.364  Loss 0.4412  Top1  84.375%	
+ * Finished epoch # 6     top1:  78.430%	
+ * Elapsed time: 0 hours 18 minutes 31 seconds
+	
+=> Training epoch # 7	
+ | [#  7][ 75/391]    Time 0.468  Loss 0.6338  Top1  77.344%	
+ | [#  7][150/391]    Time 0.482  Loss 0.4968  Top1  83.594%	
+ | [#  7][225/391]    Time 0.460  Loss 0.5527  Top1  82.812%	
+ | [#  7][300/391]    Time 0.476  Loss 0.4774  Top1  84.375%	
+ | [#  7][375/391]    Time 0.488  Loss 0.5437  Top1  81.250%	
+ * Finished epoch # 7     top1:  78.960%	
+ * Elapsed time: 0 hours 21 minutes 34 seconds
+	
+=> Training epoch # 8	
+ | [#  8][ 75/391]    Time 0.482  Loss 0.4183  Top1  86.719%	
+ | [#  8][150/391]    Time 0.486  Loss 0.4487  Top1  81.250%	
+ | [#  8][225/391]    Time 0.489  Loss 0.4715  Top1  85.156%	
+ | [#  8][300/391]    Time 0.478  Loss 0.5433  Top1  82.031%	
+ | [#  8][375/391]    Time 0.459  Loss 0.4278  Top1  83.594%	
+ * Finished epoch # 8     top1:  82.660%	
+ * Elapsed time: 0 hours 24 minutes 38 seconds
+	
+==================================================================	
+ * Best model (Top1): 	82.66%
+	
+=> Saving the best model in modelState/cifar10/wide-resnet-40x10/	
+==================================================================
+	
+=> Training epoch # 9	
+ | [#  9][ 75/391]    Time 0.466  Loss 0.4583  Top1  85.156%	
+ | [#  9][150/391]    Time 0.528  Loss 0.3130  Top1  89.062%	
+ | [#  9][225/391]    Time 0.495  Loss 0.4527  Top1  85.156%	
+ | [#  9][300/391]    Time 0.495  Loss 0.5220  Top1  80.469%	
+ | [#  9][375/391]    Time 0.476  Loss 0.5768  Top1  78.125%	
+ * Finished epoch # 9     top1:  82.330%	
+ * Elapsed time: 0 hours 27 minutes 42 seconds
+	
+=> Training epoch # 10	
+ | [# 10][ 75/391]    Time 0.495  Loss 0.4090  Top1  86.719%	
+ | [# 10][150/391]    Time 0.478  Loss 0.4493  Top1  85.938%	
+ | [# 10][225/391]    Time 0.495  Loss 0.4491  Top1  82.812%	
+ | [# 10][300/391]    Time 0.484  Loss 0.3782  Top1  89.844%	
+ | [# 10][375/391]    Time 0.479  Loss 0.3812  Top1  86.719%	
+ * Finished epoch # 10     top1:  78.260%	
+ * Elapsed time: 0 hours 30 minutes 48 seconds
+	
+=> Training epoch # 11	
+ | [# 11][ 75/391]    Time 0.378  Loss 0.4198  Top1  85.156%	
+ | [# 11][150/391]    Time 0.397  Loss 0.4837  Top1  81.250%	
+ | [# 11][225/391]    Time 0.183  Loss 0.4291  Top1  86.719%	
+ | [# 11][300/391]    Time 0.494  Loss 0.5303  Top1  80.469%	
+ | [# 11][375/391]    Time 0.496  Loss 0.3304  Top1  89.062%	
+ * Finished epoch # 11     top1:  82.470%	
+ * Elapsed time: 0 hours 33 minutes 54 seconds
+	
+=> Training epoch # 12	
+ | [# 12][ 75/391]    Time 0.476  Loss 0.4291  Top1  85.156%	
+ | [# 12][150/391]    Time 0.487  Loss 0.4364  Top1  85.938%	
+ | [# 12][225/391]    Time 0.489  Loss 0.3251  Top1  90.625%	
+ | [# 12][300/391]    Time 0.473  Loss 0.2405  Top1  92.188%	
