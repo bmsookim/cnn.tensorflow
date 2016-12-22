@@ -54,6 +54,9 @@ function Trainer:train(epoch, dataloader)
    print('=> Training epoch # ' .. epoch)
    -- set the batch norm to training mode
    self.model:training()
+   if (epoch > 120) then
+       self.opt.weightDecay = opt.weightDecay/5.0
+   end
    for n, sample in dataloader:run() do
       local dataTime = dataTimer:time().real
 

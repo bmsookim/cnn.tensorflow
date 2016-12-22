@@ -29,5 +29,4 @@ th convert.lua \
     -batchSize 128 \
     -depth ${depth} \
     -widen_factor ${width} \
-    -optnet false \
-    -convert true \
+    -optnet true \

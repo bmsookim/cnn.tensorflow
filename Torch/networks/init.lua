@@ -21,7 +21,7 @@ local M = {}
 
 function M.setup(opt, checkpoint)
    local model
-   if checkpoint and (opt.convert == false) then
+   if checkpoint then
       local modelPath = paths.concat(opt.resume, checkpoint.modelFile)
       assert(paths.filep(modelPath), 'Saved model not found: ' .. modelPath)
       print('=> Resuming model from ' .. modelPath)
