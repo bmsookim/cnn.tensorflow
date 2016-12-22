@@ -17,8 +17,8 @@ luarocks install optnet
 ## Environments
 | GPUs         | numbers | nvidia-version | dev    | memory |
 |:------------:|:-------:|:--------------:|:------:|:------:|
-| GTX 1070     | 1       | 367.57         | local  |   8G   |
-| GTX TitanX   | 2       | 372.20         | server |   12G  |
+| GTX TitanX   | 1       | 367.57         | local  |   12G   |
+| GTX TitanX   | 4       | 372.20         | server |   12G  |
 
 ## Directories and datasets
 - checkpoints : The optimal stages and models will be saved in this directory.
@@ -38,8 +38,16 @@ You can train each dataset which could be either cifar10, cifar100, imagenet, ca
 |:-----------:|:-----------------:|:-------:|----------|:------:|:-----:|:------------:|:----------:|
 | CIFAR-10    | wide-resnet 40x10 |   0.3   | Momentum |  5.8G  | 200   | 1 min 18 sec |    96.35   |
 | CIFAR-100   | wide-resnet 40x10 |   0.3   | Momentum |  6.9G  | 200   | 1 min 18 sec |    81.81   |
-| ILSVRC-2012 | wide-resnet 50x2  |    0    | Momentum |  11.2G |  90   |      -       |     -      |
 | Cat vs Dog  | wide-resnet 34x2  |   0.3   | Momentum |  6.02G |  90   | 1 min 39 sec |    98.75   |
+
+## Memory Issues
+The [original code](https://github.com/facebook/fb.resnet.torch) had a CPU memory leak issue within its
+deepCopy function, and this led to issues for being eating up all the OS swap memory and automatically shutting down the
+training process.
+
+Instead of using this function, I implemented my own lua file, [convert.lua](./convert.lua).
+This addressed the CPU memory leak problem and simultaneously addressed the large model size problem when
+saving the naive cuda oriented model.
 
 ## CIFAR-10 Results
 

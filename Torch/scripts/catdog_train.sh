@@ -31,3 +31,4 @@ th convert.lua \
     -depth ${depth} \
     -widen_factor ${width} \
     -optnet true \
+    | tee $save/convert_log.txt

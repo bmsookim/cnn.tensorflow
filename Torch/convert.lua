@@ -1,3 +1,12 @@
+--
+--  (Author) Bumsoo Kim, 2016
+--  Github : https://github.com/meliketoy/ImageRecognition
+--
+--  Korea University, Data-Mining Lab
+--  Image Recognition Torch Implementation
+--
+--  Converting lua code addressing facebook resnet's CPU memory issue.
+--
 require 'torch'
 require 'paths'
 require 'optim'
@@ -21,7 +30,7 @@ cutorch.manualSeedAll(opt.manualSeed)
 -- Load previous checkpoint, if it exists
 local checkpoint, optimState = checkpoints.best(opt)
 
-print("Compressing "..sys.COLORS.cyan .. checkpoint.modelFile .. sys.COLORS.none .. '\n')
+print("Compressing "..checkpoint.modelFile .. '\n')
 
 -- Create model
 local model, criterion = models.setup(opt, checkpoint)

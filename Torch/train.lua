@@ -39,6 +39,7 @@ end
 function Trainer:train(epoch, dataloader)
    -- Trains the model for a single epoch
    self.optimState.learningRate = self:learningRate(epoch)
+   self.optimState.weightDecay = self:weightDecay(epoch)
 
    local timer = torch.Timer()
    local dataTimer = torch.Timer()
@@ -54,9 +55,6 @@ function Trainer:train(epoch, dataloader)
    print('=> Training epoch # ' .. epoch)
    -- set the batch norm to training mode
    self.model:training()
-   if (epoch > 120) then
-       self.opt.weightDecay = opt.weightDecay/5.0
-   end
    for n, sample in dataloader:run() do
       local dataTime = dataTimer:time().real
 
@@ -204,6 +202,19 @@ function Trainer:learningRate(epoch)
       decay = epoch >= 160 and 3 or epoch >= 120 and 2 or epoch >= 80 and 1 or 0
    end
    return self.opt.LR * math.pow(0.2, decay)
+end
+
+function Trainer:weightDecay(epoch)
+    local decay = 0
+    if self.opt.dataset == 'cifar10' then
+        decay = epoch >= 160 and 10 or epoch >= 120 and 5 or 1
+    elseif self.opt.dataset == 'cifar100' then
+        decay = epoch >= 160 and 10 or epoch >= 120 and 5 or 1
+    else
+        decay = 1
+    end
+
+    return self.opt.weightDecay / decay
 end
 
 return M.Trainer
