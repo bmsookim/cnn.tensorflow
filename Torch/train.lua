@@ -32,7 +32,6 @@ end
 function Trainer:train(epoch, dataloader)
    -- Trains the model for a single epoch
    self.optimState.learningRate = self:learningRate(epoch)
-   self.optimState.weightDecay = self:weightDecay(epoch)
 
    local timer = torch.Timer()
    local dataTimer = torch.Timer()
