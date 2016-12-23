@@ -1,7 +1,4 @@
 --
---  Copyright (c) 2016, Facebook, Inc.
---  All rights reserved.
---
 --  (Author) Bumsoo Kim, 2016
 --  Github : https://github.com/melikeoty/ImageRecognition
 --
@@ -22,6 +19,8 @@ local SBatchNorm = nn.SpatialBatchNormalization
 
 local function createModel(opt)
    local depth = opt.depth
+   local width = opt.width
+   local bottle = opt.width
    local shortcutType = opt.shortcutType or 'B'
    local iChannels
 
@@ -102,32 +101,60 @@ local function createModel(opt)
    local model = nn.Sequential()
    if opt.dataset == 'imagenet' then
       -- Configurations for ResNet:
-      --  num. residual blocks, num features, residual block function
+      -- num. residual blocks, num features, residual block function
       local cfg = {
-         [18]  = {{2, 2, 2, 2}, 512, basicblock},
-         [34]  = {{3, 4, 6, 3}, 512, basicblock},
-         [50]  = {{3, 4, 6, 3}, 2048, bottleneck},
-         [101] = {{3, 4, 23, 3}, 2048, bottleneck},
-         [152] = {{3, 8, 36, 3}, 2048, bottleneck},
+         [18]  = {{2, 2, 2, 2},  512*width, basicblock},
+         [34]  = {{3, 4, 6, 3},  512*width, basicblock},
+         [50]  = {{3, 4, 6, 3},  2048*bottle, bottleneck},
+         [101] = {{3, 4, 23, 3}, 2048*bottle, bottleneck},
+         [152] = {{3, 8, 36, 3}, 2048*bottle, bottleneck},
       }
 
       assert(cfg[depth], 'Invalid depth: ' .. tostring(depth))
       local def, nFeatures, block = table.unpack(cfg[depth])
       iChannels = 64
-      print(' | ResNet-' .. depth .. ' ImageNet')
+      print(' | ResNet-' .. depth .. 'x' .. width .. ' ImageNet')
 
       -- The ResNet ImageNet model
       model:add(Convolution(3,64,7,7,2,2,3,3))
       model:add(SBatchNorm(64))
       model:add(ReLU(true))
       model:add(Max(3,3,2,2,1,1))
-      model:add(layer(block, 64, def[1]))
-      model:add(layer(block, 128, def[2], 2))
-      model:add(layer(block, 256, def[3], 2))
-      model:add(layer(block, 512, def[4], 2))
+      model:add(layer(block, width*64,  def[1]))
+      model:add(layer(block, width*128, def[2], 2))
+      model:add(layer(block, width*256, def[3], 2))
+      model:add(layer(block, width*512, def[4], 2))
       model:add(Avg(7, 7, 1, 1))
       model:add(nn.View(nFeatures):setNumInputDims(3))
       model:add(nn.Linear(nFeatures, 1000))
+   elseif opt.dataset == 'catdog' then
+      -- Configurations for ResNet:
+      -- num. residual blocks, num features, residual block function
+      local cfg = {
+         [18]  = {{2, 2, 2, 2},  512*width, basicblock},
+         [34]  = {{3, 4, 6, 3},  512*width, basicblock},
+         [50]  = {{3, 4, 6, 3},  2048*bottle, bottleneck},
+         [101] = {{3, 4, 23, 3}, 2048*bottle, bottleneck},
+         [152] = {{3, 8, 36, 3}, 2048*bottle, bottleneck},
+      }
+
+      assert(cfg[depth], 'Invalid depth: ' .. tostring(depth))
+      local def, nFeatures, block = table.unpack(cfg[depth])
+      iChannels = 64
+      print(' | ResNet-' .. depth .. 'x' .. width .. ' ImageNet')
+
+      -- The ResNet ImageNet model
+      model:add(Convolution(3,64,7,7,2,2,3,3))
+      model:add(SBatchNorm(64))
+      model:add(ReLU(true))
+      model:add(Max(3,3,2,2,1,1))
+      model:add(layer(block, width*64,  def[1]))
+      model:add(layer(block, width*128, def[2], 2))
+      model:add(layer(block, width*256, def[3], 2))
+      model:add(layer(block, width*512, def[4], 2))
+      model:add(Avg(7, 7, 1, 1))
+      model:add(nn.View(nFeatures):setNumInputDims(3))
+      model:add(nn.Linear(nFeatures, 2))
    elseif opt.dataset == 'cifar10' then
       -- Model type specifies number of layers for CIFAR-10 model
       assert((depth - 2) % 6 == 0, 'depth should be one of 20, 32, 44, 56, 110, 1202')
