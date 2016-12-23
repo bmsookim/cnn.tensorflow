@@ -207,9 +207,9 @@ end
 function Trainer:weightDecay(epoch)
     local decay = 0
     if self.opt.dataset == 'cifar10' then
-        decay = epoch >= 160 and 10 or epoch >= 120 and 5 or 1
+        decay = epoch >= 160 and 5 or 1
     elseif self.opt.dataset == 'cifar100' then
-        decay = epoch >= 160 and 10 or epoch >= 120 and 5 or 1
+        decay = epoch >= 160 and 5 or 1
     else
         decay = 1
     end
