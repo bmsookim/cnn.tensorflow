@@ -128,3 +128,8 @@ Unlike CIFAR implements above, we use a bottle-neck layer.
 |:-----------------:|:-------:|----------|:------:|:-----:|:-------------:|:----------:|
 | wide-resnet 34x2  |   0.3   | Momentum | 6.02G  |  90   | 1 min 39 sec  |    98.75   |
 | wide-resnet 40x2  |   0.3   | Momentum | 6.91G  |  90   | 2 min 34 sec  |    98.40   |
+
+# LICENSE
+
+The data-loading segment of the code was implemented from 
+[fb.resnet.torch](https://github.com/facebook/fb.resnet.torch)

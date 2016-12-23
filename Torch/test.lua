@@ -1,12 +1,12 @@
 --
---  Copyright (c) 2016, DMIS
---  All rights reserved.
---
 --  (Author) Bumsoo Kim, 2016
 --  Github : https://github.com/meliketoy/ImageRecognition
 --
 --  Korea University, Data-Mining Lab
 --  Image Recognition Torch Implementation
+--
+--  Test code for cat/dog & imagenet models.
+--  All the .png files in the given /gen/[:datasets]/test folder will be labeled
 --
 
 require 'torch'

@@ -1,16 +1,12 @@
 --
---  Copyright (c) 2016, Facebook, Inc.
---  All rights reserved.
---
 --  Author : Bumsoo Kim, 2016
 --  Github : https://github.com/meliketoy/ImageRecognition
 --
---  This source code is licensed under the BSD-style license found in the
---  LICENSE file in the root directory of this source tree. An additional grant
---  of patent rights can be found in the PATENTS file in the same directory.
+--  Korea University, Data-Mining Lab
+--  Image Recognition Torch Implementation
 --
---  Generic model creating code. For the specific ResNet model see
---  models/resnet.lua
+--  Generic model creating code. For the specific model see
+--  networks/resnet.lua, networks/wide-resnet.lua
 --
 
 require 'nn'

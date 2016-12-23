@@ -1,12 +1,11 @@
 --
---  Copyright (c) 2016, Facebook, Inc.
---  All rights reserved.
---
 --  (Author) Bumsoo Kim, 2016
 --  Github : https://github.com/meliketoy/ImageRecognition
 --
 --  Korea University, Data-Mining Lab
 --  Image Recognition Torch Implementation
+--
+--  The main code for training and testing each datasets.
 --
 
 require 'torch'

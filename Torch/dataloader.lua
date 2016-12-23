@@ -8,9 +8,8 @@
 --  Korea University, Data-Mining Lab
 --  Image Recognition Torch Implementation
 --
---  This source code is licensed under the BSD-style license found in the
---  LICENSE file in the root directory of this source tree. An additional grant
---  of patent rights can be found in the PATENTS file in the same directory.
+--  This source code is originally from fb.resnet.torch code.
+--  See https://github.com/facebook/fb.resnet.torch
 --
 --  Multi-threaded data loader
 --
